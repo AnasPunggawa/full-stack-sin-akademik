@@ -1,0 +1,89 @@
+const prisma = require('../../../prisma/seed');
+
+async function find_all_datas() {
+  return await prisma.nilai.findMany();
+}
+
+async function find_single_data(id) {
+  return await prisma.nilai.findUnique({
+    where: {
+      id,
+    },
+  });
+}
+
+async function create_data(data) {
+  return await prisma.nilai.create({
+    data,
+  });
+}
+
+async function update_data(id, data) {
+  return await prisma.nilai.update({
+    where: {
+      id,
+    },
+    data,
+  });
+}
+
+async function delete_data(id) {
+  return await prisma.nilai.delete({
+    where: {
+      id,
+    },
+  });
+}
+
+async function check_nilai_id(id) {
+  return await prisma.nilai.findUnique({
+    where: {
+      id,
+    },
+  });
+}
+
+async function check_siswa_id(siswa_id) {
+  return await prisma.siswa.findUnique({
+    where: {
+      id: siswa_id,
+    },
+  });
+}
+
+async function check_semester_id(semester_id) {
+  return await prisma.semester.findUnique({
+    where: {
+      id: semester_id,
+    },
+  });
+}
+
+async function check_kelas_id(kelas_id) {
+  return await prisma.kelas.findUnique({
+    where: {
+      id: kelas_id,
+    },
+  });
+}
+
+async function check_matapelajaran_id(matapelajaran_id) {
+  return await prisma.matapelajaran.findUnique({
+    where: {
+      id: matapelajaran_id,
+    },
+  });
+}
+
+module.exports = {
+  find_all_datas,
+  find_single_data,
+  create_data,
+  update_data,
+  delete_data,
+  check_nilai_id,
+  check_siswa_id,
+  check_semester_id,
+  check_kelas_id,
+  check_matapelajaran_id,
+};

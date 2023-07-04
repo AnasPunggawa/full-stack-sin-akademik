@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model roles {
+  id    String  @id
+  role  String  @unique
+  users users[]
+}
+
+model users {
+  id           String         @id @default(uuid())
+  username     String         @unique
+  password     String
+  role         String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  admin        admin[]
+  guru         guru[]
+  siswa        siswa[]
+  roles        roles          @relation(fields: [role], references: [role], onDelete: Cascade)
+  refreshToken refresh_token?
+}
+
+model refresh_token {
+  id           String @id @default(uuid())
+  user_id      String @unique
+  refreshToken String @db.LongText
+
+  user users @relation(fields: [user_id], references: [id])
+}
+
+model admin {
+  id           String   @id @default(uuid())
+  user_id      String   @unique
+  nama         String
+  jenisKelamin String
+  tempatLahir  String
+  tanggalLahir DateTime
+  alamat       String
+  email        String   @unique
+  nomorHP      String
+  users        users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model guru {
+  id            String          @id @default(uuid())
+  user_id       String          @unique
+  nama          String
+  nip           String          @unique
+  jenisKelamin  String
+  tempatLahir   String
+  tanggalLahir  DateTime
+  alamat        String
+  email         String          @unique
+  nomorHP       String
+  users         users           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  matapelajaran matapelajaran[]
+}
+
+model siswa {
+  id           String     @id @default(uuid())
+  user_id      String     @unique
+  nama         String
+  nisn         String     @unique
+  nis          String     @unique
+  jenisKelamin String
+  tempatLahir  String
+  tanggalLahir DateTime
+  namaAyah     String
+  namaIbu      String
+  alamat       String
+  email        String     @unique
+  nomorHP      String
+  semester     semester[]
+  nilai        nilai[]
+  users        users      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model semester {
+  id           String  @id @default(uuid())
+  kodeSemester String  @unique
+  tahunAjaran  String
+  semester     String
+  status       Boolean @default(true)
+  kelas        kelas[]
+  siswa        siswa[]
+  nilai        nilai[]
+}
+
+model kelas {
+  id        String     @id @default(uuid())
+  kodeKelas String     @unique
+  kelas     String
+  kode      String
+  semester  semester[]
+  nilai     nilai[]
+}
+
+model matapelajaran {
+  id    String  @id @default(uuid())
+  nama  String  @unique
+  guru  guru[]
+  nilai nilai[]
+}
+
+model nilai {
+  id               String        @id @default(uuid())
+  siswa_id         String
+  semester_id      String
+  kelas_id         String
+  matapelajaran_id String
+  nilai            String
+  predikat         String
+  catatan          String
+  tanggal          String
+  siswa            siswa         @relation(fields: [siswa_id], references: [id])
+  semester         semester      @relation(fields: [semester_id], references: [id])
+  kelas            kelas         @relation(fields: [kelas_id], references: [id])
+  matapelajaran    matapelajaran @relation(fields: [matapelajaran_id], references: [id])
+}
