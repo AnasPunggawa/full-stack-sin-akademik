@@ -48,7 +48,6 @@ function AdminSemester() {
         limit
       );
       const data = response.data.data;
-      console.log(data);
       dispatch({
         type: ACTION_SEMESTER_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,

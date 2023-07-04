@@ -43,7 +43,6 @@ function AdminKelas() {
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
-      console.log(searchKelas);
       fetchAllKelas();
     }
     return () => {
@@ -61,7 +60,6 @@ function AdminKelas() {
         limit
       );
       const data = response.data.data;
-      console.log(data);
       dispatch({
         type: ACTION_KELAS_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,

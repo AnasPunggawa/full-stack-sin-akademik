@@ -33,7 +33,6 @@ function AdminGuru() {
     try {
       const response = await getAllGuru(searchGuru, page, limit);
       const data = response.data.data;
-      console.log(data);
       dispatch({ type: ACTION_GURU_REDUCER.FETCH_DATA_SUCCESS, payload: data });
       setPage(data.current_page);
       setLimit(data.limit_data);

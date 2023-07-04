@@ -50,7 +50,6 @@ function SearchUsernameGuru({ SetUserID }) {
   }, [username]);
 
   function addUsernameGuru({ id, username }) {
-    console.log(id, username);
     setUsername(username);
     SetUserID(id);
     setResultSearchUsernameGuru([]);
