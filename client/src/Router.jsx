@@ -24,6 +24,7 @@ import NewSemester from './pages/Semester/NewSemester/NewSemester';
 import DetailSemester from './pages/Semester/DetailSemester/DetailSemester';
 import EditSemester from './pages/Semester/DetailSemester/EditSemester/EditSemester';
 import NewGuru from './pages/Guru/NewGuru/NewGuru';
+import DetailGuru from './pages/Guru/DetailGuru/DetailGuru';
 
 function Router() {
   return (
@@ -54,6 +55,9 @@ function Router() {
               </Route>
               <Route path="guru">
                 <Route index element={<Guru />} />
+                <Route path=":id">
+                  <Route index element={<DetailGuru />} />
+                </Route>
                 <Route path="new" element={<NewGuru />} />
               </Route>
               <Route path="mata-pelajaran">

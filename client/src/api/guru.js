@@ -11,6 +11,14 @@ export async function getAllGuru(searchGuru = '', page = 1, limit = 10) {
   );
 }
 
+export async function getGuru(id) {
+  return await api.get(`/api/v1/guru/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function createGuru(formData) {
   return await api.post('/api/v1/guru', formData, {
     headers: {

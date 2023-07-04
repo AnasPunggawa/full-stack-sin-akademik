@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Button from '../../../../components/ui/Button';
 import DeleteGuru from './DeleteGuru';
+import { useNavigate } from 'react-router-dom';
 
 const TABLE_HEAD_GURU = [
   {
@@ -33,8 +34,11 @@ const TABLE_HEAD_GURU = [
 function TableGuru({ DataTable, SetPage }) {
   const { guru, total_data, total_page, current_page } = DataTable;
 
+  const navigate = useNavigate();
+
   function handleDetail(id) {
-    console.log('go to detail', id);
+    // console.log('go to detail', id);
+    navigate(id);
   }
 
   function handlePageChange(e) {
