@@ -13,6 +13,7 @@ import { getGuru } from '../../../api/guru';
 import LayoutError from '../../../components/ui/LayoutError';
 import LayoutLoading from '../../../components/ui/LayoutLoading';
 import DetailData from './components/DetailData';
+import DeleteGuru from './components/DeleteGuru';
 
 function DetailGuru() {
   const { id } = useParams();
@@ -25,6 +26,8 @@ function DetailGuru() {
   );
 
   const isComponentMounted = useRef(false);
+
+  const navigate = useNavigate();
 
   async function fetchGuru() {
     dispatch({ type: ACTION_DETAIL_GURU_REDUCER.FETCH_DATA_LOADING });
@@ -66,13 +69,8 @@ function DetailGuru() {
     };
   }, []);
 
-  const navigate = useNavigate();
   function handleKembali() {
     navigate('/guru');
-  }
-
-  function handleEdit() {
-    console.log('go to edit page');
   }
 
   return (
@@ -90,10 +88,7 @@ function DetailGuru() {
               </div>
             </Button>
             <div className="flex gap-2 sm:gap-4">
-              <Button OnClick={() => handleEdit()} ButtonStyle="LINK_DANGER">
-                Delete
-              </Button>
-              {/* <DeleteMataPelajaran MataPelajaran={detailGuru.data} /> */}
+              <DeleteGuru Guru={detailGuru.data} />
             </div>
           </div>
         </div>

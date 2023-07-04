@@ -7,6 +7,7 @@ import BoxError from '../../../../components/ui/BoxError';
 import { deleteGuru } from '../../../../api/guru';
 
 function DeleteGuru({ Guru }) {
+  console.log(Guru);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -31,7 +32,7 @@ function DeleteGuru({ Guru }) {
       const data = await deleteGuru(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      navigate('/guru');
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
