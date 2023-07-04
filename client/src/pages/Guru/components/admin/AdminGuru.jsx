@@ -73,11 +73,13 @@ function AdminGuru() {
   function tambahGuru() {
     navigate('new');
   }
+
   function handleSearch(e) {
     e.preventDefault();
     setPage(1);
     setSearchGuru(inputSearch);
   }
+
   return (
     <>
       <Header>Guru</Header>

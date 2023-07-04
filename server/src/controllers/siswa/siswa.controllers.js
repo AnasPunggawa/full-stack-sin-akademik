@@ -17,15 +17,27 @@ const {
   check_siswa_id,
   update_data,
   delete_data,
+  count_all_datas,
 } = require('./repository');
 
 async function getAllSiswa(req, res, next) {
   try {
-    const data = await find_all_datas();
-    if (!data) throw new CustomError(404, 'data siswa tidak ditemukan');
-    resSuccessController(res, 200, 'data siswa berhasil ditemukan', data);
+    const { searchNama = '', page = 1, limit = 10 } = req.query;
+    const skip = (Number(page) - 1) * Number(limit);
+    const data = await find_all_datas(searchNama, limit, skip);
+    const countData = await count_all_datas(searchNama);
+    const totalPage = Math.ceil(countData / Number(limit));
+    if (!data || data.length === 0)
+      throw new CustomError(404, 'data siswa tidak ditemukan');
+    resSuccessController(res, 200, 'data siswa berhasil ditemukan', {
+      current_page: Number(page),
+      total_page: totalPage,
+      limit_data: Number(limit),
+      total_data: countData,
+      siswa: data,
+    });
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 async function getSiswa(req, res, next) {

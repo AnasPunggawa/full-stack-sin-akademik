@@ -27,6 +27,7 @@ import NewGuru from './pages/Guru/NewGuru/NewGuru';
 import DetailGuru from './pages/Guru/DetailGuru/DetailGuru';
 import EditBiodataGuru from './pages/Guru/DetailGuru/EditBiodataGuru/EditBiodataGuru';
 import EditAkunGuru from './pages/Guru/DetailGuru/EditAkunGuru/EditAkunGuru';
+import NewSiswa from './pages/Siswa/NewSiswa/NewSiswa';
 
 function Router() {
   return (
@@ -47,7 +48,12 @@ function Router() {
             <Route
               element={<PermissionRoutes Roles={[ROLES.ADMIN, ROLES.GURU]} />}
             >
-              <Route path="siswa" element={<Siswa />} />
+              <Route path="siswa">
+                <Route index element={<Siswa />} />
+                <Route element={<PermissionRoutes Roles={[ROLES.ADMIN]} />}>
+                  <Route path="new" element={<NewSiswa />} />
+                </Route>
+              </Route>
             </Route>
             {/* ONLY ADMIN CAN ACCESS */}
             <Route element={<PermissionRoutes Roles={[ROLES.ADMIN]} />}>

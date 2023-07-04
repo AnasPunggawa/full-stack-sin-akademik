@@ -12,7 +12,6 @@ function Siswa() {
     <>
       {user.role === 'admin' && <AdminSiswa />}
       {user.role === 'guru' && <GuruSiswa />}
-      <h1 className="text-2xl font-bold">Siswa Public</h1>
     </>
   );
 }

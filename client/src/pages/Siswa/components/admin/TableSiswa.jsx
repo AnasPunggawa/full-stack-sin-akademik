@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
-import Button from '../../../../components/ui/Button';
-import DeleteGuru from './DeleteGuru';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../../components/ui/Button';
+import DeleteSiswa from './DeleteSiswa';
 
-const TABLE_HEAD_GURU = [
+const TABLE_HEAD_SISWA = [
   {
     name: 'No',
     style: 'px-6 py-3 w-1/12',
   },
   {
-    name: 'NIP',
+    name: 'NISN',
     style: 'px-6 py-3 w-2/12',
   },
   {
@@ -31,14 +31,14 @@ const TABLE_HEAD_GURU = [
   },
 ];
 
-function TableGuru({ DataTable, SetPage }) {
-  const { guru, total_data, total_page, current_page } = DataTable;
+function TableSiswa({ DataTable, SetPage }) {
+  const { siswa, total_data, total_page, current_page } = DataTable;
 
   const navigate = useNavigate();
 
   function handleDetail(id) {
-    // console.log('go to detail', id);
-    navigate(id);
+    console.log('go to detail', id);
+    // navigate(id);
   }
 
   function handlePageChange(e) {
@@ -50,7 +50,7 @@ function TableGuru({ DataTable, SetPage }) {
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-900 uppercase bg-gray-200 dark:bg-gray-800 dark:text-gray-200">
           <tr>
-            {TABLE_HEAD_GURU.map((item, index) => {
+            {TABLE_HEAD_SISWA.map((item, index) => {
               return (
                 <th key={index} className={item.style}>
                   {item.name}
@@ -60,15 +60,15 @@ function TableGuru({ DataTable, SetPage }) {
           </tr>
         </thead>
         <tbody>
-          {guru &&
-            guru?.map((item, index) => {
+          {siswa &&
+            siswa?.map((item, index) => {
               return (
                 <tr
                   key={item?.id}
                   className="bg-white border-b dark:bg-gray-700 dark:border-gray-800 hover:text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 dark:hover:text-gray-200"
                 >
                   <td className="px-6 py-2.5">{index + 1}</td>
-                  <td className="px-6 py-2.5">{item?.nip}</td>
+                  <td className="px-6 py-2.5">{item?.nisn}</td>
                   <td className="px-6 py-2.5 font-semibold text-gray-900 dark:text-white">
                     {item?.nama}
                   </td>
@@ -81,19 +81,19 @@ function TableGuru({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteGuru Guru={item} />
+                    <DeleteSiswa Siswa={item} />
                   </td>
                 </tr>
               );
             })}
         </tbody>
       </table>
-      {guru && (
+      {siswa && (
         <div className="w-full px-3 py-2.5 flex flex-wrap justify-between items-center gap-2">
           <div>
             <h3 className="text-sm text-gray-900 dark:text-white">
-              Ditampilkan <span className="font-semibold">{guru.length}</span>{' '}
-              dari <span className="font-semibold">{total_data}</span> guru
+              Ditampilkan <span className="font-semibold">{siswa.length}</span>{' '}
+              dari <span className="font-semibold">{total_data}</span> siswa
             </h3>
           </div>
           <div>
@@ -127,9 +127,9 @@ function TableGuru({ DataTable, SetPage }) {
   );
 }
 
-TableGuru.propTypes = {
+TableSiswa.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
 };
 
-export default TableGuru;
+export default TableSiswa;

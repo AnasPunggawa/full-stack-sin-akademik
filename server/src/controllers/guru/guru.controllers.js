@@ -62,7 +62,7 @@ async function createGuru(req, res, next) {
     if (!userIDExist)
       throw new CustomError(
         404,
-        `username ${userIDExist.username} tidak ditemukan`
+        `user_id ${guruData?.user_id} tidak ditemukan`
       );
     const userHasUserIDExist = await check_guru_has_user_id(guruData.user_id);
     if (userHasUserIDExist)

@@ -1,7 +1,36 @@
 const prisma = require('../../../prisma/seed');
 
-async function find_all_datas() {
-  return await prisma.siswa.findMany();
+async function find_all_datas(searchNama, limit, skip) {
+  return await prisma.siswa.findMany({
+    take: Number(limit),
+    skip: skip,
+    where: {
+      nama: {
+        contains: searchNama,
+      },
+    },
+    include: {
+      users: {
+        select: {
+          username: true,
+          role: true,
+        },
+      },
+    },
+    orderBy: {
+      nama: 'asc',
+    },
+  });
+}
+
+async function count_all_datas(searchNama) {
+  return await prisma.siswa.count({
+    where: {
+      nama: {
+        contains: searchNama,
+      },
+    },
+  });
 }
 
 async function find_single_data(id) {
@@ -97,6 +126,7 @@ async function check_email(email) {
 
 module.exports = {
   find_all_datas,
+  count_all_datas,
   find_single_data,
   find_details_single_data,
   create_data,
