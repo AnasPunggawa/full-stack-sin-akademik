@@ -17,6 +17,8 @@ import {
   faChevronUp,
   faPlus,
   faChevronLeft,
+  faEye,
+  faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
 
 export function IconMenu() {
@@ -95,6 +97,14 @@ export function IconChevronLeft() {
 
 export function IconPlus() {
   return <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />;
+}
+
+export function IconEye() {
+  return <FontAwesomeIcon icon={faEye} className="w-4 h-4" />;
+}
+
+export function IconEyeSlash() {
+  return <FontAwesomeIcon icon={faEyeSlash} className="w-4 h-4" />;
 }
 
 export function IconWarning() {
