@@ -49,6 +49,7 @@ function NewGuru() {
       const response = await createGuru(formData);
       const data = response.data.data;
       console.log(data);
+      console.log('created new guru');
       navigate('/guru');
     } catch (error) {
       setIsError(true);
@@ -64,7 +65,6 @@ function NewGuru() {
   function submitNewGuru(e) {
     e.preventDefault();
     if (!checkInput()) return setIsError(true);
-    console.log('created new guru');
     const formData = {
       user_id: userID,
       nama: nama,
@@ -84,6 +84,10 @@ function NewGuru() {
   function checkInput() {
     if (userID === '') {
       setErrorMessage('user_id tidak ditemukan');
+      return false;
+    }
+    if (nama === '') {
+      setErrorMessage('Nama harus diisi');
       return false;
     }
     if (nip === '') {

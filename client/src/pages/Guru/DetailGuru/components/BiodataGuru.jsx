@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import InputField from '../../../../components/form/InputField';
 import Button from '../../../../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import DatePick from '../../../../components/ui/DatePick';
 
 function BiodataGuru({ Biodata }) {
   const {
@@ -14,6 +15,8 @@ function BiodataGuru({ Biodata }) {
     email,
     nomorHP,
   } = Biodata;
+
+  const formatDate = new Date(tanggalLahir);
 
   const navigate = useNavigate();
 
@@ -93,17 +96,17 @@ function BiodataGuru({ Biodata }) {
           Tempat Lahir Guru
         </InputField>
         {/* TANGGAL LAHIR GURU */}
-        <InputField
-          HtmlFor="tanggal-lahir-guru"
-          Type="text"
-          Value={tanggalLahir}
-          Placeholder={tanggalLahir}
+        <DatePick
+          HtmlFor={'tanggal-lahir'}
+          Value={formatDate}
           Required={true}
+          AutoComplete="OFF"
+          Placeholder={formatDate.toString()}
           Disabled={true}
           OnChange={() => {}}
         >
           Tanggal Lahir Guru
-        </InputField>
+        </DatePick>
         {/* EMAIL GURU */}
         <InputField
           HtmlFor="email-guru"

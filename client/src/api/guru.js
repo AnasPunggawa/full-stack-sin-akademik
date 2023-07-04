@@ -27,6 +27,14 @@ export async function createGuru(formData) {
   });
 }
 
+export async function updateGuru(id, formData) {
+  return await api.put(`/api/v1/guru/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function deleteGuru(id) {
   return await api.delete(`/api/v1/guru/${id}`, {
     headers: {
