@@ -32,6 +32,14 @@ export async function createUser(formData) {
   });
 }
 
+export async function updateUser(id, formData) {
+  return await api.put(`/api/v1/user/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function deleteUser(id) {
   return await api.delete(`/api/v1/user/${id}`, {
     headers: {

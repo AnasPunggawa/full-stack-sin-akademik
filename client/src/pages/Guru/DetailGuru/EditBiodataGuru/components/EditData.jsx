@@ -64,7 +64,7 @@ function EditData({ BiodataGuru }) {
       const response = await updateGuru(id, formData);
       const data = response.data.data;
       console.log(data);
-      console.log('updated data guru');
+      console.log('updated biodata guru');
       navigate(`/guru/${data.id}`);
     } catch (error) {
       setIsError(true);
