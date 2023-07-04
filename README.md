@@ -1,1 +1,1 @@
-# full-stack-sin-akademik
+# Full Stack Sistem Informasi Nilai Akademik
