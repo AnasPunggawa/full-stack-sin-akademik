@@ -3,18 +3,21 @@ import InputField from '../../../../components/form/InputField';
 import { useState } from 'react';
 import Button from '../../../../components/ui/Button';
 import { IconEye, IconEyeSlash } from '../../../../components/ui/Icons';
+import { useNavigate } from 'react-router-dom';
 
-function DataAkunGuru({ dataAkunGuru }) {
-  const { id, username, role, password } = dataAkunGuru;
+function AkunGuru({ DataAkunGuru }) {
+  const { username, role, password } = DataAkunGuru;
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate(``);
   function handleEdit() {
-    console.log('go to edit page', id);
+    navigate('edit-akun');
   }
   return (
     <div className="border-b-2 border-gray-300 dark:border-gray-500">
       <div className="flex items-center justify-between mb-2.5">
         <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
-          Biodata Guru
+          Data Akun Guru
         </h3>
         <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
           Edit
@@ -78,8 +81,8 @@ function DataAkunGuru({ dataAkunGuru }) {
   );
 }
 
-DataAkunGuru.propTypes = {
-  dataAkunGuru: PropTypes.object,
+AkunGuru.propTypes = {
+  DataAkunGuru: PropTypes.object,
 };
 
-export default DataAkunGuru;
+export default AkunGuru;

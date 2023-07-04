@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 // import Form from '../../../../components/form/Form';
 import BiodataGuru from './BiodataGuru';
-import DataAkunGuru from './DataAkunGuru';
+import AkunGuru from './AkunGuru';
 import TableDataMataPelajaran from './TableDataMataPelajaran';
 
 function DetailData({ DataGuru }) {
@@ -30,7 +30,7 @@ function DetailData({ DataGuru }) {
     <div className="w-full h-full p-4 space-y-4">
       {/* <Form OnSubmit={() => {}}> */}
       <BiodataGuru Biodata={biodataGuru} />
-      <DataAkunGuru dataAkunGuru={dataAkunGuru} />
+      <AkunGuru DataAkunGuru={dataAkunGuru} />
       <TableDataMataPelajaran DataMataPelajaran={dataMataPelajaran} />
       {/* </Form> */}
     </div>

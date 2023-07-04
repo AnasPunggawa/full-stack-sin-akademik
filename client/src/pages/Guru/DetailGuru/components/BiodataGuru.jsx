@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import InputField from '../../../../components/form/InputField';
 import Button from '../../../../components/ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 function BiodataGuru({ Biodata }) {
   const {
-    id,
     nama,
     nip,
     alamat,
@@ -15,8 +15,10 @@ function BiodataGuru({ Biodata }) {
     nomorHP,
   } = Biodata;
 
+  const navigate = useNavigate();
+
   function handleEdit() {
-    console.log('go to edit page', id);
+    navigate('edit-biodata');
   }
 
   return (

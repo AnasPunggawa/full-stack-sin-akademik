@@ -25,6 +25,8 @@ import DetailSemester from './pages/Semester/DetailSemester/DetailSemester';
 import EditSemester from './pages/Semester/DetailSemester/EditSemester/EditSemester';
 import NewGuru from './pages/Guru/NewGuru/NewGuru';
 import DetailGuru from './pages/Guru/DetailGuru/DetailGuru';
+import EditBiodataGuru from './pages/Guru/DetailGuru/EditBiodataGuru/EditBiodataGuru';
+import EditAkunGuru from './pages/Guru/DetailGuru/EditAkunGuru/EditAkunGuru';
 
 function Router() {
   return (
@@ -57,6 +59,8 @@ function Router() {
                 <Route index element={<Guru />} />
                 <Route path=":id">
                   <Route index element={<DetailGuru />} />
+                  <Route path="edit-biodata" element={<EditBiodataGuru />} />
+                  <Route path="edit-akun" element={<EditAkunGuru />} />
                 </Route>
                 <Route path="new" element={<NewGuru />} />
               </Route>
