@@ -29,6 +29,8 @@ import EditBiodataGuru from './pages/Guru/DetailGuru/EditBiodataGuru/EditBiodata
 import EditAkunGuru from './pages/Guru/DetailGuru/EditAkunGuru/EditAkunGuru';
 import NewSiswa from './pages/Siswa/NewSiswa/NewSiswa';
 import DetailSiswa from './pages/Siswa/DetailSiswa/DetailSiswa';
+import EditBiodataSiswa from './pages/Siswa/DetailSiswa/EditBiodataSiswa/EditBiodataSiswa';
+import EditAkunSiswa from './pages/Siswa/DetailSiswa/EditAkunSiswa/EditAkunSiswa';
 
 function Router() {
   return (
@@ -51,7 +53,13 @@ function Router() {
             >
               <Route path="siswa">
                 <Route index element={<Siswa />} />
-                <Route path=":id" element={<DetailSiswa />}></Route>
+                <Route path=":id">
+                  <Route index element={<DetailSiswa />} />
+                  <Route element={<PermissionRoutes Roles={[ROLES.ADMIN]} />}>
+                    <Route path="edit-biodata" element={<EditBiodataSiswa />} />
+                    <Route path="edit-akun" element={<EditAkunSiswa />} />
+                  </Route>
+                </Route>
                 <Route element={<PermissionRoutes Roles={[ROLES.ADMIN]} />}>
                   <Route path="new" element={<NewSiswa />} />
                 </Route>
