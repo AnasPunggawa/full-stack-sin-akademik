@@ -66,7 +66,7 @@ function EditBiodataGuru() {
 
   return (
     <>
-      <Header>Edit Biodata Guru {namaGuru}</Header>
+      <Header>Ubah Biodata Guru {namaGuru}</Header>
       <Container>
         {detailGuru.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {detailGuru.error && (

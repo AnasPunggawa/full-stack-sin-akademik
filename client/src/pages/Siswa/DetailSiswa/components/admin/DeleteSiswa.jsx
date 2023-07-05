@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../../../components/ui/Button';
-import { IconWarning, IconXMark } from '../../../../components/ui/Icons';
-import BoxError from '../../../../components/ui/BoxError';
-import { deleteGuru } from '../../../../api/guru';
+import { deleteSiswa } from '../../../../../api/siswa';
+import Button from '../../../../../components/ui/Button';
+import { IconWarning, IconXMark } from '../../../../../components/ui/Icons';
+import BoxError from '../../../../../components/ui/BoxError';
 
-function DeleteGuru({ Guru }) {
+function DeleteSiswa({ Siswa }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -28,10 +28,10 @@ function DeleteGuru({ Guru }) {
     console.log('deleted', id);
     setIsLoading(true);
     try {
-      const data = await deleteGuru(id);
+      const data = await deleteSiswa(id);
       console.log(data);
       setIsOpen(false);
-      navigate('/guru');
+      navigate('/siswa');
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
@@ -49,7 +49,7 @@ function DeleteGuru({ Guru }) {
         Hapus
       </Button>
 
-      {Guru && (
+      {Siswa && (
         <div
           tabIndex="-1"
           className={`${
@@ -71,15 +71,15 @@ function DeleteGuru({ Guru }) {
                 {isLoading && <p>Loading...</p>}
                 {isError && <BoxError>{errorMessage}</BoxError>}
                 <h3 className="text-sm md:text-lg font-normal text-gray-500 dark:text-gray-400">
-                  Apakah anda yakin menghapus guru{' '}
+                  Apakah anda yakin menghapus siswa{' '}
                   <span className="text-gray-900 dark:text-white">
-                    {Guru.nama}
+                    {Siswa.nama}
                   </span>{' '}
                   ?
                 </h3>
                 <div className="flex gap-2 items-center justify-center">
                   <Button
-                    OnClick={() => handleDelete(Guru.id)}
+                    OnClick={() => handleDelete(Siswa.id)}
                     ButtonStyle="DANGER"
                   >
                     Iya
@@ -97,8 +97,8 @@ function DeleteGuru({ Guru }) {
   );
 }
 
-DeleteGuru.propTypes = {
-  Guru: PropTypes.object,
+DeleteSiswa.propTypes = {
+  Siswa: PropTypes.object,
 };
 
-export default DeleteGuru;
+export default DeleteSiswa;

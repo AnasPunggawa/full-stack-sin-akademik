@@ -24,8 +24,7 @@ function BiodataSiswa({ Biodata }) {
   const navigate = useNavigate();
 
   function handleEdit() {
-    // navigate('edit-biodata');
-    console.log('go to page edit biodata siswa');
+    navigate('edit-biodata');
   }
 
   return (

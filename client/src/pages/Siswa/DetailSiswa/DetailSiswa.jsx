@@ -15,6 +15,7 @@ import { IconChevronLeft } from '../../../components/ui/Icons';
 import LayoutError from '../../../components/ui/LayoutError';
 import LayoutLoading from '../../../components/ui/LayoutLoading';
 import GuruDetailSiswa from './components/guru/GuruDetailSiswa';
+import DeleteSiswa from './components/admin/DeleteSiswa';
 
 function DetailSiswa() {
   const { id } = useParams();
@@ -91,8 +92,7 @@ function DetailSiswa() {
             </Button>
             {user?.role === 'admin' && detailSiswa.data && (
               <div className="flex gap-2 sm:gap-4">
-                <Button ButtonStyle="LINK_DANGER">Delete</Button>
-                {/* <DeleteSiswa Siswa={detailSiswa.data} /> */}
+                <DeleteSiswa Siswa={detailSiswa.data} />
               </div>
             )}
           </div>

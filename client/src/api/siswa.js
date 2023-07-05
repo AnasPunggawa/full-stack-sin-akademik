@@ -27,6 +27,14 @@ export async function createSiswa(formData) {
   });
 }
 
+export async function updateSiswa(id, formData) {
+  return await api.put(`/api/v1/siswa/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function deleteSiswa(id) {
   return await api.delete(`/api/v1/siswa/${id}`, {
     headers: {
