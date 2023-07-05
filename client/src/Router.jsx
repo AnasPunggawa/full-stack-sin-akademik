@@ -31,6 +31,8 @@ import NewSiswa from './pages/Siswa/NewSiswa/NewSiswa';
 import DetailSiswa from './pages/Siswa/DetailSiswa/DetailSiswa';
 import EditBiodataSiswa from './pages/Siswa/DetailSiswa/EditBiodataSiswa/EditBiodataSiswa';
 import EditAkunSiswa from './pages/Siswa/DetailSiswa/EditAkunSiswa/EditAkunSiswa';
+import EditBiodata from './pages/Profile/EditBiodata/EditBiodata';
+import EditAkun from './pages/Profile/EditAkun/EditAkun';
 
 function Router() {
   return (
@@ -45,7 +47,11 @@ function Router() {
         >
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="profile">
+              <Route index element={<Profile />} />
+              <Route path="edit-biodata" element={<EditBiodata />} />
+              <Route path="edit-akun" element={<EditAkun />} />
+            </Route>
             <Route path="cetak-nilai" element={<CetakNilai />} />
             {/* ONLY ADMIN AND GURU CAN ACCESS */}
             <Route

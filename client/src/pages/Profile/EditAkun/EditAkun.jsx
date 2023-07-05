@@ -1,18 +1,18 @@
-import { useEffect, useReducer, useRef } from 'react';
 import jwtDecode from 'jwt-decode';
-import Container from '../Container';
-import Header from '../Header';
+import { useEffect, useReducer, useRef } from 'react';
 import {
   ACTION_USER_REDUCER,
   INITIAL_STATE_USER_REDUCER,
   userReducer,
-} from '../../../../reducer/users/userReducer';
-import { getUser } from '../../../../api/users';
-import LayoutError from '../../../../components/ui/LayoutError';
-import LayoutLoading from '../../../../components/ui/LayoutLoading';
-import AdminDetailProfile from './AdminDetailProfile';
+} from '../../../reducer/users/userReducer';
+import { getUser } from '../../../api/users';
+import Header from '../components/Header';
+import Container from '../components/Container';
+import LayoutError from '../../../components/ui/LayoutError';
+import LayoutLoading from '../../../components/ui/LayoutLoading';
+import EditData from './components/EditData';
 
-function AdminProfile() {
+function EditAkun() {
   const getAccessToken = localStorage.getItem('accessToken');
   const decodeAccessToken = jwtDecode(getAccessToken);
 
@@ -28,7 +28,6 @@ function AdminProfile() {
     try {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
-      console.log(data);
       dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_SUCCESS, payload: data });
     } catch (error) {
       if (error.response?.status === 500) {
@@ -65,18 +64,18 @@ function AdminProfile() {
 
   return (
     <>
-      <Header>Profile</Header>
+      <Header>Akun User</Header>
       <Container>
         {detailUser.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {detailUser.error && (
           <LayoutError>{detailUser.errorMessage}</LayoutError>
         )}
         {!detailUser.loading && !detailUser.error && detailUser.data && (
-          <AdminDetailProfile DataUser={detailUser.data} />
+          <EditData AkunUser={detailUser.data} />
         )}
       </Container>
     </>
   );
 }
 
-export default AdminProfile;
+export default EditAkun;

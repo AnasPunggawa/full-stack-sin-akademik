@@ -17,7 +17,7 @@ function useAuthUser() {
     }
     if (!getAccessToken) return navigate('/login');
     return;
-  }, [getAccessToken]);
+  }, []);
 
   return {
     accessToken,

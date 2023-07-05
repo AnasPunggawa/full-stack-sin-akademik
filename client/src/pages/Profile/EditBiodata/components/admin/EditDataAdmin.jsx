@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoxError from '../../../../../components/ui/BoxError';
 import Form from '../../../../../components/form/Form';
 import InputField from '../../../../../components/form/InputField';
@@ -8,7 +8,7 @@ import InputRequired from '../../../../../components/form/InputRequired';
 import InputSelect from '../../../../../components/form/InputSelect';
 import DatePick from '../../../../../components/ui/DatePick';
 import Button from '../../../../../components/ui/Button';
-import { updateSiswa } from '../../../../../api/siswa';
+import { updateAdmin } from '../../../../../api/admin';
 
 const JENIS_KELAMIN = [
   {
@@ -21,38 +21,30 @@ const JENIS_KELAMIN = [
   },
 ];
 
-function EditData({ BiodataSiswa }) {
+function EditDataAdmin({ BiodataAdmin }) {
   const {
     id,
     user_id,
     nama: currentNama,
-    nisn: currentNisn,
-    nis: currentNis,
-    alamat: currentAlamat,
     jenisKelamin: currentJenisKelamin,
+    alamat: currentAlamat,
     tempatLahir: currentTempatLahir,
     tanggalLahir: currentTanggalLahir,
-    namaAyah: currentNamaAyah,
-    namaIbu: currentNamaIbu,
     email: currentEmail,
     nomorHP: currentNomorHP,
-  } = BiodataSiswa;
+  } = BiodataAdmin;
 
   const formatCurrentTanggalLahir = new Date(
     currentTanggalLahir
   ).toLocaleDateString('id-ID');
 
   const [nama, setNama] = useState(currentNama);
-  const [nisn, setNisn] = useState(currentNisn);
-  const [nis, setNis] = useState(currentNis);
   const [jenisKelamin, setJenisKelamin] = useState(currentJenisKelamin);
   const [tempatLahir, setTempatLahir] = useState(currentTempatLahir);
   const [tanggalLahir, setTanggalLahir] = useState(
     new Date(currentTanggalLahir)
   );
   const [alamat, setAlamat] = useState(currentAlamat);
-  const [namaAyah, setNamaAyah] = useState(currentNamaAyah);
-  const [namaIbu, setNamaIbu] = useState(currentNamaIbu);
   const [email, setEmail] = useState(currentEmail);
   const [nomorHP, setNomorHP] = useState(currentNomorHP);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,16 +54,16 @@ function EditData({ BiodataSiswa }) {
 
   const navigate = useNavigate();
 
-  async function handleUpdateSiswa(formData) {
+  async function handleUpdateAdmin(formData) {
     setIsLoading(true);
     setIsError(false);
     setErrorMessage('');
     try {
-      const response = await updateSiswa(id, formData);
+      const response = await updateAdmin(id, formData);
       const data = response.data.data;
       console.log(data);
       console.log('updated biodata siswa');
-      navigate(`/siswa/${data.id}`);
+      navigate(`/profile`);
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
@@ -83,40 +75,28 @@ function EditData({ BiodataSiswa }) {
     }
   }
 
-  function submitEditBiodataSiswa(e) {
+  function submitEditBiodataAdmin(e) {
     e.preventDefault();
     if (!checkInput()) return setIsError(true);
     const formData = {
-      ...BiodataSiswa,
+      ...BiodataAdmin,
       user_id,
       nama,
-      nisn,
-      nis,
       jenisKelamin,
       tempatLahir,
       tanggalLahir,
       alamat,
-      namaAyah,
-      namaIbu,
       email,
       nomorHP,
     };
     console.log(formData);
-    handleUpdateSiswa(formData);
+    handleUpdateAdmin(formData);
     return;
   }
 
   function checkInput() {
     if (nama === '') {
       setErrorMessage('Nama harus diisi');
-      return false;
-    }
-    if (nisn === '') {
-      setErrorMessage('NISN harus diisi');
-      return false;
-    }
-    if (nis === '') {
-      setErrorMessage('NIS harus diisi');
       return false;
     }
     if (alamat === '') {
@@ -135,14 +115,6 @@ function EditData({ BiodataSiswa }) {
       setErrorMessage('Tanggal lahir harus diisi');
       return false;
     }
-    if (namaAyah === '') {
-      setErrorMessage('Nama ayah harus diisi');
-      return false;
-    }
-    if (namaIbu === '') {
-      setErrorMessage('Nama ibu harus diisi');
-      return false;
-    }
     if (email === '') {
       setErrorMessage('Email harus diisi');
       return false;
@@ -158,31 +130,15 @@ function EditData({ BiodataSiswa }) {
     setIsError(false);
     setErrorMessage('');
     return;
-  }, [
-    nama,
-    nisn,
-    nis,
-    alamat,
-    jenisKelamin,
-    tempatLahir,
-    tanggalLahir,
-    namaAyah,
-    namaIbu,
-    email,
-    nomorHP,
-  ]);
+  }, [nama, alamat, jenisKelamin, tempatLahir, tanggalLahir, email, nomorHP]);
 
   useEffect(() => {
     if (
       nama === '' ||
-      nisn === '' ||
-      nis === '' ||
       alamat === '' ||
       jenisKelamin === '' ||
       tempatLahir === '' ||
       tanggalLahir === null ||
-      namaAyah === '' ||
-      namaIbu === '' ||
       email === '' ||
       nomorHP === '' ||
       isError
@@ -191,78 +147,50 @@ function EditData({ BiodataSiswa }) {
     return setIsInputValid(true);
   }, [
     nama,
-    nisn,
-    nis,
     alamat,
     jenisKelamin,
     tempatLahir,
     tanggalLahir,
-    namaAyah,
-    namaIbu,
     email,
     nomorHP,
     isError,
   ]);
 
-  function cancelEditBiodataSiswa() {
-    navigate(`/siswa/${id}`);
+  function cancelEditBiodataAdmin() {
+    navigate(`/profile`);
   }
 
   return (
     <div className="w-full h-full p-4 space-y-4 md:space-y-6">
       {isLoading && <p>Loading...</p>}
       {isError && <BoxError>{errorMessage}</BoxError>}
-      <Form OnSubmit={(e) => submitEditBiodataSiswa(e)}>
+      <Form OnSubmit={(e) => submitEditBiodataAdmin(e)}>
         <div className="grid gap-6 mb-6 md:grid-cols-2">
-          {/* NAMA SISWA */}
+          {/* NAMA ADMIN */}
           <InputField
-            HtmlFor="nama-siswa"
+            HtmlFor="nama-admin"
             Type="text"
             Value={nama}
             Placeholder={currentNama}
             Required={true}
             OnChange={(e) => setNama(e.target.value)}
           >
-            Nama Siswa
+            Nama Admin
             <InputRequired />
           </InputField>
-          {/* NISN SISWA */}
+          {/* ALAMAT ADMIN */}
           <InputField
-            HtmlFor="nisn-siswa"
-            Type="text"
-            Value={nisn}
-            Placeholder={currentNisn}
-            Required={true}
-            OnChange={(e) => setNisn(e.target.value)}
-          >
-            NISN Siswa
-            <InputRequired />
-          </InputField>
-          {/* NIS SISWA */}
-          <InputField
-            HtmlFor="nis-siswa"
-            Type="text"
-            Value={nis}
-            Placeholder={currentNis}
-            Required={true}
-            OnChange={(e) => setNis(e.target.value)}
-          >
-            NISN Siswa
-            <InputRequired />
-          </InputField>
-          {/* ALAMAT SISWA */}
-          <InputField
-            HtmlFor="alamat-siswa"
+            HtmlFor="alamat-admin"
             Type="text"
             Value={alamat}
             Placeholder={currentAlamat}
             Required={true}
             OnChange={(e) => setAlamat(e.target.value)}
           >
-            Alamat Siswa
+            Alamat Admin
             <InputRequired />
           </InputField>
-          {/* JENIS KELAMIN SISWA */}
+          {/* JENIS KELAMIN ADMIN */}
           <InputSelect
             Options={JENIS_KELAMIN}
             HtmlFor={'jenis-kelamin'}
@@ -277,19 +205,19 @@ function EditData({ BiodataSiswa }) {
             Pilih Jenis Kelamin
             <InputRequired />
           </InputSelect>
-          {/* TEMPAT LAHIR SISWA */}
+          {/* TEMPAT LAHIR ADMIN */}
           <InputField
-            HtmlFor="tempat-lahir-siswa"
+            HtmlFor="tempat-lahir-admin"
             Type="text"
             Value={tempatLahir}
             Placeholder={currentTempatLahir}
             Required={true}
             OnChange={(e) => setTempatLahir(e.target.value)}
           >
-            Tempat Lahir Siswa
+            Tempat Lahir Admin
             <InputRequired />
           </InputField>
-          {/* TANGGAL LAHIR SISWA */}
+          {/* TANGGAL LAHIR ADMIN */}
           <DatePick
             HtmlFor={'tanggal-lahir'}
             Value={tanggalLahir}
@@ -298,36 +226,12 @@ function EditData({ BiodataSiswa }) {
             Placeholder={formatCurrentTanggalLahir}
             OnChange={setTanggalLahir}
           >
-            Tanggal Lahir Siswa
+            Tanggal Lahir Admin
             <InputRequired />
           </DatePick>
-          {/* NAMA AYAH SISWA */}
+          {/* EMAIL ADMIN */}
           <InputField
-            HtmlFor="nama-ayah-siswa"
-            Type="text"
-            Value={namaAyah}
-            Placeholder={currentNamaAyah}
-            Required={true}
-            OnChange={(e) => setNamaAyah(e.target.value)}
-          >
-            Nama Ayah Siswa
-            <InputRequired />
-          </InputField>
-          {/* NAMA IBU SISWA */}
-          <InputField
-            HtmlFor="nama-ibu-siswa"
-            Type="text"
-            Value={namaIbu}
-            Placeholder={currentNamaIbu}
-            Required={true}
-            OnChange={(e) => setNamaIbu(e.target.value)}
-          >
-            Nama Ibu Siswa
-            <InputRequired />
-          </InputField>
-          {/* EMAIL SISWA */}
-          <InputField
-            HtmlFor="email-siswa"
+            HtmlFor="email-admin"
             Type="text"
             Value={email}
             Placeholder={currentEmail}
@@ -337,16 +241,16 @@ function EditData({ BiodataSiswa }) {
             Email Siswa
             <InputRequired />
           </InputField>
-          {/* NOMOR HP SISWA */}
+          {/* NOMOR HP ADMIN */}
           <InputField
-            HtmlFor="nomor-hp-siswa"
+            HtmlFor="nomor-hp-admin"
             Type="text"
             Value={nomorHP}
             Placeholder={currentNomorHP}
             Required={true}
             OnChange={(e) => setNomorHP(e.target.value)}
           >
-            Nomor HP Siswa
+            Nomor HP Admin
             <InputRequired />
           </InputField>
         </div>
@@ -358,7 +262,7 @@ function EditData({ BiodataSiswa }) {
           >
             Simpan
           </Button>
-          <Button OnClick={() => cancelEditBiodataSiswa()} ButtonStyle="DANGER">
+          <Button OnClick={() => cancelEditBiodataAdmin()} ButtonStyle="DANGER">
             Batal
           </Button>
         </div>
@@ -367,8 +271,8 @@ function EditData({ BiodataSiswa }) {
   );
 }
 
-EditData.propTypes = {
-  BiodataSiswa: PropTypes.object,
+EditDataAdmin.propTypes = {
+  BiodataAdmin: PropTypes.object,
 };
 
-export default EditData;
+export default EditDataAdmin;

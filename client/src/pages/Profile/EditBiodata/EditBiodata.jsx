@@ -1,20 +1,22 @@
-import { useEffect, useReducer, useRef } from 'react';
 import jwtDecode from 'jwt-decode';
-import Container from '../Container';
-import Header from '../Header';
+import { useEffect, useReducer, useRef } from 'react';
 import {
   ACTION_USER_REDUCER,
   INITIAL_STATE_USER_REDUCER,
   userReducer,
-} from '../../../../reducer/users/userReducer';
-import { getUser } from '../../../../api/users';
-import LayoutError from '../../../../components/ui/LayoutError';
-import LayoutLoading from '../../../../components/ui/LayoutLoading';
-import AdminDetailProfile from './AdminDetailProfile';
+} from '../../../reducer/users/userReducer';
+import { getUser } from '../../../api/users';
+import Header from '../components/Header';
+import Container from '../components/Container';
+import LayoutLoading from '../../../components/ui/LayoutLoading';
+import LayoutError from '../../../components/ui/LayoutError';
+import EditDataAdmin from './components/admin/EditDataAdmin';
+import EditDataGuru from './components/guru/EditDataGuru';
+import EditDataSiswa from './components/siswa/EditDataSiswa';
 
-function AdminProfile() {
+function EditBiodata() {
   const getAccessToken = localStorage.getItem('accessToken');
-  const decodeAccessToken = jwtDecode(getAccessToken);
+  const user = jwtDecode(getAccessToken);
 
   const [detailUser, dispatch] = useReducer(
     userReducer,
@@ -26,9 +28,8 @@ function AdminProfile() {
   async function fetchDataUser() {
     dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_LOADING });
     try {
-      const response = await getUser(decodeAccessToken?.id);
+      const response = await getUser(user?.id);
       const data = response.data.data;
-      console.log(data);
       dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_SUCCESS, payload: data });
     } catch (error) {
       if (error.response?.status === 500) {
@@ -65,18 +66,33 @@ function AdminProfile() {
 
   return (
     <>
-      <Header>Profile</Header>
+      <Header>Biodata User</Header>
       <Container>
         {detailUser.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {detailUser.error && (
           <LayoutError>{detailUser.errorMessage}</LayoutError>
         )}
-        {!detailUser.loading && !detailUser.error && detailUser.data && (
-          <AdminDetailProfile DataUser={detailUser.data} />
-        )}
+        {user?.role === 'admin' &&
+          !detailUser.loading &&
+          !detailUser.error &&
+          detailUser.data && (
+            <EditDataAdmin BiodataAdmin={detailUser?.data?.admin[0]} />
+          )}
+        {user?.role === 'guru' &&
+          !detailUser.loading &&
+          !detailUser.error &&
+          detailUser.data && (
+            <EditDataGuru BiodataGuru={detailUser?.data?.guru[0]} />
+          )}
+        {user?.role === 'siswa' &&
+          !detailUser.loading &&
+          !detailUser.error &&
+          detailUser.data && (
+            <EditDataSiswa BiodataSiswa={detailUser?.data?.siswa[0]} />
+          )}
       </Container>
     </>
   );
 }
 
-export default AdminProfile;
+export default EditBiodata;

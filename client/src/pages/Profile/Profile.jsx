@@ -14,7 +14,6 @@ function Profile() {
       {user.role === 'admin' && <AdminProfile />}
       {user.role === 'guru' && <GuruProfile />}
       {user.role === 'siswa' && <SiswaProfile />}
-      <h1 className="text-2xl font-bold">Profile Public</h1>
     </>
   );
 }

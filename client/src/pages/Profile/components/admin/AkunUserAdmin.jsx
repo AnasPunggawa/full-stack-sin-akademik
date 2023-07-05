@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../../../../components/ui/Button';
-import InputField from '../../../../../components/form/InputField';
-import { IconEye, IconEyeSlash } from '../../../../../components/ui/Icons';
-function AkunSiswa({ DataAkunSiswa }) {
-  const { username, role, password } = DataAkunSiswa;
+import Button from '../../../../components/ui/Button';
+import InputField from '../../../../components/form/InputField';
+import { IconEye, IconEyeSlash } from '../../../../components/ui/Icons';
+
+function AkunUserAdmin({ DataAkunUserAdmin }) {
+  const { username, role, password } = DataAkunUserAdmin;
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function AkunSiswa({ DataAkunSiswa }) {
     <div className="w-full">
       <div className="flex items-center justify-between mb-2.5">
         <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
-          Data Akun Siswa
+          Data Akun Admin
         </h3>
         <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
           Edit
@@ -26,7 +27,7 @@ function AkunSiswa({ DataAkunSiswa }) {
       <div className="grid gap-6 md:grid-cols-2">
         {/* USERNAME */}
         <InputField
-          HtmlFor="username-akun-siswa"
+          HtmlFor="username-akun-admin"
           Type="text"
           Value={username}
           Placeholder={username}
@@ -38,7 +39,7 @@ function AkunSiswa({ DataAkunSiswa }) {
         </InputField>
         {/* ROLE */}
         <InputField
-          HtmlFor="role-akun-siswa"
+          HtmlFor="role-akun-admin"
           Type="text"
           Value={role}
           Placeholder={role}
@@ -51,7 +52,7 @@ function AkunSiswa({ DataAkunSiswa }) {
         {/* PASSWORD */}
         <div className="w-full space-y-1 flex flex-col items-end">
           <InputField
-            HtmlFor="password-akun-siswa"
+            HtmlFor="password-akun-admin"
             Type={showPassword ? 'text' : 'password'}
             Value={password}
             Placeholder={password}
@@ -81,8 +82,8 @@ function AkunSiswa({ DataAkunSiswa }) {
   );
 }
 
-AkunSiswa.propTypes = {
-  DataAkunSiswa: PropTypes.object,
+AkunUserAdmin.propTypes = {
+  DataAkunUserAdmin: PropTypes.object,
 };
 
-export default AkunSiswa;
+export default AkunUserAdmin;

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { updateSiswa } from '../../../../../api/siswa';
 import BoxError from '../../../../../components/ui/BoxError';
 import Form from '../../../../../components/form/Form';
 import InputField from '../../../../../components/form/InputField';
@@ -8,7 +9,6 @@ import InputRequired from '../../../../../components/form/InputRequired';
 import InputSelect from '../../../../../components/form/InputSelect';
 import DatePick from '../../../../../components/ui/DatePick';
 import Button from '../../../../../components/ui/Button';
-import { updateSiswa } from '../../../../../api/siswa';
 
 const JENIS_KELAMIN = [
   {
@@ -21,7 +21,7 @@ const JENIS_KELAMIN = [
   },
 ];
 
-function EditData({ BiodataSiswa }) {
+function EditDataSiswa({ BiodataSiswa }) {
   const {
     id,
     user_id,
@@ -71,7 +71,7 @@ function EditData({ BiodataSiswa }) {
       const data = response.data.data;
       console.log(data);
       console.log('updated biodata siswa');
-      navigate(`/siswa/${data.id}`);
+      navigate(`/profile`);
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
@@ -205,7 +205,7 @@ function EditData({ BiodataSiswa }) {
   ]);
 
   function cancelEditBiodataSiswa() {
-    navigate(`/siswa/${id}`);
+    navigate(`/profile`);
   }
 
   return (
@@ -367,8 +367,8 @@ function EditData({ BiodataSiswa }) {
   );
 }
 
-EditData.propTypes = {
+EditDataSiswa.propTypes = {
   BiodataSiswa: PropTypes.object,
 };
 
-export default EditData;
+export default EditDataSiswa;
