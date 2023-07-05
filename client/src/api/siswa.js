@@ -11,6 +11,14 @@ export async function getAllSiswa(searchSiswa = '', page = 1, limit = 10) {
   );
 }
 
+export async function getSiswa(id) {
+  return await api.get(`api/v1/siswa/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function createSiswa(formData) {
   return await api.post('/api/v1/siswa', formData, {
     headers: {

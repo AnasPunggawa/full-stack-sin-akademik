@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/ui/Button';
-import DeleteSiswa from './DeleteSiswa';
 
 const TABLE_HEAD_SISWA = [
   {
@@ -80,7 +79,6 @@ function TableSiswa({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteSiswa Siswa={item} />
                   </td>
                 </tr>
               );

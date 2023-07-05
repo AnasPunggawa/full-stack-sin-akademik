@@ -3,23 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 function useAuthUser() {
+  const getAccessToken = localStorage.getItem('accessToken');
   const [accessToken, setAccessToken] = useState('');
   const [user, setUser] = useState({});
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getAccessToken = localStorage.getItem('accessToken');
     if (getAccessToken) {
       const decodeAccessToken = jwtDecode(getAccessToken);
       setAccessToken(getAccessToken);
       setUser(decodeAccessToken);
     }
-    navigate('/login');
+    if (!getAccessToken) return navigate('/login');
     return;
-  }, []);
+  }, [getAccessToken]);
 
-  return { accessToken, user };
+  return {
+    accessToken,
+    user,
+  };
 }
 
 export default useAuthUser;
