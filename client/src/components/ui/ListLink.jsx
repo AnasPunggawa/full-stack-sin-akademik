@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { useSidebarContext } from '../../hooks/useSidebarContext';
+// import useWindowSize from '../../hooks/useWindowSize';
 
 function ListLink({ ItemLink, ItemIcon, ItemName }) {
+  // const windowSize = useWindowSize();
   const { toggle } = useSidebarContext();
   function activeLink({ isActive, isPending }) {
     return isActive
@@ -12,10 +14,16 @@ function ListLink({ ItemLink, ItemIcon, ItemName }) {
       : 'flex items-center p-2 rounded-lg transition duration-7 text-gray-600 hover:bg-gray-200 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200';
   }
 
+  // function handleNavigate() {
+  //   if (windowSize.width <= 640) toggle();
+  //   return;
+  // }
+
   return (
     <li>
       <NavLink
-        onClick={toggle}
+        // onClick={handleNavigate}
+        onClick={() => toggle()}
         to={ItemLink}
         className={activeLink}
 

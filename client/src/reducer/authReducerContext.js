@@ -17,7 +17,6 @@ export function authReducerContext(state, action) {
         user: payload.user,
       };
     case ACTION_AUTH_REDUCER_CONTEXT.LOGOUT:
-      localStorage.clear();
       return {
         ...state,
         auth: false,
