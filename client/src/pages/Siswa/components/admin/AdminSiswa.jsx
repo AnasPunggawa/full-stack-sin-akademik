@@ -36,7 +36,6 @@ function AdminSiswa() {
     try {
       const response = await getAllSiswa(searchSiswa, page, limit);
       const data = response.data.data;
-      console.log(data);
       dispatch({
         type: ACTION_SISWA_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,

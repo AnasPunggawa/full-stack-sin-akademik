@@ -29,7 +29,6 @@ function EditBiodataGuru() {
     try {
       const response = await getGuru(id);
       const data = response.data.data;
-      console.log(data);
       setNamaGuru(data.nama);
       dispatch({
         type: ACTION_DETAIL_GURU_REDUCER.FETCH_DATA_SUCCESS,

@@ -13,15 +13,15 @@ const TABLE_HEAD_SISWA = [
     style: 'px-6 py-3 w-2/12',
   },
   {
+    name: 'NIS',
+    style: 'px-6 py-3 w-2/12',
+  },
+  {
     name: 'Nama',
     style: 'px-6 py-3 w-3/12',
   },
   {
     name: 'Jenis Kelamin',
-    style: 'px-6 py-3 w-2/12',
-  },
-  {
-    name: 'Username',
     style: 'px-6 py-3 w-2/12',
   },
   {
@@ -67,11 +67,11 @@ function TableSiswa({ DataTable, SetPage }) {
                 >
                   <td className="px-6 py-2.5">{index + 1}</td>
                   <td className="px-6 py-2.5">{item?.nisn}</td>
+                  <td className="px-6 py-2.5">{item?.nis}</td>
                   <td className="px-6 py-2.5 font-semibold text-gray-900 dark:text-white">
                     {item?.nama}
                   </td>
                   <td className="px-6 py-2.5">{item?.jenisKelamin}</td>
-                  <td className="px-6 py-2.5">{item?.users?.username}</td>
                   <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
                     <Button
                       OnClick={() => handleDetail(item?.id)}

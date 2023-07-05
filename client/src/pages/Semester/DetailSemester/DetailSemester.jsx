@@ -38,7 +38,6 @@ function DetailSemester() {
         type: ACTION_DETAIL_SEMESTER_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
       });
-      console.log(data);
       setNamaSemester(`${data.tahunAjaran} ${data.semester.toUpperCase()}`);
     } catch (error) {
       if (error.response?.status === 500)

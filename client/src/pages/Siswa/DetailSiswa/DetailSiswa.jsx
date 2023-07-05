@@ -37,7 +37,6 @@ function DetailSiswa() {
     try {
       const response = await getSiswa(id);
       const data = response.data.data;
-      console.log(data);
       setNamaSiswa(data.nama);
       dispatch({
         type: ACTION_DETAIL_SISWA_REDUCER.FETCH_DATA_SUCCESS,
