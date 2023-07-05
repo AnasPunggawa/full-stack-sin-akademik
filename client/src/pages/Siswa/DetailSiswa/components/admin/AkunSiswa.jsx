@@ -11,8 +11,7 @@ function AkunSiswa({ DataAkunSiswa }) {
   const navigate = useNavigate();
 
   function handleEdit() {
-    // navigate('edit-akun');
-    console.log('go to edit akun page ');
+    navigate('edit-akun');
   }
   return (
     <div className="w-full">
