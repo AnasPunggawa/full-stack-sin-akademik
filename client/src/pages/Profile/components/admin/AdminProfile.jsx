@@ -11,6 +11,9 @@ import { getUser } from '../../../../api/users';
 import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import AdminDetailProfile from './AdminDetailProfile';
+// import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+// import AddBiodata from '../../AddBiodata/AddBiodata';
 
 function AdminProfile() {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -23,6 +26,8 @@ function AdminProfile() {
 
   const isComponentMounted = useRef(false);
 
+  // const navigate = useNavigate();
+
   async function fetchDataUser() {
     dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_LOADING });
     try {
@@ -30,6 +35,9 @@ function AdminProfile() {
       const data = response.data.data;
       console.log(data);
       dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_SUCCESS, payload: data });
+      // if (data.admin[0]) return navigate('add-biodata');
+      // if (data.admin.length === 1)
+      //   return navigate('add-biodata', { state: data, replace: true });
     } catch (error) {
       if (error.response?.status === 500) {
         dispatch({
@@ -72,7 +80,14 @@ function AdminProfile() {
           <LayoutError>{detailUser.errorMessage}</LayoutError>
         )}
         {!detailUser.loading && !detailUser.error && detailUser.data && (
-          <AdminDetailProfile DataUser={detailUser.data} />
+          // <AdminDetailProfile DataUser={detailUser.data} />
+          <>
+            {detailUser.data.admin[0] ? (
+              <AdminDetailProfile DataUser={detailUser.data} />
+            ) : (
+              <Navigate to="add-biodata" state={detailUser.data} />
+            )}
+          </>
         )}
       </Container>
     </>

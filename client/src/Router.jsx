@@ -33,6 +33,7 @@ import EditAkunSiswa from './pages/Siswa/DetailSiswa/EditAkunSiswa/EditAkunSiswa
 import EditBiodata from './pages/Profile/EditBiodata/EditBiodata';
 import EditAkun from './pages/Profile/EditAkun/EditAkun';
 import { ROLES } from './config/role';
+import AddBiodata from './pages/Profile/AddBiodata/AddBiodata';
 
 function Router() {
   return (
@@ -49,6 +50,7 @@ function Router() {
             <Route index element={<Dashboard />} />
             <Route path="profile">
               <Route index element={<Profile />} />
+              <Route path="add-biodata" element={<AddBiodata />} />
               <Route path="edit-biodata" element={<EditBiodata />} />
               <Route path="edit-akun" element={<EditAkun />} />
             </Route>
