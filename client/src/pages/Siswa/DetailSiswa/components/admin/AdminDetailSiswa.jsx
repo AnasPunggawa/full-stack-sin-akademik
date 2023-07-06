@@ -18,6 +18,7 @@ function AdminDetailaSiswa({ DataSiswa }) {
     email: DataSiswa?.email,
     nomorHP: DataSiswa?.nomorHP,
   };
+
   const dataAkunSiswa = {
     id: DataSiswa?.users?.id,
     siswa_id: DataSiswa?.id,
@@ -25,6 +26,7 @@ function AdminDetailaSiswa({ DataSiswa }) {
     role: DataSiswa?.users?.role,
     password: DataSiswa?.users?.password,
   };
+
   return (
     <div className="w-full h-full p-4 space-y-4">
       {/* <Form OnSubmit={() => {}}> */}
