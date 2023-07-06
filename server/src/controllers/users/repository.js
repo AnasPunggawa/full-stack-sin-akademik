@@ -75,7 +75,11 @@ async function find_details_single_data_guru(id) {
       id,
     },
     include: {
-      guru: true,
+      guru: {
+        include: {
+          matapelajaran: true,
+        },
+      },
     },
   });
 }
@@ -86,7 +90,11 @@ async function find_details_single_data_siswa(id) {
       id,
     },
     include: {
-      siswa: true,
+      siswa: {
+        include: {
+          semester: true,
+        },
+      },
     },
   });
 }
