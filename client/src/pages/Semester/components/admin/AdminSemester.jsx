@@ -16,11 +16,12 @@ import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import { getAllSemester } from '../../../../api/semester';
 import TableSemester from './TableSemester';
+import { SELECT_SEMESTER } from '../../../../config/semester';
 
-const SELECT_CATEGORY_SEMESTER = [
-  { id: 'ganjil', name: 'Ganjil' },
-  { id: 'genap', name: 'Genap' },
-];
+// const SELECT_SEMESTER = [
+//   { id: 'ganjil', name: 'Ganjil' },
+//   { id: 'genap', name: 'Genap' },
+// ];
 
 function AdminSemester() {
   const [kategoriSemester, setKategoriSemester] = useState('');
@@ -113,9 +114,9 @@ function AdminSemester() {
                 HtmlFor={'semester'}
                 PlaceHolder={'Semua'}
                 SelectSize="SMALL"
+                Options={SELECT_SEMESTER}
                 Value={kategoriSemester}
                 OnChange={(e) => setKategoriSemester(e.target.value)}
-                Options={SELECT_CATEGORY_SEMESTER}
               />
             </div>
             <form onSubmit={(e) => handleSearch(e)}>

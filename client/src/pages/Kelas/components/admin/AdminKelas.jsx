@@ -16,12 +16,13 @@ import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableKelas from './TableKelas';
 import { useNavigate } from 'react-router-dom';
+import { SELECT_KELAS } from '../../../../config/kelas';
 
-const SELECT_CATEGORY_KELAS = [
-  { id: '7', name: '7' },
-  { id: '8', name: '8' },
-  { id: '9', name: '9' },
-];
+// const SELECT_KELAS = [
+//   { id: '7', name: '7' },
+//   { id: '8', name: '8' },
+//   { id: '9', name: '9' },
+// ];
 
 function AdminKelas() {
   const [kategoriKelas, setKategoriKelas] = useState('');
@@ -114,9 +115,9 @@ function AdminKelas() {
                 HtmlFor={'kelas'}
                 PlaceHolder={'Semua'}
                 SelectSize="SMALL"
+                Options={SELECT_KELAS}
                 Value={kategoriKelas}
                 OnChange={(e) => setKategoriKelas(e.target.value)}
-                Options={SELECT_CATEGORY_KELAS}
               />
             </div>
             <form onSubmit={(e) => handleSearch(e)}>

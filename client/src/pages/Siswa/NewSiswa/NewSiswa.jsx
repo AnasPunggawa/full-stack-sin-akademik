@@ -12,17 +12,18 @@ import { useNavigate } from 'react-router-dom';
 import BoxError from '../../../components/ui/BoxError';
 import SearchUsernameSiswa from './components/SearchUsernameSiswa';
 import { createSiswa } from '../../../api/siswa';
+import { JENIS_KELAMIN } from '../../../config/jenisKelamin';
 
-const JENIS_KELAMIN = [
-  {
-    id: 'Laki-laki',
-    name: 'Laki-laki',
-  },
-  {
-    id: 'Perempuan',
-    name: 'Perempuan',
-  },
-];
+// const JENIS_KELAMIN = [
+//   {
+//     id: 'Laki-laki',
+//     name: 'Laki-laki',
+//   },
+//   {
+//     id: 'Perempuan',
+//     name: 'Perempuan',
+//   },
+// ];
 
 function NewSiswa() {
   useTitle('Tambah Siswa');

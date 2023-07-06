@@ -9,17 +9,18 @@ import InputRequired from '../../../../../components/form/InputRequired';
 import DatePick from '../../../../../components/ui/DatePick';
 import { updateGuru } from '../../../../../api/guru';
 import BoxError from '../../../../../components/ui/BoxError';
+import { JENIS_KELAMIN } from '../../../../../config/jenisKelamin';
 
-const JENIS_KELAMIN = [
-  {
-    id: 'Laki-laki',
-    name: 'Laki-laki',
-  },
-  {
-    id: 'Perempuan',
-    name: 'Perempuan',
-  },
-];
+// const JENIS_KELAMIN = [
+//   {
+//     id: 'Laki-laki',
+//     name: 'Laki-laki',
+//   },
+//   {
+//     id: 'Perempuan',
+//     name: 'Perempuan',
+//   },
+// ];
 
 function EditData({ BiodataGuru }) {
   const {

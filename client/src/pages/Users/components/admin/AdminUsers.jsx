@@ -16,21 +16,22 @@ import { getUsers } from '../../../../api/users';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
+import { SELECT_ROLE } from '../../../../config/roles';
 
-const SELECT_CATEGORY_ROLES = [
-  {
-    id: 'admin',
-    name: 'Admin',
-  },
-  {
-    id: 'guru',
-    name: 'Guru',
-  },
-  {
-    id: 'siswa',
-    name: 'Siswa',
-  },
-];
+// const SELECT_ROLE = [
+//   {
+//     id: 'admin',
+//     name: 'Admin',
+//   },
+//   {
+//     id: 'guru',
+//     name: 'Guru',
+//   },
+//   {
+//     id: 'siswa',
+//     name: 'Siswa',
+//   },
+// ];
 
 function AdminUsers() {
   const [kategoriRole, setKategoriRole] = useState('');
@@ -123,7 +124,7 @@ function AdminUsers() {
                 HtmlFor={'role'}
                 PlaceHolder={'Semua'}
                 SelectSize="SMALL"
-                Options={SELECT_CATEGORY_ROLES}
+                Options={SELECT_ROLE}
                 Value={kategoriRole}
                 OnChange={(e) => setKategoriRole(e.target.value)}
               />

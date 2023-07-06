@@ -10,21 +10,22 @@ import { useTitle } from '../../../hooks/useTitle';
 import { createUser } from '../../../api/users';
 import BoxError from '../../../components/ui/BoxError';
 import InputRequired from '../../../components/form/InputRequired';
+import { SELECT_ROLE } from '../../../config/roles';
 
-const ROLES = [
-  {
-    id: 'admin',
-    name: 'Admin',
-  },
-  {
-    id: 'guru',
-    name: 'Guru',
-  },
-  {
-    id: 'siswa',
-    name: 'Siswa',
-  },
-];
+// const SELECT_ROLES = [
+//   {
+//     id: 'admin',
+//     name: 'Admin',
+//   },
+//   {
+//     id: 'guru',
+//     name: 'Guru',
+//   },
+//   {
+//     id: 'siswa',
+//     name: 'Siswa',
+//   },
+// ];
 
 function NewUser() {
   useTitle('Tambah User');
@@ -233,7 +234,7 @@ function NewUser() {
               )}
             </InputField>
             <InputSelect
-              Options={ROLES}
+              Options={SELECT_ROLE}
               HtmlFor={'role'}
               PlaceHolder={'Role'}
               Required={true}

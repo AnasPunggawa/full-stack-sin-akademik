@@ -10,23 +10,24 @@ import BoxError from '../../../components/ui/BoxError';
 import InputSelect from '../../../components/form/InputSelect';
 import Button from '../../../components/ui/Button';
 import InputRequired from '../../../components/form/InputRequired';
+import { SELECT_KELAS, SELECT_KODE } from '../../../config/kelas';
 
-const TINGKAT_KELAS = [
-  { id: '7', name: '7' },
-  { id: '8', name: '8' },
-  { id: '9', name: '9' },
-];
+// const SELECT_KELAS = [
+//   { id: '7', name: '7' },
+//   { id: '8', name: '8' },
+//   { id: '9', name: '9' },
+// ];
 
-const KODE = [
-  { id: 'A', name: 'A' },
-  { id: 'B', name: 'B' },
-  { id: 'C', name: 'C' },
-  { id: 'D', name: 'D' },
-  { id: 'E', name: 'E' },
-  { id: 'F', name: 'F' },
-  { id: 'G', name: 'G' },
-  { id: 'H', name: 'H' },
-];
+// const SELECT_KODE = [
+//   { id: 'A', name: 'A' },
+//   { id: 'B', name: 'B' },
+//   { id: 'C', name: 'C' },
+//   { id: 'D', name: 'D' },
+//   { id: 'E', name: 'E' },
+//   { id: 'F', name: 'F' },
+//   { id: 'G', name: 'G' },
+//   { id: 'H', name: 'H' },
+// ];
 
 function NewKelas() {
   useTitle('Tambah Kelas');
@@ -131,7 +132,7 @@ function NewKelas() {
               Kode Kelas
             </InputField>
             <InputSelect
-              Options={TINGKAT_KELAS}
+              Options={SELECT_KELAS}
               HtmlFor={'tingkat-kelas'}
               PlaceHolder={'Kelas'}
               Required={true}
@@ -143,7 +144,7 @@ function NewKelas() {
               <InputRequired />
             </InputSelect>
             <InputSelect
-              Options={KODE}
+              Options={SELECT_KODE}
               HtmlFor={'kode'}
               PlaceHolder={'Kode'}
               Required={true}

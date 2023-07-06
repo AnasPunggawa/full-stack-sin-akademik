@@ -10,11 +10,12 @@ import Button from '../../../components/ui/Button';
 import Form from '../../../components/form/Form';
 import { createSemester } from '../../../api/semester';
 import InputRequired from '../../../components/form/InputRequired';
+import { SELECT_SEMESTER } from '../../../config/semester';
 
-const SEMESTER = [
-  { id: 'ganjil', name: 'Ganjil' },
-  { id: 'genap', name: 'Genap' },
-];
+// const SELECT_SEMESTER = [
+//   { id: 'ganjil', name: 'Ganjil' },
+//   { id: 'genap', name: 'Genap' },
+// ];
 
 function EXAMPLE_TAHUN_AJARAN() {
   const currentDate = new Date();
@@ -148,7 +149,7 @@ function NewSemester() {
               <InputRequired>contoh: {placeholderTahunAjaran}</InputRequired>
             </InputField>
             <InputSelect
-              Options={SEMESTER}
+              Options={SELECT_SEMESTER}
               HtmlFor={'semester'}
               PlaceHolder={'Semester'}
               Required={true}

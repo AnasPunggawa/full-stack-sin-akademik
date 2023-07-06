@@ -9,17 +9,18 @@ import InputRequired from '../../../../../components/form/InputRequired';
 import InputSelect from '../../../../../components/form/InputSelect';
 import DatePick from '../../../../../components/ui/DatePick';
 import Button from '../../../../../components/ui/Button';
+import { JENIS_KELAMIN } from '../../../../../config/jenisKelamin';
 
-const JENIS_KELAMIN = [
-  {
-    id: 'Laki-laki',
-    name: 'Laki-laki',
-  },
-  {
-    id: 'Perempuan',
-    name: 'Perempuan',
-  },
-];
+// const JENIS_KELAMIN = [
+//   {
+//     id: 'Laki-laki',
+//     name: 'Laki-laki',
+//   },
+//   {
+//     id: 'Perempuan',
+//     name: 'Perempuan',
+//   },
+// ];
 
 function EditDataSiswa({ BiodataSiswa }) {
   const {

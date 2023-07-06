@@ -14,7 +14,6 @@ import Penilaian from './pages/Penilaian/Penilaian';
 import CetakNilai from './pages/CetakNilai/CetakNilai';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
-import { ROLES } from './config/Roles';
 import NewUser from './pages/Users/NewUser/NewUser';
 import NewMataPelajaran from './pages/MataPelajaran/NewMataPelajaran/NewMataPelajaran';
 import DetailMataPelajaran from './pages/MataPelajaran/DetailMataPelajaran/DetailMataPelajaran';
@@ -33,6 +32,7 @@ import EditBiodataSiswa from './pages/Siswa/DetailSiswa/EditBiodataSiswa/EditBio
 import EditAkunSiswa from './pages/Siswa/DetailSiswa/EditAkunSiswa/EditAkunSiswa';
 import EditBiodata from './pages/Profile/EditBiodata/EditBiodata';
 import EditAkun from './pages/Profile/EditAkun/EditAkun';
+import { ROLES } from './config/roles';
 
 function Router() {
   return (

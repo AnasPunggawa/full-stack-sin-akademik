@@ -12,17 +12,18 @@ import DatePick from '../../../components/ui/DatePick';
 import { useNavigate } from 'react-router-dom';
 import { createGuru } from '../../../api/guru';
 import SearchUsernameGuru from './components/SearchUsernameGuru';
+import { JENIS_KELAMIN } from '../../../config/jenisKelamin';
 
-const JENIS_KELAMIN = [
-  {
-    id: 'Laki-laki',
-    name: 'Laki-laki',
-  },
-  {
-    id: 'Perempuan',
-    name: 'Perempuan',
-  },
-];
+// const JENIS_KELAMIN = [
+//   {
+//     id: 'Laki-laki',
+//     name: 'Laki-laki',
+//   },
+//   {
+//     id: 'Perempuan',
+//     name: 'Perempuan',
+//   },
+// ];
 
 function NewGuru() {
   useTitle('Tambah Guru');

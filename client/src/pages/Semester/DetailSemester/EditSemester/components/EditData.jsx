@@ -8,16 +8,17 @@ import Button from '../../../../../components/ui/Button';
 import { updateSemester } from '../../../../../api/semester';
 import InputSelect from '../../../../../components/form/InputSelect';
 import InputRequired from '../../../../../components/form/InputRequired';
+import { SELECT_SEMESTER, SELECT_STATUS } from '../../../../../config/semester';
 
-const SEMESTER = [
-  { id: 'ganjil', name: 'Ganjil' },
-  { id: 'genap', name: 'Genap' },
-];
+// const SELECT_SEMESTER = [
+//   { id: 'ganjil', name: 'Ganjil' },
+//   { id: 'genap', name: 'Genap' },
+// ];
 
-const STATUS = [
-  { id: true, name: 'Aktif' },
-  { id: false, name: 'Tidak Aktif' },
-];
+// const SELECT_STATUS = [
+//   { id: true, name: 'Aktif' },
+//   { id: false, name: 'Tidak Aktif' },
+// ];
 
 function EditData({ DataSemester }) {
   const { id, kodeSemester, tahunAjaran, semester, status } = DataSemester;
@@ -152,7 +153,7 @@ function EditData({ DataSemester }) {
           <InputRequired>{tahunAjaran}</InputRequired>
         </InputField>
         <InputSelect
-          Options={SEMESTER}
+          Options={SELECT_SEMESTER}
           HtmlFor={'semester'}
           PlaceHolder={'Semester'}
           Required={true}
@@ -165,7 +166,7 @@ function EditData({ DataSemester }) {
           <InputRequired>{semester}</InputRequired>
         </InputSelect>
         <InputSelect
-          Options={STATUS}
+          Options={SELECT_STATUS}
           HtmlFor={'status-semester'}
           PlaceHolder={'Status'}
           Required={true}
