@@ -11,6 +11,7 @@ import Container from '../Container';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import SiswaDetailProfile from './SiswaDetailProfile';
+import { Navigate } from 'react-router-dom';
 
 function SiswaProfile() {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -72,7 +73,13 @@ function SiswaProfile() {
           <LayoutError>{detailUser.errorMessage}</LayoutError>
         )}
         {!detailUser.loading && !detailUser.error && detailUser.data && (
-          <SiswaDetailProfile DataUser={detailUser.data} />
+          <>
+            {detailUser.data.siswa[0] ? (
+              <SiswaDetailProfile DataUser={detailUser.data} />
+            ) : (
+              <Navigate to="add-biodata" state={detailUser.data} />
+            )}
+          </>
         )}
       </Container>
     </>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createGuru } from '../../../../../api/guru';
+import { createSiswa } from '../../../../../api/siswa';
 import Header from '../../../components/Header';
 import Container from '../../../components/Container';
 import BoxError from '../../../../../components/ui/BoxError';
@@ -13,14 +13,17 @@ import { JENIS_KELAMIN } from '../../../../../config/jenisKelamin';
 import DatePick from '../../../../../components/ui/DatePick';
 import Button from '../../../../../components/ui/Button';
 
-function AddBiodataGuru({ User }) {
+function AddBiodataSiswa({ User }) {
   const { id, username } = User;
   const [nama, setNama] = useState('');
-  const [nip, setNip] = useState('');
+  const [nisn, setNisn] = useState('');
+  const [nis, setNis] = useState('');
+  const [alamat, setAlamat] = useState('');
   const [jenisKelamin, setJenisKelamin] = useState('');
   const [tempatLahir, setTempatLahir] = useState('');
   const [tanggalLahir, setTanggalLahir] = useState(null);
-  const [alamat, setAlamat] = useState('');
+  const [namaAyah, setNamaAyah] = useState('');
+  const [namaIbu, setNamaIbu] = useState('');
   const [email, setEmail] = useState('');
   const [nomorHP, setNomorHP] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -30,14 +33,14 @@ function AddBiodataGuru({ User }) {
 
   const navigate = useNavigate();
 
-  async function createBiodataGuru(formData) {
+  async function createBiodataSiswa(formData) {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createGuru(formData);
+      const response = await createSiswa(formData);
       const data = response.data.data;
       console.log(data);
-      console.log('add biodata guru');
+      console.log('add biodata siswa');
       navigate('/profile');
     } catch (error) {
       setIsError(true);
@@ -50,26 +53,30 @@ function AddBiodataGuru({ User }) {
     }
   }
 
-  function submitBiodataGuru(e) {
+  function submitBiodataSiswa(e) {
     e.preventDefault();
-    if (!checkInput()) return setIsError(true);
+    if (!checkInput()) return;
     const formData = {
       user_id: id,
       nama: nama,
-      nip: nip,
+      nisn: nisn,
+      nis: nis,
       jenisKelamin: jenisKelamin,
       tempatLahir: tempatLahir,
       tanggalLahir: tanggalLahir,
+      namaAyah: namaAyah,
+      namaIbu: namaIbu,
       alamat: alamat,
       email: email,
       nomorHP: nomorHP,
     };
     console.log(formData);
-    createBiodataGuru(formData);
+    createBiodataSiswa(formData);
     return;
   }
 
   function checkInput() {
+    setIsError(true);
     if (id === '') {
       setErrorMessage('user_id tidak ditemukan');
       return false;
@@ -82,8 +89,12 @@ function AddBiodataGuru({ User }) {
       setErrorMessage('Nama harus diisi');
       return false;
     }
-    if (nip === '') {
-      setErrorMessage('NIP harus diisi');
+    if (nisn === '') {
+      setErrorMessage('NISN harus diisi');
+      return false;
+    }
+    if (nis === '') {
+      setErrorMessage('NIS harus diisi');
       return false;
     }
     if (alamat === '') {
@@ -102,6 +113,14 @@ function AddBiodataGuru({ User }) {
       setErrorMessage('Tanggal lahir harus diisi');
       return false;
     }
+    if (namaAyah === '') {
+      setErrorMessage('Nama ayah harus diisi');
+      return false;
+    }
+    if (namaIbu === '') {
+      setErrorMessage('Nama ibu harus diisi');
+      return false;
+    }
     if (email === '') {
       setErrorMessage('Email harus diisi');
       return false;
@@ -110,6 +129,7 @@ function AddBiodataGuru({ User }) {
       setErrorMessage('Nomor HP harus diisi');
       return false;
     }
+    setIsError(false);
     return true;
   }
 
@@ -119,11 +139,14 @@ function AddBiodataGuru({ User }) {
     return;
   }, [
     nama,
-    nip,
+    nisn,
+    nis,
     alamat,
     jenisKelamin,
     tempatLahir,
     tanggalLahir,
+    namaAyah,
+    namaIbu,
     email,
     nomorHP,
   ]);
@@ -133,11 +156,14 @@ function AddBiodataGuru({ User }) {
       id === '' ||
       username === '' ||
       nama === '' ||
-      nip === '' ||
+      nisn === '' ||
+      nis === '' ||
       alamat === '' ||
       jenisKelamin === '' ||
       tempatLahir === '' ||
       tanggalLahir === null ||
+      namaAyah === '' ||
+      namaIbu === '' ||
       email === '' ||
       nomorHP === '' ||
       isError
@@ -148,28 +174,31 @@ function AddBiodataGuru({ User }) {
     id,
     username,
     nama,
-    nip,
+    nisn,
+    nis,
     alamat,
     jenisKelamin,
     tempatLahir,
     tanggalLahir,
+    namaAyah,
+    namaIbu,
     email,
     nomorHP,
     isError,
   ]);
 
-  function cancelAddBiodataGuru() {
+  function cancelAddBiodataSiswa() {
     navigate('/');
   }
 
   return (
     <>
-      <Header>Tambah Biodata Guru</Header>
+      <Header>Tambah Biodata Siswa</Header>
       <Container>
         <div className="p-5 space-y-4 md:space-y-6 sm:p-7">
           {isLoading && <p>Loading...</p>}
           {isError && <BoxError>{errorMessage}</BoxError>}
-          <Form OnSubmit={submitBiodataGuru}>
+          <Form OnSubmit={submitBiodataSiswa}>
             {/* Username */}
             <InputField
               HtmlFor="username"
@@ -181,11 +210,11 @@ function AddBiodataGuru({ User }) {
               AutoComplete="OFF"
               OnChange={() => {}}
             >
-              Username
+              Nama
               <InputRequired />
             </InputField>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
-              {/* Nama Guru */}
+              {/* Nama Siswa */}
               <InputField
                 HtmlFor="nama"
                 Type="text"
@@ -200,22 +229,37 @@ function AddBiodataGuru({ User }) {
                 Nama
                 <InputRequired />
               </InputField>
-              {/* NIP Guru */}
+              {/* NISN Siswa */}
               <InputField
-                HtmlFor="nip"
+                HtmlFor="nisn"
                 Type="text"
-                Value={nip}
-                Placeholder="123456781234561123"
+                Value={nisn}
+                Placeholder="1234567890"
                 Required={true}
                 AutoComplete="OFF"
                 OnChange={(e) => {
-                  setNip(e.target.value);
+                  setNisn(e.target.value);
                 }}
               >
-                NIP
+                NISN
                 <InputRequired />
               </InputField>
-              {/* Alamat Guru */}
+              {/* NIS Siswa */}
+              <InputField
+                HtmlFor="nis"
+                Type="text"
+                Value={nis}
+                Placeholder="1234123"
+                Required={true}
+                AutoComplete="OFF"
+                OnChange={(e) => {
+                  setNis(e.target.value);
+                }}
+              >
+                NIS
+                <InputRequired />
+              </InputField>
+              {/* Alamat Siswa */}
               <InputField
                 HtmlFor="alamat"
                 Type="text"
@@ -230,7 +274,7 @@ function AddBiodataGuru({ User }) {
                 Alamat
                 <InputRequired />
               </InputField>
-              {/* Jenis Kelamin Guru */}
+              {/* Jenis Kelamin Siswa */}
               <InputSelect
                 Options={JENIS_KELAMIN}
                 HtmlFor={'jenis-kelamin'}
@@ -245,7 +289,7 @@ function AddBiodataGuru({ User }) {
                 Pilih Jenis Kelamin
                 <InputRequired />
               </InputSelect>
-              {/* Tempat Lahir Guru */}
+              {/* Tempat Lahir Siswa */}
               <InputField
                 HtmlFor="tempat-lahir"
                 Type="text"
@@ -260,7 +304,7 @@ function AddBiodataGuru({ User }) {
                 Tempat Lahir
                 <InputRequired />
               </InputField>
-              {/* Tanggal Lahir Guru */}
+              {/* Tanggal Lahir Siswa */}
               <DatePick
                 HtmlFor={'tanggal-lahir'}
                 Value={tanggalLahir}
@@ -272,7 +316,37 @@ function AddBiodataGuru({ User }) {
                 Tanggal Lahir
                 <InputRequired />
               </DatePick>
-              {/* Email Guru */}
+              {/* Nama Ayah Siswa */}
+              <InputField
+                HtmlFor="nama-ayah"
+                Type="text"
+                Value={namaAyah}
+                Placeholder="ayah siswa"
+                Required={true}
+                AutoComplete="OFF"
+                OnChange={(e) => {
+                  setNamaAyah(e.target.value);
+                }}
+              >
+                Nama Ayah
+                <InputRequired />
+              </InputField>
+              {/* Nama Ibu Siswa */}
+              <InputField
+                HtmlFor="nama-ibu"
+                Type="text"
+                Value={namaIbu}
+                Placeholder="ibu siswa"
+                Required={true}
+                AutoComplete="OFF"
+                OnChange={(e) => {
+                  setNamaIbu(e.target.value);
+                }}
+              >
+                Nama Ibu
+                <InputRequired />
+              </InputField>
+              {/* Email Siswa */}
               <InputField
                 HtmlFor="email"
                 Type="text"
@@ -287,7 +361,7 @@ function AddBiodataGuru({ User }) {
                 Email
                 <InputRequired />
               </InputField>
-              {/* Nomor HP Guru */}
+              {/* Nomor HP Siswa */}
               <InputField
                 HtmlFor="nomor-hp"
                 Type="text"
@@ -307,9 +381,8 @@ function AddBiodataGuru({ User }) {
               <Button Type="submit" Disabled={isInputValid ? false : true}>
                 Simpan
               </Button>
-              {/* <Button Type="submit">Simpan</Button> */}
               <Button
-                OnClick={() => cancelAddBiodataGuru()}
+                OnClick={() => cancelAddBiodataSiswa()}
                 ButtonStyle="DANGER"
               >
                 Batal
@@ -322,8 +395,8 @@ function AddBiodataGuru({ User }) {
   );
 }
 
-AddBiodataGuru.propTypes = {
+AddBiodataSiswa.propTypes = {
   User: PropTypes.object,
 };
 
-export default AddBiodataGuru;
+export default AddBiodataSiswa;
