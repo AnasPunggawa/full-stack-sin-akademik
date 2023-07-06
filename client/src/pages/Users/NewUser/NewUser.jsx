@@ -10,7 +10,7 @@ import { useTitle } from '../../../hooks/useTitle';
 import { createUser } from '../../../api/users';
 import BoxError from '../../../components/ui/BoxError';
 import InputRequired from '../../../components/form/InputRequired';
-import { SELECT_ROLE } from '../../../config/roles';
+import { SELECT_ROLE } from '../../../config/role';
 
 // const SELECT_ROLES = [
 //   {

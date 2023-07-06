@@ -32,7 +32,7 @@ import EditBiodataSiswa from './pages/Siswa/DetailSiswa/EditBiodataSiswa/EditBio
 import EditAkunSiswa from './pages/Siswa/DetailSiswa/EditAkunSiswa/EditAkunSiswa';
 import EditBiodata from './pages/Profile/EditBiodata/EditBiodata';
 import EditAkun from './pages/Profile/EditAkun/EditAkun';
-import { ROLES } from './config/roles';
+import { ROLES } from './config/role';
 
 function Router() {
   return (

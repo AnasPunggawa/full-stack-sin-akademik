@@ -16,7 +16,7 @@ import { getUsers } from '../../../../api/users';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
-import { SELECT_ROLE } from '../../../../config/roles';
+import { SELECT_ROLE } from '../../../../config/role';
 
 // const SELECT_ROLE = [
 //   {
