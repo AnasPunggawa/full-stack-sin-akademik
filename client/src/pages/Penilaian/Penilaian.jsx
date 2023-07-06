@@ -8,10 +8,7 @@ function Penilaian() {
   const user = jwtDecode(accessToken);
 
   return (
-    <>
-      {user.role === 'guru' && <GuruPenilaian />}
-      <h1 className="text-2xl font-bold">Penilaian Public</h1>
-    </>
+    <>{user.role === 'guru' ? <GuruPenilaian /> : <h1>Akses Dilarang</h1>}</>
   );
 }
 
