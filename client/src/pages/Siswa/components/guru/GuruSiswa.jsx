@@ -82,7 +82,7 @@ function GuruSiswa() {
     <>
       <Header>Siswa</Header>
       <Container>
-        <div className="w-full flex flex-col gap-2 p-4">
+        <div className="w-full flex flex-col gap-3 p-4">
           <div className="w-full flex flex-wrap items-center justify-end">
             <form onSubmit={(e) => handleSearch(e)}>
               <InputSearch

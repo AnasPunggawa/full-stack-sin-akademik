@@ -111,7 +111,7 @@ function AdminUsers() {
     <>
       <Header>Users</Header>
       <Container>
-        <div className="w-full flex flex-col gap-2 p-4">
+        <div className="w-full flex flex-col gap-3 p-4">
           <div className="w-full">
             <Button OnClick={() => tambahUser()}>
               Tambah User <IconPlus />
@@ -122,9 +122,10 @@ function AdminUsers() {
               <InputSelect
                 HtmlFor={'role'}
                 PlaceHolder={'Semua'}
+                SelectSize="SMALL"
+                Options={SELECT_CATEGORY_ROLES}
                 Value={kategoriRole}
                 OnChange={(e) => setKategoriRole(e.target.value)}
-                Options={SELECT_CATEGORY_ROLES}
               />
             </div>
             <form onSubmit={(e) => handleSearch(e)}>

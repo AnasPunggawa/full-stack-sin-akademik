@@ -102,7 +102,7 @@ function AdminKelas() {
     <>
       <Header>Kelas</Header>
       <Container>
-        <div className="w-full flex flex-col gap-2 p-4">
+        <div className="w-full flex flex-col gap-3 p-4">
           <div className="w-full">
             <Button OnClick={() => tambahKelas()}>
               Tambah Kelas <IconPlus />
@@ -113,6 +113,7 @@ function AdminKelas() {
               <InputSelect
                 HtmlFor={'kelas'}
                 PlaceHolder={'Semua'}
+                SelectSize="SMALL"
                 Value={kategoriKelas}
                 OnChange={(e) => setKategoriKelas(e.target.value)}
                 Options={SELECT_CATEGORY_KELAS}

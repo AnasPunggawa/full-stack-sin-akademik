@@ -93,7 +93,7 @@ function AdminMataPelajaran() {
     <>
       <Header>Mata Pelajaran</Header>
       <Container>
-        <div className="w-full flex flex-col gap-2 p-4">
+        <div className="w-full flex flex-col gap-3 p-4">
           <div className="w-full">
             <Button OnClick={() => tambahMataPelajaran()}>
               Tambah Mata Pelajaran <IconPlus />

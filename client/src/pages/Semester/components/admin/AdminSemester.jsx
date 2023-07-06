@@ -101,7 +101,7 @@ function AdminSemester() {
     <>
       <Header>Semester</Header>
       <Container>
-        <div className="w-full flex flex-col gap-2 p-4">
+        <div className="w-full flex flex-col gap-3 p-4">
           <div className="w-full">
             <Button OnClick={() => tambahSemester()}>
               Tambah Semester <IconPlus />
@@ -112,6 +112,7 @@ function AdminSemester() {
               <InputSelect
                 HtmlFor={'semester'}
                 PlaceHolder={'Semua'}
+                SelectSize="SMALL"
                 Value={kategoriSemester}
                 OnChange={(e) => setKategoriSemester(e.target.value)}
                 Options={SELECT_CATEGORY_SEMESTER}
