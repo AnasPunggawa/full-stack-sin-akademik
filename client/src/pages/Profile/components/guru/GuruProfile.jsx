@@ -11,6 +11,7 @@ import Container from '../Container';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import GuruDetailProfile from './GuruDetailProfile';
+import { Navigate } from 'react-router-dom';
 
 function GuruProfile() {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -72,7 +73,13 @@ function GuruProfile() {
           <LayoutError>{detailUser.errorMessage}</LayoutError>
         )}
         {!detailUser.loading && !detailUser.error && detailUser.data && (
-          <GuruDetailProfile DataUser={detailUser.data} />
+          <>
+            {detailUser.data.guru[0] ? (
+              <GuruDetailProfile DataUser={detailUser.data} />
+            ) : (
+              <Navigate to="add-biodata" state={detailUser.data} />
+            )}
+          </>
         )}
       </Container>
     </>
