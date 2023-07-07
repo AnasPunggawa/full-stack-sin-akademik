@@ -155,27 +155,27 @@ function EditData({ DataSemester }) {
         <InputSelect
           Options={SELECT_SEMESTER}
           HtmlFor={'semester'}
-          PlaceHolder={'Semester'}
+          PlaceHolder={'Pilih Semester'}
           Required={true}
           Value={tingkatSemester}
           OnChange={(e) => {
             setTingkatSemester(e.target.value);
           }}
         >
-          Pilih Semester
+          Semester
           <InputRequired>{semester}</InputRequired>
         </InputSelect>
         <InputSelect
           Options={SELECT_STATUS}
           HtmlFor={'status-semester'}
-          PlaceHolder={'Status'}
+          PlaceHolder={'Pilih Status'}
           Required={true}
           Value={statusSemester}
           OnChange={(e) => {
             setStatusSemester(e.target.value);
           }}
         >
-          Pilih Status Semester
+          Status
           <InputRequired>{status ? 'Aktif' : 'Tidak Aktif'}</InputRequired>
         </InputSelect>
         <div className="flex gap-2 md:gap-4 justify-end sm:justify-center">

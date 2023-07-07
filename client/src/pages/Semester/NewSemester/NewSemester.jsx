@@ -116,7 +116,7 @@ function NewSemester() {
 
   return (
     <>
-      <Header>Tambah User</Header>
+      <Header>Tambah Semester</Header>
       <Container>
         <div className="p-5 space-y-4 md:space-y-6 sm:p-7">
           {isLoading && <p>Loading...</p>}
@@ -133,7 +133,7 @@ function NewSemester() {
                 setKodeSemester(e.target.value);
               }}
             >
-              Kode Kelas
+              Kode Semester
             </InputField>
             <InputField
               HtmlFor="tahun-ajaran"
@@ -151,13 +151,13 @@ function NewSemester() {
             <InputSelect
               Options={SELECT_SEMESTER}
               HtmlFor={'semester'}
-              PlaceHolder={'Semester'}
+              PlaceHolder={'Pilih Semester'}
               Required={true}
               OnChange={(e) => {
                 setSemester(e.target.value);
               }}
             >
-              Pilih Semester
+              Semester
               <InputRequired />
             </InputSelect>
             <div className="flex gap-2 sm:gap-4 justify-end sm:justify-center">

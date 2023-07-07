@@ -112,7 +112,7 @@ function NewKelas() {
 
   return (
     <>
-      <Header>Tambah User</Header>
+      <Header>Tambah Kelas</Header>
       <Container>
         <div className="p-5 space-y-4 md:space-y-6 sm:p-7">
           {isLoading && <p>Loading...</p>}

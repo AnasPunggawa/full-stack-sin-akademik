@@ -55,7 +55,7 @@ function DetailData({ DataSemester }) {
           Disabled={true}
           OnChange={(e) => setStatusSemester(e.target.value)}
         >
-          Status Semester
+          Status
         </InputField>
       </Form>
     </div>
