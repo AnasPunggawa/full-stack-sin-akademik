@@ -38,7 +38,10 @@ function AddBiodataGuru({ User }) {
       const data = response.data.data;
       console.log(data);
       console.log('add biodata guru');
-      navigate('/profile');
+      navigate('/profile', {
+        state: { message: 'Biodata berhasil ditambahkan' },
+      });
+      // navigate('/profile');
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)
@@ -234,7 +237,7 @@ function AddBiodataGuru({ User }) {
               <InputSelect
                 Options={JENIS_KELAMIN}
                 HtmlFor={'jenis-kelamin'}
-                PlaceHolder={'Jenis Kelamin'}
+                PlaceHolder={'Pilih Jenis Kelamin'}
                 Required={true}
                 Value={jenisKelamin}
                 AutoComplete="OFF"
@@ -242,7 +245,7 @@ function AddBiodataGuru({ User }) {
                   setJenisKelamin(e.target.value);
                 }}
               >
-                Pilih Jenis Kelamin
+                Jenis Kelamin
                 <InputRequired />
               </InputSelect>
               {/* Tempat Lahir Guru */}

@@ -33,6 +33,8 @@ function AddBiodataSiswa({ User }) {
 
   const navigate = useNavigate();
 
+  const tahunAngkatan = new Date().getFullYear().toString();
+
   async function createBiodataSiswa(formData) {
     setIsError(false);
     setIsLoading(true);
@@ -41,7 +43,10 @@ function AddBiodataSiswa({ User }) {
       const data = response.data.data;
       console.log(data);
       console.log('add biodata siswa');
-      navigate('/profile');
+      navigate('/profile', {
+        state: { message: 'Biodata berhasil ditambahkan' },
+      });
+      // navigate('/profile');
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)
@@ -69,6 +74,7 @@ function AddBiodataSiswa({ User }) {
       alamat: alamat,
       email: email,
       nomorHP: nomorHP,
+      tahunAngkatan: tahunAngkatan,
     };
     console.log(formData);
     createBiodataSiswa(formData);
@@ -210,7 +216,7 @@ function AddBiodataSiswa({ User }) {
               AutoComplete="OFF"
               OnChange={() => {}}
             >
-              Nama
+              Username
               <InputRequired />
             </InputField>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -278,7 +284,7 @@ function AddBiodataSiswa({ User }) {
               <InputSelect
                 Options={JENIS_KELAMIN}
                 HtmlFor={'jenis-kelamin'}
-                PlaceHolder={'Jenis Kelamin'}
+                PlaceHolder={'Pilih Jenis Kelamin'}
                 Required={true}
                 Value={jenisKelamin}
                 AutoComplete="OFF"
@@ -286,7 +292,7 @@ function AddBiodataSiswa({ User }) {
                   setJenisKelamin(e.target.value);
                 }}
               >
-                Pilih Jenis Kelamin
+                Jenis Kelamin
                 <InputRequired />
               </InputSelect>
               {/* Tempat Lahir Siswa */}
@@ -374,6 +380,20 @@ function AddBiodataSiswa({ User }) {
                 }}
               >
                 Nomor HP
+                <InputRequired />
+              </InputField>
+              {/* Nomor HP Siswa */}
+              <InputField
+                HtmlFor="tahun-angkatan"
+                Type="text"
+                Value={tahunAngkatan}
+                Placeholder={tahunAngkatan}
+                Required={true}
+                AutoComplete="OFF"
+                Disabled={true}
+                OnChange={() => {}}
+              >
+                Tahun Angkatan
                 <InputRequired />
               </InputField>
             </div>

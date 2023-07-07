@@ -68,7 +68,7 @@ function AdminKelas() {
       setPage(data.current_page);
       setLimit(data.limit_data);
     } catch (error) {
-      if (error.response.status === 500) {
+      if (error.response?.status === 500) {
         dispatch({
           type: ACTION_KELAS_REDUCER.FETCH_DATA_ERROR,
           payload: 'Something went wrong',
