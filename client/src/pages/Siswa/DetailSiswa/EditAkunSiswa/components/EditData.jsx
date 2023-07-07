@@ -138,7 +138,7 @@ function EditData({ AkunSiswa }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Username Siswa
+          Username
           <InputRequired />
         </InputField>
         {/* PASSWORD LAMA SISWA */}
@@ -152,7 +152,7 @@ function EditData({ AkunSiswa }) {
             setPasswordLama(e.target.value);
           }}
         >
-          Password Lama
+          Password
           <InputRequired />
         </InputField>
         {/* PASSWORD BARU SISWA */}
@@ -199,7 +199,7 @@ function EditData({ AkunSiswa }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Role Siswa
+          Role
           <InputRequired />
         </InputField>
         <div className="flex gap-2 md:gap-4 justify-end sm:justify-center">

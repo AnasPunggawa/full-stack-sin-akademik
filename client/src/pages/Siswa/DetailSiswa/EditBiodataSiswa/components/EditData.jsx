@@ -245,7 +245,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setNama(e.target.value)}
           >
-            Nama Siswa
+            Nama
             <InputRequired />
           </InputField>
           {/* NISN SISWA */}
@@ -257,7 +257,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setNisn(e.target.value)}
           >
-            NISN Siswa
+            NISN
             <InputRequired />
           </InputField>
           {/* NIS SISWA */}
@@ -269,7 +269,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setNis(e.target.value)}
           >
-            NISN Siswa
+            NIS
             <InputRequired />
           </InputField>
           {/* ALAMAT SISWA */}
@@ -281,14 +281,14 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setAlamat(e.target.value)}
           >
-            Alamat Siswa
+            Alamat
             <InputRequired />
           </InputField>
           {/* JENIS KELAMIN SISWA */}
           <InputSelect
             Options={JENIS_KELAMIN}
             HtmlFor={'jenis-kelamin'}
-            PlaceHolder={'Jenis Kelamin'}
+            PlaceHolder={'Pilih Jenis Kelamin'}
             Required={true}
             Value={jenisKelamin}
             AutoComplete="OFF"
@@ -296,7 +296,7 @@ function EditData({ BiodataSiswa }) {
               setJenisKelamin(e.target.value);
             }}
           >
-            Pilih Jenis Kelamin
+            Jenis Kelamin
             <InputRequired />
           </InputSelect>
           {/* TEMPAT LAHIR SISWA */}
@@ -308,7 +308,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setTempatLahir(e.target.value)}
           >
-            Tempat Lahir Siswa
+            Tempat Lahir
             <InputRequired />
           </InputField>
           {/* TANGGAL LAHIR SISWA */}
@@ -320,7 +320,7 @@ function EditData({ BiodataSiswa }) {
             Placeholder={formatCurrentTanggalLahir}
             OnChange={setTanggalLahir}
           >
-            Tanggal Lahir Siswa
+            Tanggal Lahir
             <InputRequired />
           </DatePick>
           {/* NAMA AYAH SISWA */}
@@ -332,7 +332,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setNamaAyah(e.target.value)}
           >
-            Nama Ayah Siswa
+            Nama Ayah
             <InputRequired />
           </InputField>
           {/* NAMA IBU SISWA */}
@@ -344,7 +344,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setNamaIbu(e.target.value)}
           >
-            Nama Ibu Siswa
+            Nama Ibu
             <InputRequired />
           </InputField>
           {/* EMAIL SISWA */}
@@ -356,7 +356,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setEmail(e.target.value)}
           >
-            Email Siswa
+            Email
             <InputRequired />
           </InputField>
           {/* NOMOR HP SISWA */}
@@ -368,7 +368,7 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setNomorHP(e.target.value)}
           >
-            Nomor HP Siswa
+            Nomor HP
             <InputRequired />
           </InputField>
           {/* TAHUN ANGKATAN SISWA */}
@@ -380,14 +380,14 @@ function EditData({ BiodataSiswa }) {
             Required={true}
             OnChange={(e) => setTahunAngkata(e.target.value)}
           >
-            Tahun Angkatan Siswa
+            Tahun Angkatan
             <InputRequired />
           </InputField>
           {/* STATUS SISWA */}
           <InputSelect
             Options={SELECT_STATUS}
             HtmlFor={'status'}
-            PlaceHolder={'Status Siswa'}
+            PlaceHolder={'Pilih Status Siswa'}
             Required={true}
             Value={status}
             AutoComplete="OFF"
@@ -395,7 +395,7 @@ function EditData({ BiodataSiswa }) {
               setStatus(e.target.value);
             }}
           >
-            Pilih Status Siswa
+            Status
             <InputRequired />
           </InputSelect>
         </div>

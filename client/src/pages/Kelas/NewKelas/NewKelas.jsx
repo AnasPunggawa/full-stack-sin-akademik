@@ -134,26 +134,26 @@ function NewKelas() {
             <InputSelect
               Options={SELECT_KELAS}
               HtmlFor={'tingkat-kelas'}
-              PlaceHolder={'Kelas'}
+              PlaceHolder={'Pilih Kelas'}
               Required={true}
               OnChange={(e) => {
                 setTingkatKelas(e.target.value);
               }}
             >
-              Pilih Kelas
+              Kelas
               <InputRequired />
             </InputSelect>
             <InputSelect
               Options={SELECT_KODE}
               HtmlFor={'kode'}
-              PlaceHolder={'Kode'}
+              PlaceHolder={'Pilih Kode'}
               Required={true}
               Disabled={tingkatKelas ? false : true}
               OnChange={(e) => {
                 setKode(e.target.value);
               }}
             >
-              Pilih Kode
+              Kode
               <InputRequired />
             </InputSelect>
             <div className="flex gap-2 sm:gap-4 justify-end sm:justify-center">

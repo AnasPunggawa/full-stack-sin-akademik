@@ -50,7 +50,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nama Siswa
+          Nama
         </InputField>
         {/* NISN SISWA */}
         <InputField
@@ -62,7 +62,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          NISN Siswa
+          NISN
         </InputField>
         {/* NIS SISWA */}
         <InputField
@@ -74,7 +74,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          NIS Siswa
+          NIS
         </InputField>
         {/* ALAMAT SISWA */}
         <InputField
@@ -86,7 +86,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Alamat Siswa
+          Alamat
         </InputField>
         {/* JENIS KELAMIN SISWA */}
         <InputField
@@ -98,7 +98,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Jenis Kelamin Siswa
+          Jenis Kelamin
         </InputField>
         {/* TEMPAT LAHIR SISWA */}
         <InputField
@@ -110,7 +110,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tempat Lahir Siswa
+          Tempat Lahir
         </InputField>
         {/* TANGGAL LAHIR SISWA */}
         <DatePick
@@ -122,7 +122,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tanggal Lahir Siswa
+          Tanggal Lahir
         </DatePick>
         {/* NAMA AYAH SISWA */}
         <InputField
@@ -134,7 +134,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nama Ayah Siswa
+          Nama Ayah
         </InputField>
         {/* NAMA IBU SISWA */}
         <InputField
@@ -146,7 +146,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nama Ibu Siswa
+          Nama Ibu
         </InputField>
         {/* EMAIL SISWA */}
         <InputField
@@ -158,7 +158,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Email Siswa
+          Email
         </InputField>
         {/* NOMOR HP SISWA */}
         <InputField
@@ -170,7 +170,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nomor HP Siswa
+          Nomor HP
         </InputField>
         {/* TAHUN ANGKATAN SISWA */}
         <InputField
@@ -182,7 +182,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tahun Angkatan Siswa
+          Tahun Angkatan
         </InputField>
         {/* STATUS SISWA */}
         <InputField
@@ -194,7 +194,7 @@ function BiodataSiswa({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Status Siswa
+          Status
         </InputField>
       </div>
     </div>
