@@ -16,6 +16,7 @@ function DetailData({ DataGuru }) {
     tanggalLahir: DataGuru?.tanggalLahir,
     email: DataGuru?.email,
     nomorHP: DataGuru?.nomorHP,
+    status: DataGuru?.status,
   };
   const dataAkunGuru = {
     id: DataGuru?.users?.id,

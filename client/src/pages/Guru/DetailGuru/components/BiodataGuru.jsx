@@ -14,6 +14,7 @@ function BiodataGuru({ Biodata }) {
     tanggalLahir,
     email,
     nomorHP,
+    status,
   } = Biodata;
 
   const formatDate = new Date(tanggalLahir);
@@ -130,6 +131,18 @@ function BiodataGuru({ Biodata }) {
           OnChange={() => {}}
         >
           Nomor HP Guru
+        </InputField>
+        {/* STATUS GURU */}
+        <InputField
+          HtmlFor="status-guru"
+          Type="text"
+          Value={status ? 'Aktif' : 'Tidak Aktif'}
+          Placeholder={status ? 'Aktif' : 'Tidak Aktif'}
+          Required={true}
+          Disabled={true}
+          OnChange={() => {}}
+        >
+          Status Guru
         </InputField>
       </div>
     </div>

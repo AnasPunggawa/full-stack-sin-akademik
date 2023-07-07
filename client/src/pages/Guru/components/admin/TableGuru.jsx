@@ -23,7 +23,11 @@ const TABLE_HEAD_GURU = [
   },
   {
     name: 'Username',
-    style: 'px-6 py-3 w-2/12',
+    style: 'px-6 py-3 w-1/12',
+  },
+  {
+    name: 'Status',
+    style: 'px-6 py-3 w-1/12',
   },
   {
     name: 'Aksi',
@@ -74,6 +78,9 @@ function TableGuru({ DataTable, SetPage }) {
                   </td>
                   <td className="px-6 py-2.5">{item?.jenisKelamin}</td>
                   <td className="px-6 py-2.5">{item?.users?.username}</td>
+                  <td className="px-6 py-2.5">
+                    {item?.status ? 'Aktif' : 'Tidak Aktif'}
+                  </td>
                   <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
                     <Button
                       OnClick={() => handleDetail(item?.id)}

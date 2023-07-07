@@ -10,6 +10,7 @@ import DatePick from '../../../../../components/ui/DatePick';
 import { updateGuru } from '../../../../../api/guru';
 import BoxError from '../../../../../components/ui/BoxError';
 import { JENIS_KELAMIN } from '../../../../../config/jenisKelamin';
+import { SELECT_STATUS } from '../../../../../config/status';
 
 // const JENIS_KELAMIN = [
 //   {
@@ -34,6 +35,7 @@ function EditData({ BiodataGuru }) {
     tanggalLahir: currentTanggalLahir,
     email: currentEmail,
     nomorHP: currentNomorHP,
+    status: currentStatus,
   } = BiodataGuru;
 
   const formatCurrentTanggalLahir = new Date(
@@ -50,6 +52,7 @@ function EditData({ BiodataGuru }) {
   const [alamat, setAlamat] = useState(currentAlamat);
   const [email, setEmail] = useState(currentEmail);
   const [nomorHP, setNomorHP] = useState(currentNomorHP);
+  const [status, setStatus] = useState(currentStatus);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -92,6 +95,7 @@ function EditData({ BiodataGuru }) {
       alamat,
       email,
       nomorHP,
+      status,
     };
     console.log(formData);
     handleUpdateGuru(formData);
@@ -131,6 +135,10 @@ function EditData({ BiodataGuru }) {
       setErrorMessage('Nomor HP harus diisi');
       return false;
     }
+    if (status === '') {
+      setErrorMessage('Status guru harus diisi');
+      return false;
+    }
     return true;
   }
 
@@ -147,6 +155,7 @@ function EditData({ BiodataGuru }) {
     tanggalLahir,
     email,
     nomorHP,
+    status,
   ]);
 
   useEffect(() => {
@@ -159,6 +168,7 @@ function EditData({ BiodataGuru }) {
       tanggalLahir === null ||
       email === '' ||
       nomorHP === '' ||
+      status === '' ||
       isError
     )
       return setIsInputValid(false);
@@ -172,6 +182,7 @@ function EditData({ BiodataGuru }) {
     tanggalLahir,
     email,
     nomorHP,
+    status,
     isError,
   ]);
 
@@ -284,6 +295,21 @@ function EditData({ BiodataGuru }) {
             Nomor HP Guru
             <InputRequired />
           </InputField>
+          {/* STATUS GURU */}
+          <InputSelect
+            Options={SELECT_STATUS}
+            HtmlFor={'status-guru'}
+            PlaceHolder={'Status Guru'}
+            Required={true}
+            Value={status}
+            AutoComplete="OFF"
+            OnChange={(e) => {
+              setStatus(e.target.value);
+            }}
+          >
+            Pilih Status Guru
+            <InputRequired />
+          </InputSelect>
         </div>
         <div className="flex gap-2 md:gap-4 justify-end sm:justify-center">
           <Button
