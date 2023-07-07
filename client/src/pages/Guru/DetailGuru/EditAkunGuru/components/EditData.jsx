@@ -138,7 +138,7 @@ function EditData({ AkunGuru }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Username Guru
+          Username
           <InputRequired />
         </InputField>
         {/* PASSWORD LAMA GURU */}
@@ -199,7 +199,7 @@ function EditData({ AkunGuru }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Role Guru
+          Role
           <InputRequired />
         </InputField>
         <div className="flex gap-2 md:gap-4 justify-end sm:justify-center">

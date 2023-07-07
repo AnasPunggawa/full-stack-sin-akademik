@@ -230,7 +230,7 @@ function NewGuru() {
               <InputSelect
                 Options={JENIS_KELAMIN}
                 HtmlFor={'jenis-kelamin'}
-                PlaceHolder={'Jenis Kelamin'}
+                PlaceHolder={'Pilih Jenis Kelamin'}
                 Required={true}
                 Value={jenisKelamin}
                 AutoComplete="OFF"
@@ -238,7 +238,7 @@ function NewGuru() {
                   setJenisKelamin(e.target.value);
                 }}
               >
-                Pilih Jenis Kelamin
+                Jenis Kelamin
                 <InputRequired />
               </InputSelect>
               {/* Tempat Lahir Guru */}

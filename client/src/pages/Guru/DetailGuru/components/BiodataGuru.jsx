@@ -46,7 +46,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nama Guru
+          Nama
         </InputField>
         {/* NIP GURU */}
         <InputField
@@ -58,7 +58,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          NIP Guru
+          NIP
         </InputField>
         {/* ALAMAT GURU */}
         <InputField
@@ -70,7 +70,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Alamat Guru
+          Alamat
         </InputField>
         {/* JENIS KELAMIN GURU */}
         <InputField
@@ -82,7 +82,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Jenis Kelamin Guru
+          Jenis Kelamin
         </InputField>
         {/* TEMPAT LAHIR GURU */}
         <InputField
@@ -94,7 +94,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tempat Lahir Guru
+          Tempat Lahir
         </InputField>
         {/* TANGGAL LAHIR GURU */}
         <DatePick
@@ -106,7 +106,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tanggal Lahir Guru
+          Tanggal Lahir
         </DatePick>
         {/* EMAIL GURU */}
         <InputField
@@ -118,7 +118,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Email Guru
+          Email
         </InputField>
         {/* NOMOR HP GURU */}
         <InputField
@@ -130,7 +130,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nomor HP Guru
+          Nomor HP
         </InputField>
         {/* STATUS GURU */}
         <InputField
@@ -142,7 +142,7 @@ function BiodataGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Status Guru
+          Status
         </InputField>
       </div>
     </div>

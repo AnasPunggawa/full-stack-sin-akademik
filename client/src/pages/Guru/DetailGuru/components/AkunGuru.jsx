@@ -9,7 +9,7 @@ function AkunGuru({ DataAkunGuru }) {
   const { username, role, password } = DataAkunGuru;
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate(``);
+  const navigate = useNavigate();
   function handleEdit() {
     navigate('edit-akun');
   }
@@ -34,7 +34,7 @@ function AkunGuru({ DataAkunGuru }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Username Akun
+          Username
         </InputField>
         {/* ROLE */}
         <InputField
@@ -46,7 +46,7 @@ function AkunGuru({ DataAkunGuru }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Role Akun
+          Role
         </InputField>
         {/* PASSWORD */}
         <div className="w-full space-y-1 flex flex-col items-end">
@@ -59,7 +59,7 @@ function AkunGuru({ DataAkunGuru }) {
             Disabled={true}
             OnChange={() => {}}
           >
-            Password Akun
+            Password
           </InputField>
           <Button
             ButtonStyle="LINK_PRIMARY"

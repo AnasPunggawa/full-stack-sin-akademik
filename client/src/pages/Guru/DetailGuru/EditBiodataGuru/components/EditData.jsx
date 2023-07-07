@@ -205,7 +205,7 @@ function EditData({ BiodataGuru }) {
             Required={true}
             OnChange={(e) => setNama(e.target.value)}
           >
-            Nama Guru
+            Nama
             <InputRequired />
           </InputField>
           {/* NIP GURU */}
@@ -217,7 +217,7 @@ function EditData({ BiodataGuru }) {
             Required={true}
             OnChange={(e) => setNip(e.target.value)}
           >
-            NIP Guru
+            NIP
             <InputRequired />
           </InputField>
           {/* ALAMAT GURU */}
@@ -229,14 +229,14 @@ function EditData({ BiodataGuru }) {
             Required={true}
             OnChange={(e) => setAlamat(e.target.value)}
           >
-            Alamat Guru
+            Alamat
             <InputRequired />
           </InputField>
           {/* JENIS KELAMIN GURU */}
           <InputSelect
             Options={JENIS_KELAMIN}
             HtmlFor={'jenis-kelamin'}
-            PlaceHolder={'Jenis Kelamin'}
+            PlaceHolder={'Pilih Jenis Kelamin'}
             Required={true}
             Value={jenisKelamin}
             AutoComplete="OFF"
@@ -244,7 +244,7 @@ function EditData({ BiodataGuru }) {
               setJenisKelamin(e.target.value);
             }}
           >
-            Pilih Jenis Kelamin
+            Jenis Kelamin
             <InputRequired />
           </InputSelect>
           {/* TEMPAT LAHIR GURU */}
@@ -256,7 +256,7 @@ function EditData({ BiodataGuru }) {
             Required={true}
             OnChange={(e) => setTempatLahir(e.target.value)}
           >
-            Tempat Lahir Guru
+            Tempat Lahir
             <InputRequired />
           </InputField>
           {/* TANGGAL LAHIR GURU */}
@@ -268,7 +268,7 @@ function EditData({ BiodataGuru }) {
             Placeholder={formatCurrentTanggalLahir}
             OnChange={setTanggalLahir}
           >
-            Tanggal Lahir Guru
+            Tanggal Lahir
             <InputRequired />
           </DatePick>
           {/* EMAIL GURU */}
@@ -280,7 +280,7 @@ function EditData({ BiodataGuru }) {
             Required={true}
             OnChange={(e) => setEmail(e.target.value)}
           >
-            Email Guru
+            Email
             <InputRequired />
           </InputField>
           {/* NOMOR HP GURU */}
@@ -292,14 +292,14 @@ function EditData({ BiodataGuru }) {
             Required={true}
             OnChange={(e) => setNomorHP(e.target.value)}
           >
-            Nomor HP Guru
+            Nomor HP
             <InputRequired />
           </InputField>
           {/* STATUS GURU */}
           <InputSelect
             Options={SELECT_STATUS}
             HtmlFor={'status-guru'}
-            PlaceHolder={'Status Guru'}
+            PlaceHolder={'Pilih Status Guru'}
             Required={true}
             Value={status}
             AutoComplete="OFF"
@@ -307,7 +307,7 @@ function EditData({ BiodataGuru }) {
               setStatus(e.target.value);
             }}
           >
-            Pilih Status Guru
+            Status
             <InputRequired />
           </InputSelect>
         </div>
