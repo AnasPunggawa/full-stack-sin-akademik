@@ -17,6 +17,8 @@ function AdminDetailaSiswa({ DataSiswa }) {
     namaIbu: DataSiswa?.namaIbu,
     email: DataSiswa?.email,
     nomorHP: DataSiswa?.nomorHP,
+    tahunAngkatan: DataSiswa?.tahunAngkatan,
+    status: DataSiswa?.status,
   };
 
   const dataAkunSiswa = {

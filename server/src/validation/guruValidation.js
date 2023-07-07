@@ -1,6 +1,6 @@
 const prisma = require('../../prisma/seed');
 const CustomError = require('../utils/CustomError');
-const { generateGuruID } = require('../utils/GenerateGuru');
+const { generateGuruID, generateStatusGuru } = require('../utils/GenerateGuru');
 const { containsOnlyNumbers, validateEmail } = require('../utils/RegExp');
 
 const errorMessage = {
@@ -31,6 +31,7 @@ function createGuruValidation(request) {
     alamat,
     email,
     nomorHP,
+    status,
   } = request.body;
 
   if (!user_id) throw new CustomError(400, errorMessage.emptyUserId);
@@ -53,6 +54,7 @@ function createGuruValidation(request) {
   request.body = {
     ...request.body,
     id: generateGuruID(nip, nama),
+    status: generateStatusGuru(status),
   };
 
   return request.body;
@@ -70,6 +72,7 @@ async function updateGuruValidation(request) {
       alamat,
       email,
       nomorHP,
+      status,
     } = request.body;
 
   let guruData = await prisma.guru.findUnique({
@@ -108,6 +111,7 @@ async function updateGuruValidation(request) {
     alamat,
     email,
     nomorHP,
+    status: generateStatusGuru(status),
   };
 
   return guruData;

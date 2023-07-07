@@ -15,6 +15,8 @@ function BiodataSiswa({ Biodata }) {
     namaIbu,
     email,
     nomorHP,
+    tahunAngkatan,
+    status,
   } = Biodata;
 
   const formatDate = new Date(tanggalLahir);
@@ -158,6 +160,30 @@ function BiodataSiswa({ Biodata }) {
           OnChange={() => {}}
         >
           Nomor HP Siswa
+        </InputField>
+        {/* TAHUN ANGKATAN SISWA */}
+        <InputField
+          HtmlFor="tahun-angkatan-siswa"
+          Type="text"
+          Value={tahunAngkatan}
+          Placeholder={tahunAngkatan}
+          Required={true}
+          Disabled={true}
+          OnChange={() => {}}
+        >
+          Tahun Angkatan Siswa
+        </InputField>
+        {/* STATUS SISWA */}
+        <InputField
+          HtmlFor="status-siswa"
+          Type="text"
+          Value={status ? 'Aktif' : 'Tidak Aktif'}
+          Placeholder={status ? 'Aktif' : 'Tidak Aktif'}
+          Required={true}
+          Disabled={true}
+          OnChange={() => {}}
+        >
+          Status Siswa
         </InputField>
       </div>
     </div>

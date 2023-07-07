@@ -10,6 +10,7 @@ import DatePick from '../../../../../components/ui/DatePick';
 import Button from '../../../../../components/ui/Button';
 import { updateSiswa } from '../../../../../api/siswa';
 import { JENIS_KELAMIN } from '../../../../../config/jenisKelamin';
+import { SELECT_STATUS } from '../../../../../config/status';
 
 // const JENIS_KELAMIN = [
 //   {
@@ -37,6 +38,8 @@ function EditData({ BiodataSiswa }) {
     namaIbu: currentNamaIbu,
     email: currentEmail,
     nomorHP: currentNomorHP,
+    tahunAngkatan: currentTahunAngkatan,
+    status: currentStatus,
   } = BiodataSiswa;
 
   const formatCurrentTanggalLahir = new Date(
@@ -56,6 +59,8 @@ function EditData({ BiodataSiswa }) {
   const [namaIbu, setNamaIbu] = useState(currentNamaIbu);
   const [email, setEmail] = useState(currentEmail);
   const [nomorHP, setNomorHP] = useState(currentNomorHP);
+  const [tahunAngkatan, setTahunAngkata] = useState(currentTahunAngkatan);
+  const [status, setStatus] = useState(currentStatus);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -101,6 +106,8 @@ function EditData({ BiodataSiswa }) {
       namaIbu,
       email,
       nomorHP,
+      tahunAngkatan,
+      status,
     };
     console.log(formData);
     handleUpdateSiswa(formData);
@@ -152,6 +159,14 @@ function EditData({ BiodataSiswa }) {
       setErrorMessage('Nomor HP harus diisi');
       return false;
     }
+    if (tahunAngkatan === '') {
+      setErrorMessage('Tahun angkatan harus diisi');
+      return false;
+    }
+    if (status === '') {
+      setErrorMessage('Status siswa harus diisi');
+      return false;
+    }
     return true;
   }
 
@@ -171,6 +186,8 @@ function EditData({ BiodataSiswa }) {
     namaIbu,
     email,
     nomorHP,
+    tahunAngkatan,
+    status,
   ]);
 
   useEffect(() => {
@@ -186,6 +203,8 @@ function EditData({ BiodataSiswa }) {
       namaIbu === '' ||
       email === '' ||
       nomorHP === '' ||
+      tahunAngkatan === '' ||
+      status === '' ||
       isError
     )
       return setIsInputValid(false);
@@ -202,6 +221,8 @@ function EditData({ BiodataSiswa }) {
     namaIbu,
     email,
     nomorHP,
+    tahunAngkatan,
+    status,
     isError,
   ]);
 
@@ -350,6 +371,33 @@ function EditData({ BiodataSiswa }) {
             Nomor HP Siswa
             <InputRequired />
           </InputField>
+          {/* TAHUN ANGKATAN SISWA */}
+          <InputField
+            HtmlFor="tahun-angkatan-siswa"
+            Type="text"
+            Value={tahunAngkatan}
+            Placeholder={currentTahunAngkatan}
+            Required={true}
+            OnChange={(e) => setTahunAngkata(e.target.value)}
+          >
+            Tahun Angkatan Siswa
+            <InputRequired />
+          </InputField>
+          {/* STATUS SISWA */}
+          <InputSelect
+            Options={SELECT_STATUS}
+            HtmlFor={'status'}
+            PlaceHolder={'Status Siswa'}
+            Required={true}
+            Value={status}
+            AutoComplete="OFF"
+            OnChange={(e) => {
+              setStatus(e.target.value);
+            }}
+          >
+            Status Siswa
+            <InputRequired />
+          </InputSelect>
         </div>
         <div className="flex gap-2 md:gap-4 justify-end sm:justify-center">
           <Button

@@ -39,12 +39,15 @@ function NewSiswa() {
   const [namaIbu, setNamaIbu] = useState('');
   const [email, setEmail] = useState('');
   const [nomorHP, setNomorHP] = useState('');
+  const [tahunAngkatan, setTahunAngkatan] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isInputValid, setIsInputValid] = useState(false);
 
   const navigate = useNavigate();
+
+  const getYear = new Date().getFullYear().toString();
 
   async function createNewSiswa(formData) {
     setIsError(false);
@@ -82,6 +85,7 @@ function NewSiswa() {
       alamat: alamat,
       email: email,
       nomorHP: nomorHP,
+      tahunAngkatan: tahunAngkatan,
     };
     console.log(formData);
     createNewSiswa(formData);
@@ -138,6 +142,10 @@ function NewSiswa() {
       setErrorMessage('Nomor HP harus diisi');
       return false;
     }
+    if (tahunAngkatan === '') {
+      setErrorMessage('Tahun angkatan harus diisi');
+      return false;
+    }
     setIsError(false);
     return true;
   }
@@ -159,6 +167,7 @@ function NewSiswa() {
     namaIbu,
     email,
     nomorHP,
+    tahunAngkatan,
   ]);
 
   useEffect(() => {
@@ -175,6 +184,7 @@ function NewSiswa() {
       namaIbu === '' ||
       email === '' ||
       nomorHP === '' ||
+      tahunAngkatan === '' ||
       isError
     )
       return setIsInputValid(false);
@@ -192,6 +202,7 @@ function NewSiswa() {
     namaIbu,
     email,
     nomorHP,
+    tahunAngkatan,
     isError,
   ]);
 
@@ -370,6 +381,21 @@ function NewSiswa() {
                 }}
               >
                 Nomor HP
+                <InputRequired />
+              </InputField>
+              {/* Angkatan Siswa */}
+              <InputField
+                HtmlFor="tahun-angkatan"
+                Type="text"
+                Value={tahunAngkatan}
+                Placeholder={getYear}
+                Required={true}
+                AutoComplete="OFF"
+                OnChange={(e) => {
+                  setTahunAngkatan(e.target.value);
+                }}
+              >
+                Tahun Angkatan
                 <InputRequired />
               </InputField>
             </div>

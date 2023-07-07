@@ -1,6 +1,9 @@
 const prisma = require('../../prisma/seed');
 const CustomError = require('../utils/CustomError');
-const { generateSiswaID } = require('../utils/GenerateSiswa');
+const {
+  generateSiswaID,
+  generateStatusSiswa,
+} = require('../utils/GenerateSiswa');
 const { containsOnlyNumbers, validateEmail } = require('../utils/RegExp');
 
 const errorMessage = {
@@ -22,6 +25,8 @@ const errorMessage = {
   emailNotValid: 'email tidak valid',
   emptyNomorHP: 'nomor HP harus diisi',
   nomorHPNotValid: 'nomor HP tidak valid',
+  emptyTahunAngkatan: 'tahun angkatan harus diisi',
+  tahunAngkatanNotValid: 'tahun angkatan tidak valid',
 };
 
 function createSiswaValidation(request) {
@@ -38,6 +43,8 @@ function createSiswaValidation(request) {
     alamat,
     email,
     nomorHP,
+    tahunAngkatan,
+    status,
   } = request.body;
 
   if (!user_id) throw new CustomError(400, errorMessage.emptyUserId);
@@ -61,10 +68,15 @@ function createSiswaValidation(request) {
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
   if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
     throw new CustomError(400, errorMessage.nomorHPNotValid);
+  if (!tahunAngkatan)
+    throw new CustomError(400, errorMessage.emptyTahunAngkatan);
+  if (tahunAngkatan.length > 4 || !containsOnlyNumbers(tahunAngkatan))
+    throw new CustomError(400, errorMessage.tahunAngkatanNotValid);
 
   request.body = {
     ...request.body,
     id: generateSiswaID(nisn, nama),
+    status: generateStatusSiswa(status),
   };
 
   return request.body;
@@ -85,6 +97,8 @@ async function updateSiswaValidation(request) {
       alamat,
       email,
       nomorHP,
+      tahunAngkatan,
+      status,
     } = request.body;
 
   let siswaData = await prisma.siswa.findUnique({
@@ -115,6 +129,10 @@ async function updateSiswaValidation(request) {
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
   if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
     throw new CustomError(400, errorMessage.nomorHPNotValid);
+  if (!tahunAngkatan)
+    throw new CustomError(400, errorMessage.emptyTahunAngkatan);
+  if (tahunAngkatan.length > 4 || !containsOnlyNumbers(tahunAngkatan))
+    throw new CustomError(400, errorMessage.tahunAngkatanNotValid);
 
   siswaData = {
     ...siswaData,
@@ -130,6 +148,8 @@ async function updateSiswaValidation(request) {
     alamat,
     email,
     nomorHP,
+    tahunAngkatan,
+    status: generateStatusSiswa(status),
   };
 
   return siswaData;

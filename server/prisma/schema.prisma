@@ -59,27 +59,30 @@ model guru {
   alamat        String
   email         String          @unique
   nomorHP       String
+  status        Boolean         @default(true)
   users         users           @relation(fields: [user_id], references: [id], onDelete: Cascade)
   matapelajaran matapelajaran[]
 }
 
 model siswa {
-  id           String     @id @default(uuid())
-  user_id      String     @unique
-  nama         String
-  nisn         String     @unique
-  nis          String     @unique
-  jenisKelamin String
-  tempatLahir  String
-  tanggalLahir DateTime
-  namaAyah     String
-  namaIbu      String
-  alamat       String
-  email        String     @unique
-  nomorHP      String
-  semester     semester[]
-  nilai        nilai[]
-  users        users      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id            String     @id @default(uuid())
+  user_id       String     @unique
+  nama          String
+  nisn          String     @unique
+  nis           String     @unique
+  jenisKelamin  String
+  tempatLahir   String
+  tanggalLahir  DateTime
+  namaAyah      String
+  namaIbu       String
+  alamat        String
+  email         String     @unique
+  nomorHP       String
+  tahunAngkatan String
+  status        Boolean    @default(true)
+  semester      semester[]
+  nilai         nilai[]
+  users         users      @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 model semester {

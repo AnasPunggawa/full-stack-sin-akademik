@@ -3,4 +3,11 @@ function generateSiswaID(nisn, nama) {
   return `${nisn}-${namaHyphen}`;
 }
 
-module.exports = { generateSiswaID };
+function generateStatusSiswa(status) {
+  if (status === 'aktif' || status === 'true' || status === true) return true;
+  if (status === 'nonaktif' || status === 'false' || status === false)
+    return false;
+  return true;
+}
+
+module.exports = { generateSiswaID, generateStatusSiswa };

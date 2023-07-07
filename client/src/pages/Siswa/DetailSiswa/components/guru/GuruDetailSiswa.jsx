@@ -16,6 +16,8 @@ function GuruDetailSiswa({ DataSiswa }) {
     namaIbu: DataSiswa?.namaIbu,
     email: DataSiswa?.email,
     nomorHP: DataSiswa?.nomorHP,
+    tahunAngkatan: DataSiswa?.tahunAngkatan,
+    status: DataSiswa?.status,
   };
   return (
     <div className="w-full h-full p-4 space-y-4">

@@ -3,4 +3,11 @@ function generateGuruID(nip, nama) {
   return `${nip}-${namaHyphen}`;
 }
 
-module.exports = { generateGuruID };
+function generateStatusGuru(status) {
+  if (status === 'aktif' || status === 'true' || status === true) return true;
+  if (status === 'nonaktif' || status === 'false' || status === false)
+    return false;
+  return true;
+}
+
+module.exports = { generateGuruID, generateStatusGuru };

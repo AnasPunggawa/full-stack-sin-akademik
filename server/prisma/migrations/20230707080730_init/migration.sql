@@ -59,6 +59,7 @@ CREATE TABLE `guru` (
     `alamat` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `nomorHP` VARCHAR(191) NOT NULL,
+    `status` BOOLEAN NOT NULL DEFAULT true,
 
     UNIQUE INDEX `guru_user_id_key`(`user_id`),
     UNIQUE INDEX `guru_nip_key`(`nip`),
@@ -81,6 +82,8 @@ CREATE TABLE `siswa` (
     `alamat` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `nomorHP` VARCHAR(191) NOT NULL,
+    `tahunAngkatan` VARCHAR(191) NOT NULL,
+    `status` BOOLEAN NOT NULL DEFAULT true,
 
     UNIQUE INDEX `siswa_user_id_key`(`user_id`),
     UNIQUE INDEX `siswa_nisn_key`(`nisn`),
