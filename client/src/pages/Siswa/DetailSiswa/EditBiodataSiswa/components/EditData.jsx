@@ -395,7 +395,7 @@ function EditData({ BiodataSiswa }) {
               setStatus(e.target.value);
             }}
           >
-            Status Siswa
+            Pilih Status Siswa
             <InputRequired />
           </InputSelect>
         </div>

@@ -36,7 +36,7 @@ function AkunUserGuru({ DataAkunUserGuru }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Username Akun
+          Username
         </InputField>
         {/* ROLE */}
         <InputField
@@ -48,7 +48,7 @@ function AkunUserGuru({ DataAkunUserGuru }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Role Akun
+          Role
         </InputField>
         {/* PASSWORD */}
         <div className="w-full space-y-1 flex flex-col items-end">
@@ -61,7 +61,7 @@ function AkunUserGuru({ DataAkunUserGuru }) {
             Disabled={true}
             OnChange={() => {}}
           >
-            Password Akun
+            Password
           </InputField>
           <Button
             ButtonStyle="LINK_PRIMARY"

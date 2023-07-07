@@ -15,6 +15,7 @@ function GuruDetailProfile({ DataUser }) {
     tanggalLahir: DataUser.guru[0]?.tanggalLahir,
     nomorHP: DataUser.guru[0]?.nomorHP,
     email: DataUser.guru[0]?.email,
+    status: DataUser.guru[0]?.status,
   };
 
   const dataAkunUserGuru = {

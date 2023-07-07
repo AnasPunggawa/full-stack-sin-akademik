@@ -14,6 +14,7 @@ function BiodataUserGuru({ Biodata }) {
     tanggalLahir,
     email,
     nomorHP,
+    status,
   } = Biodata;
 
   const formatDate = new Date(tanggalLahir);
@@ -45,7 +46,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nama Guru
+          Nama
         </InputField>
         {/* NIP GURU */}
         <InputField
@@ -57,7 +58,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          NIP Guru
+          NIP
         </InputField>
         {/* ALAMAT GURU */}
         <InputField
@@ -69,7 +70,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Alamat Guru
+          Alamat
         </InputField>
         {/* JENIS KELAMIN GURU */}
         <InputField
@@ -81,7 +82,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Jenis Kelamin Guru
+          Jenis Kelamin
         </InputField>
         {/* TEMPAT LAHIR GURU */}
         <InputField
@@ -93,7 +94,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tempat Lahir Guru
+          Tempat Lahir
         </InputField>
         {/* TANGGAL LAHIR GURU */}
         <DatePick
@@ -105,7 +106,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tanggal Lahir Guru
+          Tanggal Lahir
         </DatePick>
         {/* EMAIL GURU */}
         <InputField
@@ -117,7 +118,7 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Email Guru
+          Email
         </InputField>
         {/* NOMOR HP GURU */}
         <InputField
@@ -129,7 +130,19 @@ function BiodataUserGuru({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nomor HP Guru
+          Nomor HP
+        </InputField>
+        {/* STATUS GURU */}
+        <InputField
+          HtmlFor="status-guru"
+          Type="text"
+          Value={status ? 'Aktif' : 'Tidak Aktif'}
+          Placeholder={status ? 'Aktif' : 'Tidak Aktif'}
+          Required={true}
+          Disabled={true}
+          OnChange={() => {}}
+        >
+          Status
         </InputField>
       </div>
     </div>

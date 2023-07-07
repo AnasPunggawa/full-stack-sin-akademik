@@ -44,7 +44,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nama Admin
+          Nama
         </InputField>
         {/* ALAMAT ADMIN */}
         <InputField
@@ -56,7 +56,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Alamat Admin
+          Alamat
         </InputField>
         {/* JENIS KELAMIN ADMIN */}
         <InputField
@@ -68,7 +68,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Jenis Kelamin Admin
+          Jenis Kelamin
         </InputField>
         {/* TEMPAT LAHIR ADMIN */}
         <InputField
@@ -80,7 +80,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tempat Lahir Admin
+          Tempat Lahir
         </InputField>
         {/* TANGGAL LAHIR ADMIN */}
         <DatePick
@@ -92,7 +92,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Tanggal Lahir Admin
+          Tanggal Lahir
         </DatePick>
         {/* EMAIL ADMIN */}
         <InputField
@@ -104,7 +104,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Email Admin
+          Email
         </InputField>
         {/* NOMOR HP ADMIN */}
         <InputField
@@ -116,7 +116,7 @@ function BiodataUserAdmin({ Biodata }) {
           Disabled={true}
           OnChange={() => {}}
         >
-          Nomor HP Admin
+          Nomor HP
         </InputField>
       </div>
     </div>

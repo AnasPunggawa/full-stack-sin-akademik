@@ -17,6 +17,8 @@ function SiswaDetailProfile({ DataUser }) {
     namaIbu: DataUser?.siswa[0]?.namaIbu,
     nomorHP: DataUser.siswa[0]?.nomorHP,
     email: DataUser.siswa[0]?.email,
+    tahunAngkatan: DataUser.siswa[0]?.tahunAngkatan,
+    status: DataUser.siswa[0]?.status,
   };
 
   const dataAkunUserSiswa = {
