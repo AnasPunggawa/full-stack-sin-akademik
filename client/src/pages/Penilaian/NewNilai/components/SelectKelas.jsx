@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import InputSelect from '../../../../components/form/InputSelect';
 import { SELECT_KELAS, SELECT_KODE } from '../../../../config/kelas';
+import InputRequired from '../../../../components/form/InputRequired';
 
 function SelectKelas({ SetKodeKelas }) {
   const [kelas, setKelas] = useState('');
@@ -22,6 +23,7 @@ function SelectKelas({ SetKodeKelas }) {
         OnChange={(e) => setKelas(e.target.value)}
       >
         Kelas
+        <InputRequired />
       </InputSelect>
       <InputSelect
         HtmlFor={'kode'}
@@ -31,6 +33,7 @@ function SelectKelas({ SetKodeKelas }) {
         OnChange={(e) => setKode(e.target.value)}
       >
         Kode
+        <InputRequired />
       </InputSelect>
     </>
   );

@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import SelectSemester from './components/SelectSemester';
 import SelectKelas from './components/SelectKelas';
 import SelectMataPelajaran from './components/SelectMataPelajaran';
+import SearchNamaSiswa from './components/SearchNamaSiswa';
 
 function NewNilai() {
   useTitle('Tambah Nilai');
@@ -29,12 +30,17 @@ function NewNilai() {
               <SelectMataPelajaran
                 SetKodeMataPelajaran={setKodeMataPelajaran}
               />
+              <SearchNamaSiswa SetSiswaID={setSiswaID} />
             </div>
           </Form>
         </div>
         <h1>Kode Semester: {kodeSemester}</h1>
         <h1>Kode Kelas: {kodeKelas}</h1>
         <h1>Kode Mata Pelajaran: {kodeMataPelajaran}</h1>
+        <h1>Siswa ID: {siswaID}</h1>
+        <h1>Nilai: {nilai}</h1>
+        <h1>Predikat: {predikat}</h1>
+        <h1>Catatan: {catatan}</h1>
       </Container>
     </>
   );
