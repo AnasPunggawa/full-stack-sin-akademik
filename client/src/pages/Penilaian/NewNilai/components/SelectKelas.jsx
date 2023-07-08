@@ -17,7 +17,6 @@ function SelectKelas({ SetKodeKelas }) {
       <InputSelect
         HtmlFor={'kelas'}
         PlaceHolder={'Pilih Kelas'}
-        SelectSize="SMALL"
         Options={SELECT_KELAS}
         Value={kelas}
         OnChange={(e) => setKelas(e.target.value)}
@@ -27,7 +26,6 @@ function SelectKelas({ SetKodeKelas }) {
       <InputSelect
         HtmlFor={'kode'}
         PlaceHolder={'Pilih Kode'}
-        SelectSize="SMALL"
         Options={SELECT_KODE}
         Value={kode}
         OnChange={(e) => setKode(e.target.value)}

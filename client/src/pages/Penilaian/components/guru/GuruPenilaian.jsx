@@ -42,8 +42,8 @@ function GuruPenilaian() {
         kodeKelas,
         kodeMataPelajaran,
       };
+      console.log(formData);
     }
-    console.log(formData);
     return;
   }, [kodeSemester, kodeKelas, kodeMataPelajaran]);
 

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
-import jwtDecode from 'jwt-decode';
-import { getUser } from '../../../../api/users';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
+import jwtDecode from 'jwt-decode';
+import { getUser } from '../../../../api/users';
 
 function SelectMataPelajaran({ SetKodeMataPelajaran }) {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -68,7 +68,6 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
         <InputSelect
           HtmlFor={'mata-pelajaran'}
           PlaceHolder={'Pilih Mata Pelajaran'}
-          SelectSize="SMALL"
           Options={dataMataPelajaran}
           Value={mataPelajaran}
           OnChange={(e) => setMataPelajaran(e.target.value)}
