@@ -100,6 +100,45 @@ async function find_single_data(id) {
     where: {
       id,
     },
+    include: {
+      siswa: {
+        select: {
+          id: true,
+          user_id: true,
+          nisn: true,
+          nama: true,
+        },
+      },
+      semester: {
+        select: {
+          id: true,
+          kodeSemester: true,
+          status: true,
+        },
+      },
+      kelas: {
+        select: {
+          id: true,
+          kodeKelas: true,
+          kelas: true,
+          kode: true,
+        },
+      },
+      matapelajaran: {
+        select: {
+          id: true,
+          nama: true,
+        },
+      },
+      guru: {
+        select: {
+          id: true,
+          user_id: true,
+          nip: true,
+          nama: true,
+        },
+      },
+    },
   });
 }
 
