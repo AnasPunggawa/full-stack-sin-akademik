@@ -25,3 +25,11 @@ export async function createNilai(formData) {
     },
   });
 }
+
+export async function deleteNilai(id) {
+  return await api.delete(`/api/v1/nilai/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}

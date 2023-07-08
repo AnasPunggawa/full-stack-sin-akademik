@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/ui/Button';
 import ReactPaginate from 'react-paginate';
+import DeleteNilai from './DeleteNilai';
 
 const TABLE_HEAD_NILAI = [
   {
@@ -82,18 +83,12 @@ function TableNilai({ DataTable, SetPage }) {
                   <td className="px-6 py-2.5">{item?.predikat}</td>
                   <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
                     <Button
-                      // OnClick={() => handleDetail(item?.id)}
+                      OnClick={() => handleDetail(item?.id)}
                       ButtonStyle="LINK_PRIMARY"
                     >
                       Detail
                     </Button>
-                    <Button
-                      // OnClick={() => handleDetail(item?.id)}
-                      ButtonStyle="LINK_DANGER"
-                    >
-                      Hapus
-                    </Button>
-                    {/* <DeleteNilai Nilai={item} /> */}
+                    <DeleteNilai Nilai={item} />
                   </td>
                 </tr>
               );
