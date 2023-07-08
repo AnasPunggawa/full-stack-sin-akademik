@@ -12,6 +12,7 @@ import { IconChevronLeft } from '../../../components/ui/Icons';
 import { getNilai } from '../../../api/nilai';
 import LayoutError from '../../../components/ui/LayoutError';
 import LayoutLoading from '../../../components/ui/LayoutLoading';
+import DetailData from './components/DetailData';
 
 function DetailNilai() {
   const { id } = useParams();
@@ -92,8 +93,7 @@ function DetailNilai() {
           <LayoutError>{detailNilai.errorMessage}</LayoutError>
         )}
         {!detailNilai.loading && !detailNilai.error && detailNilai.data && (
-          // <DetailData DataNilai={detailNilai.data} />
-          <>Data Ditemukan</>
+          <DetailData DataNilai={detailNilai.data} />
         )}
       </Container>
     </>
