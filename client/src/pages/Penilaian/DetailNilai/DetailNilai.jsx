@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   ACTION_DETAIL_NILAI_REDUCER,
   INITIAL_STATE_DETAIL_NILAI_REDUCER,
@@ -13,10 +13,15 @@ import { getNilai } from '../../../api/nilai';
 import LayoutError from '../../../components/ui/LayoutError';
 import LayoutLoading from '../../../components/ui/LayoutLoading';
 import DetailData from './components/DetailData';
+import DeleteNilai from './components/DeleteNilai';
+import LayoutSuccessMessage from '../../../components/ui/LayoutSuccessMessage';
+import BoxSuccessMessage from '../../../components/ui/BoxSuccessMessage';
 
 function DetailNilai() {
   const { id } = useParams();
+  const { state } = useLocation();
   const [namaSiswa, setNamaSiswa] = useState('');
+  const [statusSemester, setStatusSemester] = useState(true);
   const [detailNilai, dispatch] = useReducer(
     detailNilaiReducer,
     INITIAL_STATE_DETAIL_NILAI_REDUCER
@@ -32,6 +37,7 @@ function DetailNilai() {
       const response = await getNilai(id);
       const data = response.data.data;
       setNamaSiswa(data.siswa.nama);
+      setStatusSemester(data.semester.status);
       dispatch({
         type: ACTION_DETAIL_NILAI_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
@@ -69,6 +75,11 @@ function DetailNilai() {
     navigate('/penilaian');
   }
 
+  function handleEdit() {
+    // console.log('go to edit page');
+    navigate('edit');
+  }
+
   return (
     <>
       <Header>Nilai {namaSiswa}</Header>
@@ -84,10 +95,20 @@ function DetailNilai() {
               </div>
             </Button>
             <div className="flex gap-2 sm:gap-4">
-              {/* <DeleteNilai Nilai={detailNilai.data} /> */}
+              {statusSemester && (
+                <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
+                  Edit
+                </Button>
+              )}
+              <DeleteNilai Nilai={detailNilai.data} />
             </div>
           </div>
         </div>
+        {state?.message && (
+          <LayoutSuccessMessage>
+            <BoxSuccessMessage>{state.message}</BoxSuccessMessage>
+          </LayoutSuccessMessage>
+        )}
         {detailNilai.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {detailNilai.error && (
           <LayoutError>{detailNilai.errorMessage}</LayoutError>

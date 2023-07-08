@@ -34,6 +34,14 @@ export async function createNilai(formData) {
   });
 }
 
+export async function updateNilai(id, formData) {
+  return await api.put(`/api/v1/nilai/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function deleteNilai(id) {
   return await api.delete(`/api/v1/nilai/${id}`, {
     headers: {

@@ -36,6 +36,7 @@ import { ROLES } from './config/role';
 import AddBiodata from './pages/Profile/AddBiodata/AddBiodata';
 import NewNilai from './pages/Penilaian/NewNilai/NewNilai';
 import DetailNilai from './pages/Penilaian/DetailNilai/DetailNilai';
+import EditNilaiSiswa from './pages/Penilaian/DetailNilai/EditNilaiSiswa/EditNilaiSiswa';
 
 function Router() {
   return (
@@ -117,6 +118,7 @@ function Router() {
                 <Route index element={<Penilaian />} />
                 <Route path=":id">
                   <Route index element={<DetailNilai />} />
+                  <Route path="edit" element={<EditNilaiSiswa />} />
                 </Route>
                 <Route path="new" element={<NewNilai />} />
               </Route>

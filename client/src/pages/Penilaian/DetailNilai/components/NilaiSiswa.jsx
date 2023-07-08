@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import Button from '../../../../components/ui/Button';
 import InputField from '../../../../components/form/InputField';
 import InputTextarea from '../../../../components/form/InputTextarea';
 
@@ -16,14 +14,7 @@ function NilaiSiswa({ Nilai }) {
     nilai,
     predikat,
     catatan,
-    statusSemester,
   } = Nilai;
-
-  const navigate = useNavigate();
-
-  function handleEdit() {
-    navigate('edit-biodata');
-  }
 
   return (
     <div className="w-full">
@@ -31,11 +22,6 @@ function NilaiSiswa({ Nilai }) {
         <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
           Data Nilai
         </h3>
-        <div className={statusSemester ? 'block' : 'hidden'}>
-          <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
-            Edit
-          </Button>
-        </div>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         {/* NAMA SISWA */}
