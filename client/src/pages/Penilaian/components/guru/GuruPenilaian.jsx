@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import InputSearch from '../../../../components/form/InputSearch';
 import Button from '../../../../components/ui/Button';
 import { IconPlus } from '../../../../components/ui/Icons';
@@ -8,15 +8,83 @@ import SelectSemester from './SelectSemester';
 import SelectKelas from './SelectKelas';
 import SelectMataPelajaran from './SelectMataPelajaran';
 import { useNavigate } from 'react-router-dom';
+import {
+  ACTION_NILAI_REDUCER,
+  INITIAL_STATE_NILAI_REDUCER,
+  nilaiReducer,
+} from '../../../../reducer/nilai/nilaiReducer';
+import { getAllNilai } from '../../../../api/nilai';
 
 function GuruPenilaian() {
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
-  const [terapkan, setTerapkan] = useState(0);
+  const [searchSiswa, setSearchSiswa] = useState('');
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [inputSearch, setInputSearch] = useState('');
 
+  const [nilai, dispatch] = useReducer(
+    nilaiReducer,
+    INITIAL_STATE_NILAI_REDUCER
+  );
+
+  const isComponentMounted = useRef(true);
+
   const navigate = useNavigate();
+
+  async function fetchAllNilai() {
+    dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_LOADING });
+    try {
+      const response = await getAllNilai(
+        searchSiswa,
+        kodeSemester,
+        kodeKelas,
+        kodeMataPelajaran,
+        page,
+        limit
+      );
+      const data = response.data.data;
+      console.log(data);
+      // dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_SUCCESS, payload: data });
+      // setPage(data.current_page);
+      // setLimit(data.limit_data);
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 500) {
+        dispatch({
+          type: ACTION_NILAI_REDUCER.FETCH_DATA_ERROR,
+          payload: 'Something went wrong',
+        });
+        return;
+      }
+      if (error.response) {
+        dispatch({
+          type: ACTION_NILAI_REDUCER.FETCH_DATA_ERROR,
+          payload: error.response.data.message,
+        });
+        return;
+      }
+      dispatch({
+        type: ACTION_NILAI_REDUCER.FETCH_DATA_ERROR,
+        payload: 'Something went wrong',
+      });
+    }
+  }
+
+  useEffect(() => {
+    isComponentMounted.current = true;
+    if (isComponentMounted.current) {
+      if (!isComponentMounted.current) return;
+      if (kodeSemester && kodeKelas && kodeMataPelajaran) {
+        fetchAllNilai();
+        return;
+      }
+    }
+    return () => {
+      isComponentMounted.current = false;
+    };
+  }, [kodeSemester, kodeKelas, kodeMataPelajaran, searchSiswa]);
 
   useEffect(() => {
     if (!kodeSemester) {
@@ -34,31 +102,14 @@ function GuruPenilaian() {
     return;
   }, [kodeSemester, kodeKelas, kodeMataPelajaran]);
 
-  useEffect(() => {
-    let formData = null;
-    if (kodeSemester && kodeKelas && kodeMataPelajaran) {
-      formData = {
-        kodeSemester,
-        kodeKelas,
-        kodeMataPelajaran,
-      };
-      console.log(formData);
-    }
-    return;
-  }, [kodeSemester, kodeKelas, kodeMataPelajaran]);
-
   function tambahNilai() {
     navigate('new');
   }
 
-  function handleTerapkan() {
-    setTerapkan((prev) => prev + 1);
-    console.log(terapkan);
-  }
-
   function handleSearch(e) {
     e.preventDefault();
-    console.log('search nama siswa', inputSearch);
+    setSearchSiswa(inputSearch);
+    setPage(1);
   }
 
   return (
@@ -79,8 +130,7 @@ function GuruPenilaian() {
               <SelectMataPelajaran
                 SetKodeMataPelajaran={setKodeMataPelajaran}
               />
-              <div className="w-full flex gap-2 items-end justify-between flex-wrap sm:flex-nowrap">
-                <Button OnClick={() => handleTerapkan()}>Terapkan</Button>
+              <div className="w-full flex gap-2 items-end justify-end flex-wrap sm:flex-nowrap">
                 <form onSubmit={(e) => handleSearch(e)}>
                   <InputSearch
                     Placeholder={'Cari siswa'}
@@ -102,9 +152,6 @@ function GuruPenilaian() {
             </div> */}
           </div>
         </div>
-        <h1>Kode Semester: {kodeSemester}</h1>
-        <h1>Kode Kelas: {kodeKelas}</h1>
-        <h1>Kode Mata Pelajaran: {kodeMataPelajaran}</h1>
       </Container>
     </>
   );

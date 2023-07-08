@@ -1,3 +1,4 @@
+const prisma = require('../../../prisma/seed');
 const CustomError = require('../../utils/CustomError');
 const resSuccessController = require('../../utils/resSuccessController');
 const {
@@ -15,13 +16,64 @@ const {
   update_data,
   delete_data,
   check_semester_id,
+  count_all_datas,
 } = require('./repository');
 
 async function getAllNilai(req, res, next) {
   try {
-    const data = await find_all_datas();
-    if (!data) throw new CustomError(404, 'data nilai tidak ditemukan');
-    resSuccessController(res, 200, 'data nilai berhasil ditemukan', data);
+    const {
+      searchNama = '',
+      kodeSemester = '',
+      kodeKelas = '',
+      kodeMataPelajaran = '',
+      page = 1,
+      limit = 10,
+    } = req.query;
+    const skip = (Number(page) - 1) * Number(limit);
+    const data = await find_all_datas(
+      searchNama,
+      kodeSemester,
+      kodeKelas,
+      kodeMataPelajaran,
+      limit,
+      skip
+    );
+
+    const countData = await count_all_datas(
+      searchNama,
+      kodeSemester,
+      kodeKelas,
+      kodeMataPelajaran
+    );
+    // const countData = await prisma.nilai.count({
+    //   where: {
+    //     siswa: {
+    //       nama: {
+    //         contains: searchNama,
+    //       },
+    //     },
+    //     semester_id: {
+    //       contains: kodeSemester,
+    //     },
+    //     kelas_id: {
+    //       contains: kodeKelas,
+    //     },
+    //     matapelajaran_id: {
+    //       contains: kodeMataPelajaran,
+    //     },
+    //   },
+    // });
+    const totalPage = Math.ceil(countData / Number(limit));
+
+    if (!data || data.length === 0)
+      throw new CustomError(404, 'data nilai tidak ditemukan');
+    resSuccessController(res, 200, 'data nilai berhasil ditemukan', {
+      current_page: Number(page),
+      total_page: totalPage,
+      limit_data: Number(limit),
+      total_data: countData,
+      nilai: data,
+    });
   } catch (err) {
     next(err);
   }

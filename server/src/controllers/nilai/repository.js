@@ -1,7 +1,90 @@
 const prisma = require('../../../prisma/seed');
 
-async function find_all_datas() {
-  return await prisma.nilai.findMany();
+async function find_all_datas(
+  searchNama,
+  kodeSemester,
+  kodeKelas,
+  kodeMataPelajaran,
+  limit,
+  skip
+) {
+  return await prisma.nilai.findMany({
+    take: Number(limit),
+    skip: skip,
+    where: {
+      siswa: {
+        nama: {
+          contains: searchNama,
+        },
+      },
+      semester_id: {
+        contains: kodeSemester,
+      },
+      kelas_id: {
+        contains: kodeKelas,
+      },
+      matapelajaran_id: {
+        contains: kodeMataPelajaran,
+      },
+    },
+    include: {
+      siswa: {
+        select: {
+          id: true,
+          user_id: true,
+          nisn: true,
+          nama: true,
+        },
+      },
+      semester: {
+        select: {
+          id: true,
+          kodeSemester: true,
+          status: true,
+        },
+      },
+      kelas: {
+        select: {
+          id: true,
+          kodeKelas: true,
+          kelas: true,
+          kode: true,
+        },
+      },
+      matapelajaran: {
+        select: {
+          id: true,
+          nama: true,
+        },
+      },
+    },
+  });
+}
+
+async function count_all_datas(
+  searchNama,
+  kodeSemester,
+  kodeKelas,
+  kodeMataPelajaran
+) {
+  return await prisma.nilai.count({
+    where: {
+      siswa: {
+        nama: {
+          contains: searchNama,
+        },
+      },
+      semester_id: {
+        contains: kodeSemester,
+      },
+      kelas_id: {
+        contains: kodeKelas,
+      },
+      matapelajaran_id: {
+        contains: kodeMataPelajaran,
+      },
+    },
+  });
 }
 
 async function find_single_data(id) {
@@ -77,6 +160,7 @@ async function check_matapelajaran_id(matapelajaran_id) {
 
 module.exports = {
   find_all_datas,
+  count_all_datas,
   find_single_data,
   create_data,
   update_data,
