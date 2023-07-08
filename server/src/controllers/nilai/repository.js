@@ -57,6 +57,14 @@ async function find_all_datas(
           nama: true,
         },
       },
+      guru: {
+        select: {
+          id: true,
+          user_id: true,
+          nip: true,
+          nama: true,
+        },
+      },
     },
   });
 }
