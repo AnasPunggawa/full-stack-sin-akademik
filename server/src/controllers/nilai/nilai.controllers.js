@@ -117,9 +117,13 @@ async function updateNilai(req, res, next) {
     if (!nilaiIDExist) throw new CustomError(404, 'data nilai tidak ditemukan');
     const siswaIDExist = await check_siswa_id(nilaiData.siswa_id);
     if (!siswaIDExist) throw new CustomError(404, 'siswa tidak ditemukan');
+    if (!siswaIDExist.status)
+      throw new CustomError(403, 'siswa sudah tidak aktif');
     const semesterIDExist = await check_semester_id(nilaiData.semester_id);
     if (!semesterIDExist)
       throw new CustomError(404, 'semester tidak ditemukan');
+    if (!semesterIDExist.status)
+      throw new CustomError(403, 'semester sudah tidak aktif');
     const kelasIDExist = await check_kelas_id(nilaiData.kelas_id);
     if (!kelasIDExist) throw new CustomError(404, 'kelas tidak ditemukan');
     const matapelajaranIDExist = await check_matapelajaran_id(
@@ -127,6 +131,10 @@ async function updateNilai(req, res, next) {
     );
     if (!matapelajaranIDExist)
       throw new CustomError(404, 'mata pelajaran tidak ditemukan');
+    const guruIDExist = await check_guru_id(nilaiData.guru_id);
+    if (!guruIDExist) throw new CustomError(404, 'guru tidak ditemukan');
+    if (!guruIDExist.status)
+      throw new CustomError(403, 'guru sudah tidak aktif');
     const updateData = await update_data(id, nilaiData);
     resSuccessController(
       res,
