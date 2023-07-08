@@ -34,6 +34,7 @@ import EditBiodata from './pages/Profile/EditBiodata/EditBiodata';
 import EditAkun from './pages/Profile/EditAkun/EditAkun';
 import { ROLES } from './config/role';
 import AddBiodata from './pages/Profile/AddBiodata/AddBiodata';
+import NewNilai from './pages/Penilaian/NewNilai/NewNilai';
 
 function Router() {
   return (
@@ -111,7 +112,10 @@ function Router() {
             </Route>
             {/* ONLY GURU CAN ACCESS */}
             <Route element={<PermissionRoutes Roles={[ROLES.GURU]} />}>
-              <Route path="penilaian" element={<Penilaian />} />
+              <Route path="penilaian">
+                <Route index element={<Penilaian />} />
+                <Route path="new" element={<NewNilai />} />
+              </Route>
             </Route>
           </Route>
         </Route>

@@ -51,7 +51,7 @@ function NewGuru() {
       const data = response.data.data;
       console.log(data);
       console.log('created new guru');
-      navigate('/guru');
+      navigate('/guru', { state: { message: 'Berhasilkan menambahkan guru' } });
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)

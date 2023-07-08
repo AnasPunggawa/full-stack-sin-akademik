@@ -7,6 +7,7 @@ import Header from '../Header';
 import SelectSemester from './SelectSemester';
 import SelectKelas from './SelectKelas';
 import SelectMataPelajaran from './SelectMataPelajaran';
+import { useNavigate } from 'react-router-dom';
 
 function GuruPenilaian() {
   const [kodeSemester, setKodeSemester] = useState('');
@@ -15,13 +16,23 @@ function GuruPenilaian() {
   const [terapkan, setTerapkan] = useState(0);
   const [inputSearch, setInputSearch] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!kodeSemester) {
       setKodeSemester('');
       return;
     }
+    if (!kodeKelas) {
+      setKodeKelas('');
+      return;
+    }
+    if (!kodeMataPelajaran) {
+      setKodeMataPelajaran('');
+      return;
+    }
     return;
-  }, [kodeSemester]);
+  }, [kodeSemester, kodeKelas, kodeMataPelajaran]);
 
   useEffect(() => {
     let formData = null;
@@ -37,7 +48,7 @@ function GuruPenilaian() {
   }, [kodeSemester, kodeKelas, kodeMataPelajaran]);
 
   function tambahNilai() {
-    console.log('tambah nilai');
+    navigate('new');
   }
 
   function handleTerapkan() {
