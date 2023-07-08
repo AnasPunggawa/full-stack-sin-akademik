@@ -18,6 +18,14 @@ export async function getAllNilai(
   );
 }
 
+export async function getNilai(id) {
+  return await api.get(`/api/v1/nilai/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function createNilai(formData) {
   return await api.post('/api/v1/nilai', formData, {
     headers: {
