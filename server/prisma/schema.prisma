@@ -62,6 +62,7 @@ model guru {
   status        Boolean         @default(true)
   users         users           @relation(fields: [user_id], references: [id], onDelete: Cascade)
   matapelajaran matapelajaran[]
+  nilai         nilai[]
 }
 
 model siswa {
@@ -117,6 +118,7 @@ model nilai {
   siswa_id         String
   semester_id      String
   kelas_id         String
+  guru_id          String
   matapelajaran_id String
   nilai            String
   predikat         String
@@ -126,4 +128,5 @@ model nilai {
   semester         semester      @relation(fields: [semester_id], references: [id])
   kelas            kelas         @relation(fields: [kelas_id], references: [id])
   matapelajaran    matapelajaran @relation(fields: [matapelajaran_id], references: [id])
+  guru             guru          @relation(fields: [guru_id], references: [id])
 }

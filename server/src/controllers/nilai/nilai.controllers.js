@@ -17,6 +17,7 @@ const {
   delete_data,
   check_semester_id,
   count_all_datas,
+  check_guru_id,
 } = require('./repository');
 
 async function getAllNilai(req, res, next) {
@@ -45,24 +46,6 @@ async function getAllNilai(req, res, next) {
       kodeKelas,
       kodeMataPelajaran
     );
-    // const countData = await prisma.nilai.count({
-    //   where: {
-    //     siswa: {
-    //       nama: {
-    //         contains: searchNama,
-    //       },
-    //     },
-    //     semester_id: {
-    //       contains: kodeSemester,
-    //     },
-    //     kelas_id: {
-    //       contains: kodeKelas,
-    //     },
-    //     matapelajaran_id: {
-    //       contains: kodeMataPelajaran,
-    //     },
-    //   },
-    // });
     const totalPage = Math.ceil(countData / Number(limit));
 
     if (!data || data.length === 0)
@@ -110,6 +93,10 @@ async function createNilai(req, res, next) {
     );
     if (!matapelajaranIDExist)
       throw new CustomError(404, 'mata pelajaran tidak ditemukan');
+    const guruIDExist = await check_guru_id(nilaiData.guru_id);
+    if (!guruIDExist) throw new CustomError(404, 'guru belum terdaftar');
+    if (!guruIDExist.status)
+      throw new CustomError(403, 'guru sudah tidak aktif');
     const nilaiIDExist = await check_nilai_id(nilaiData.id);
     if (nilaiIDExist)
       throw new CustomError(409, `nilai siswa ${siswaIDExist.nama} sudah ada`);

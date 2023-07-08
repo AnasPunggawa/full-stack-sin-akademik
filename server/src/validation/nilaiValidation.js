@@ -10,6 +10,7 @@ const errorMessage = {
   emptySemester: 'semester harus diisi',
   emptyKelas: 'kelas harus diisi',
   emptyMataPelajaran: 'mata pelajaran harus diisi',
+  emptyGuru: 'guru harus diisi',
   emptyNilai: 'nilai harus diisi',
   nilaiNotValid: 'nilai tidak valid',
   emptyPredikat: 'predikat harus diisi',
@@ -23,6 +24,7 @@ function createNilaiValidation(request) {
     semester_id,
     kelas_id,
     matapelajaran_id,
+    guru_id,
     nilai,
     predikat,
     catatan,
@@ -33,6 +35,7 @@ function createNilaiValidation(request) {
   if (!kelas_id) throw new CustomError(400, errorMessage.emptyKelas);
   if (!matapelajaran_id)
     throw new CustomError(400, errorMessage.emptyMataPelajaran);
+  if (!guru_id) throw new CustomError(400, errorMessage.emptyGuru);
   if (!containsOnlyNumbers(nilai) || nilai > 100)
     throw new CustomError(400, errorMessage.nilaiNotValid);
   if (!predikat) throw new CustomError(400, errorMessage.emptyPredikat);
@@ -47,6 +50,7 @@ function createNilaiValidation(request) {
     semester_id,
     kelas_id,
     matapelajaran_id,
+    guru_id,
     nilai,
     predikat: predikat.toUpperCase(),
     catatan,
@@ -63,6 +67,7 @@ async function updateNilaiValidation(request) {
       semester_id,
       kelas_id,
       matapelajaran_id,
+      guru_id,
       nilai,
       predikat,
       catatan,
@@ -80,6 +85,7 @@ async function updateNilaiValidation(request) {
   if (!kelas_id) throw new CustomError(400, errorMessage.emptyKelas);
   if (!matapelajaran_id)
     throw new CustomError(400, errorMessage.emptyMataPelajaran);
+  if (!guru_id) throw new CustomError(400, errorMessage.emptyGuru);
   if (!containsOnlyNumbers(nilai) || nilai > 100)
     throw new CustomError(400, errorMessage.nilaiNotValid);
   if (!predikat) throw new CustomError(400, errorMessage.emptyPredikat);
@@ -94,6 +100,7 @@ async function updateNilaiValidation(request) {
     semester_id,
     kelas_id,
     matapelajaran_id,
+    guru_id,
     nilai,
     predikat: predikat.toUpperCase(),
     catatan,

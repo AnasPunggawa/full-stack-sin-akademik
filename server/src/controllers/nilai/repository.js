@@ -158,6 +158,14 @@ async function check_matapelajaran_id(matapelajaran_id) {
   });
 }
 
+async function check_guru_id(guru_id) {
+  return await prisma.guru.findUnique({
+    where: {
+      id: guru_id,
+    },
+  });
+}
+
 module.exports = {
   find_all_datas,
   count_all_datas,
@@ -170,4 +178,5 @@ module.exports = {
   check_semester_id,
   check_kelas_id,
   check_matapelajaran_id,
+  check_guru_id,
 };

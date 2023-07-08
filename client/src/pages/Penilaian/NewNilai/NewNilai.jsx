@@ -16,9 +16,11 @@ import BoxError from '../../../components/ui/BoxError';
 import { createNilai } from '../../../api/nilai';
 import { SELECT_PREDIKAT } from '../../../config/nilai';
 import InputSelect from '../../../components/form/InputSelect';
+import NamaGuru from './components/NamaGuru';
 
 function NewNilai() {
   useTitle('Tambah Nilai');
+  const [guruID, setGuruID] = useState('');
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
@@ -63,6 +65,7 @@ function NewNilai() {
       semester_id: kodeSemester,
       kelas_id: kodeKelas,
       matapelajaran_id: kodeMataPelajaran,
+      guru_id: guruID,
       nilai: nilai,
       predikat: predikat,
       catatan: catatan,
@@ -73,6 +76,10 @@ function NewNilai() {
   }
 
   function checkInput() {
+    if (guruID === '') {
+      setErrorMessage('Nama guru harus diisi');
+      return false;
+    }
     if (kodeSemester === '') {
       setErrorMessage('Semester harus Diisi');
       return false;
@@ -120,6 +127,7 @@ function NewNilai() {
 
   useEffect(() => {
     if (
+      guruID === '' ||
       kodeSemester === '' ||
       kodeKelas === '' ||
       kodeMataPelajaran === '' ||
@@ -132,6 +140,7 @@ function NewNilai() {
       return setIsInputValid(false);
     return setIsInputValid(true);
   }, [
+    guruID,
     kodeSemester,
     kodeKelas,
     kodeMataPelajaran,
@@ -154,6 +163,7 @@ function NewNilai() {
           {isLoading && <p>Loading...</p>}
           {isError && <BoxError>{errorMessage}</BoxError>}
           <Form OnSubmit={submitNewNilai}>
+            <NamaGuru SetGuruID={setGuruID} />
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               {/* SEMESTER */}
               <SelectSemester SetKodeSemester={setKodeSemester} />

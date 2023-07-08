@@ -41,8 +41,8 @@ function TableNilai({ DataTable, SetPage }) {
   const navigate = useNavigate();
 
   function handleDetail(id) {
-    console.log('go to detail', id);
-    // navigate(id);
+    // console.log('go to detail', id);
+    navigate(id);
   }
 
   function handlePageChange(e) {

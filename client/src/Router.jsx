@@ -35,6 +35,7 @@ import EditAkun from './pages/Profile/EditAkun/EditAkun';
 import { ROLES } from './config/role';
 import AddBiodata from './pages/Profile/AddBiodata/AddBiodata';
 import NewNilai from './pages/Penilaian/NewNilai/NewNilai';
+import DetailNilai from './pages/Penilaian/DetailNilai/DetailNilai';
 
 function Router() {
   return (
@@ -114,6 +115,9 @@ function Router() {
             <Route element={<PermissionRoutes Roles={[ROLES.GURU]} />}>
               <Route path="penilaian">
                 <Route index element={<Penilaian />} />
+                <Route path=":id">
+                  <Route index element={<DetailNilai />} />
+                </Route>
                 <Route path="new" element={<NewNilai />} />
               </Route>
             </Route>

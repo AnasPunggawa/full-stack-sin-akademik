@@ -130,6 +130,7 @@ CREATE TABLE `nilai` (
     `siswa_id` VARCHAR(191) NOT NULL,
     `semester_id` VARCHAR(191) NOT NULL,
     `kelas_id` VARCHAR(191) NOT NULL,
+    `guru_id` VARCHAR(191) NOT NULL,
     `matapelajaran_id` VARCHAR(191) NOT NULL,
     `nilai` VARCHAR(191) NOT NULL,
     `predikat` VARCHAR(191) NOT NULL,
@@ -192,6 +193,9 @@ ALTER TABLE `nilai` ADD CONSTRAINT `nilai_kelas_id_fkey` FOREIGN KEY (`kelas_id`
 
 -- AddForeignKey
 ALTER TABLE `nilai` ADD CONSTRAINT `nilai_matapelajaran_id_fkey` FOREIGN KEY (`matapelajaran_id`) REFERENCES `matapelajaran`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `nilai` ADD CONSTRAINT `nilai_guru_id_fkey` FOREIGN KEY (`guru_id`) REFERENCES `guru`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `_guruTomatapelajaran` ADD CONSTRAINT `_guruTomatapelajaran_A_fkey` FOREIGN KEY (`A`) REFERENCES `guru`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
