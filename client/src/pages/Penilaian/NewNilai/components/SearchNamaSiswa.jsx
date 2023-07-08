@@ -18,7 +18,6 @@ function SearchNamaSiswa({ SetSiswaID }) {
     try {
       const response = await getAllSiswa(nama, 1, 10);
       const data = response.data.data;
-      console.log(data.siswa);
       setResultSearchNamaSiswa(data.siswa);
     } catch (error) {
       setIsError(true);
@@ -51,7 +50,6 @@ function SearchNamaSiswa({ SetSiswaID }) {
   }, [nama]);
 
   function addNamaSiswa({ id, nama }) {
-    console.log(id, nama);
     setNama(nama);
     SetSiswaID(id);
     setResultSearchNamaSiswa([]);
@@ -78,7 +76,6 @@ function SearchNamaSiswa({ SetSiswaID }) {
         {resultSearchNamaSiswa?.length > 0 && (
           <ul className=" px-4 py-2.5">
             {resultSearchNamaSiswa?.map((item) => {
-              console.log(resultSearchNamaSiswa);
               return (
                 <li
                   key={item.id}
