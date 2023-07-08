@@ -44,9 +44,13 @@ async function createNilai(req, res, next) {
     const nilaiData = await createNilaiValidation(req);
     const siswaIDExist = await check_siswa_id(nilaiData.siswa_id);
     if (!siswaIDExist) throw new CustomError(404, 'siswa tidak ditemukan');
+    if (!siswaIDExist.status)
+      throw new CustomError(403, 'siswa sudah tidak aktif');
     const semesterIDExist = await check_semester_id(nilaiData.semester_id);
     if (!semesterIDExist)
-      throw new CustomError(404, 'semester tidak ditemukan');
+      throw new CustomError(404, 'semester belum terdaftar');
+    if (!semesterIDExist.status)
+      throw new CustomError(403, 'semester sudah tidak aktif');
     const kelasIDExist = await check_kelas_id(nilaiData.kelas_id);
     if (!kelasIDExist) throw new CustomError(404, 'kelas tidak ditemukan');
     const matapelajaranIDExist = await check_matapelajaran_id(

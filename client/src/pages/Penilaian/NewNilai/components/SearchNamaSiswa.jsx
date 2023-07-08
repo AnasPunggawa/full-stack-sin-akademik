@@ -67,7 +67,7 @@ function SearchNamaSiswa({ SetSiswaID }) {
           setNama(e.target.value);
         }}
       >
-        Nama
+        Nama Siswa
         <InputRequired />
       </InputField>
       <div className="absolute z-50 w-full overflow-auto max-h-40  bg-white dark:bg-gray-500 rounded-md">

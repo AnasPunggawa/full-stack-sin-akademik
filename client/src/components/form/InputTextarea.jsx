@@ -12,7 +12,7 @@ function InputTextarea({
   OnChange = () => {},
 }) {
   return (
-    <div>
+    <div className="w-full">
       <label
         htmlFor={HtmlFor}
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

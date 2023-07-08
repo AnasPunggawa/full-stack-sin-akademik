@@ -56,9 +56,9 @@ api.interceptors.response.use(
       return api(config);
     }
     if (
-      error.response.status === 403 &&
-      config.headers.Authorization &&
-      error.response.data.data.deleteRefreshToken
+      error?.response?.status === 403 &&
+      config?.headers?.Authorization &&
+      error?.response?.data?.data?.deleteRefreshToken
     ) {
       localStorage.clear();
       console.log('refresh token tidak ditemukan');

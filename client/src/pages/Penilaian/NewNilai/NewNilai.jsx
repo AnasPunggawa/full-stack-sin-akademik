@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Form from '../../../components/form/Form';
 import { useTitle } from '../../../hooks/useTitle';
 import Container from '../components/Container';
@@ -10,6 +10,12 @@ import SearchNamaSiswa from './components/SearchNamaSiswa';
 import InputField from '../../../components/form/InputField';
 import InputRequired from '../../../components/form/InputRequired';
 import InputTextarea from '../../../components/form/InputTextarea';
+import Button from '../../../components/ui/Button';
+import { useNavigate } from 'react-router-dom';
+import BoxError from '../../../components/ui/BoxError';
+import { createNilai } from '../../../api/nilai';
+import { SELECT_PREDIKAT } from '../../../config/nilai';
+import InputSelect from '../../../components/form/InputSelect';
 
 function NewNilai() {
   useTitle('Tambah Nilai');
@@ -20,13 +26,134 @@ function NewNilai() {
   const [nilai, setNilai] = useState('');
   const [predikat, setPredikat] = useState('');
   const [catatan, setCatatan] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isInputValid, setIsInputValid] = useState(false);
+
+  const navigate = useNavigate();
+
+  async function createNewNilai(formData) {
+    setIsError(false);
+    setIsLoading(true);
+    try {
+      const response = await createNilai(formData);
+      const data = response.data.data;
+      console.log(data);
+      console.log('created new nilai');
+      navigate('/penilaian', {
+        state: { message: 'Berhasil menambahkan nilai' },
+      });
+    } catch (error) {
+      setIsError(true);
+      if (error.response.status === 500)
+        return setErrorMessage('Something went wrong');
+      if (error.response) return setErrorMessage(error.response.data.message);
+      return setErrorMessage('Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function submitNewNilai(e) {
+    e.preventDefault();
+    if (!checkInput()) setIsError(true);
+    const formData = {
+      siswa_id: siswaID,
+      semester_id: kodeSemester,
+      kelas_id: kodeKelas,
+      matapelajaran_id: kodeMataPelajaran,
+      nilai: nilai,
+      predikat: predikat,
+      catatan: catatan,
+    };
+    console.log(formData);
+    createNewNilai(formData);
+    return;
+  }
+
+  function checkInput() {
+    if (kodeSemester === '') {
+      setErrorMessage('Semester harus Diisi');
+      return false;
+    }
+    if (kodeKelas === '') {
+      setErrorMessage('Kelas harus diisi');
+      return false;
+    }
+    if (kodeMataPelajaran === '') {
+      setErrorMessage('Mata pelajaran harus diisi');
+      return false;
+    }
+    if (siswaID === '') {
+      setErrorMessage('Nama siswa harus diisi');
+      return false;
+    }
+    if (nilai === '') {
+      setErrorMessage('Nilai harus diisi');
+      return false;
+    }
+    if (predikat === '') {
+      setErrorMessage('Predikat harus diisi');
+      return false;
+    }
+    if (catatan === null) {
+      setErrorMessage('Catatan harus diisi');
+      return false;
+    }
+    return true;
+  }
+
+  useEffect(() => {
+    setIsError(false);
+    setErrorMessage('');
+    return;
+  }, [
+    kodeSemester,
+    kodeKelas,
+    kodeMataPelajaran,
+    siswaID,
+    nilai,
+    predikat,
+    catatan,
+  ]);
+
+  useEffect(() => {
+    if (
+      kodeSemester === '' ||
+      kodeKelas === '' ||
+      kodeMataPelajaran === '' ||
+      siswaID === '' ||
+      nilai === '' ||
+      predikat === '' ||
+      catatan === '' ||
+      isError
+    )
+      return setIsInputValid(false);
+    return setIsInputValid(true);
+  }, [
+    kodeSemester,
+    kodeKelas,
+    kodeMataPelajaran,
+    siswaID,
+    nilai,
+    predikat,
+    catatan,
+    isError,
+  ]);
+
+  function cancelNewNilai() {
+    navigate('/penilaian');
+  }
 
   return (
     <>
       <Header>Tambah Nilai</Header>
       <Container>
         <div className="p-5 space-y-4 md:space-y-6 sm:p-7">
-          <Form OnSubmit={() => {}}>
+          {isLoading && <p>Loading...</p>}
+          {isError && <BoxError>{errorMessage}</BoxError>}
+          <Form OnSubmit={submitNewNilai}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               {/* SEMESTER */}
               <SelectSemester SetKodeSemester={setKodeSemester} />
@@ -53,21 +180,21 @@ function NewNilai() {
                 Nilai
                 <InputRequired />
               </InputField>
-              {/* PREDIKAT */}
-              <InputField
-                HtmlFor="predikat"
-                Type="text"
-                Value={predikat}
-                Placeholder="predikat"
+              {/* PREDIKAT NILAI */}
+              <InputSelect
+                Options={SELECT_PREDIKAT}
+                HtmlFor={'jenis-kelamin'}
+                PlaceHolder={'Pilih Predikat Nilai'}
                 Required={true}
+                Value={predikat}
                 AutoComplete="OFF"
                 OnChange={(e) => {
                   setPredikat(e.target.value);
                 }}
               >
-                Predikat
+                Predikat Nilai
                 <InputRequired />
-              </InputField>
+              </InputSelect>
               {/* CATATAN */}
               <InputTextarea
                 HtmlFor="catatan"
@@ -80,15 +207,16 @@ function NewNilai() {
                 <InputRequired />
               </InputTextarea>
             </div>
+            <div className="flex gap-2 sm:gap-4 justify-end sm:justify-center">
+              <Button Type="submit" Disabled={isInputValid ? false : true}>
+                Simpan
+              </Button>
+              <Button OnClick={() => cancelNewNilai()} ButtonStyle="DANGER">
+                Batal
+              </Button>
+            </div>
           </Form>
         </div>
-        <h1>Kode Semester: {kodeSemester}</h1>
-        <h1>Kode Kelas: {kodeKelas}</h1>
-        <h1>Kode Mata Pelajaran: {kodeMataPelajaran}</h1>
-        <h1>Siswa ID: {siswaID}</h1>
-        <h1>Nilai: {nilai}</h1>
-        <h1>Predikat: {predikat}</h1>
-        <h1>Catatan: {catatan}</h1>
       </Container>
     </>
   );
