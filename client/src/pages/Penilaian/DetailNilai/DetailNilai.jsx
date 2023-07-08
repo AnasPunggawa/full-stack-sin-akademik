@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   ACTION_DETAIL_NILAI_REDUCER,
   INITIAL_STATE_DETAIL_NILAI_REDUCER,
@@ -14,12 +14,10 @@ import LayoutError from '../../../components/ui/LayoutError';
 import LayoutLoading from '../../../components/ui/LayoutLoading';
 import DetailData from './components/DetailData';
 import DeleteNilai from './components/DeleteNilai';
-import LayoutSuccessMessage from '../../../components/ui/LayoutSuccessMessage';
-import BoxSuccessMessage from '../../../components/ui/BoxSuccessMessage';
 
 function DetailNilai() {
   const { id } = useParams();
-  const { state } = useLocation();
+
   const [namaSiswa, setNamaSiswa] = useState('');
   const [statusSemester, setStatusSemester] = useState(true);
   const [detailNilai, dispatch] = useReducer(
@@ -104,11 +102,6 @@ function DetailNilai() {
             </div>
           </div>
         </div>
-        {state?.message && (
-          <LayoutSuccessMessage>
-            <BoxSuccessMessage>{state.message}</BoxSuccessMessage>
-          </LayoutSuccessMessage>
-        )}
         {detailNilai.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {detailNilai.error && (
           <LayoutError>{detailNilai.errorMessage}</LayoutError>

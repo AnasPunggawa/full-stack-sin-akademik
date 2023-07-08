@@ -44,7 +44,7 @@ function NewNilai() {
       console.log(data);
       console.log('created new nilai');
       navigate('/penilaian', {
-        state: { message: 'Berhasil menambahkan nilai' },
+        state: { success: true, message: 'Berhasil menambahkan nilai siswa' },
       });
     } catch (error) {
       setIsError(true);

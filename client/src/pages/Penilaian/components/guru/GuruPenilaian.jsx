@@ -7,7 +7,7 @@ import Header from '../Header';
 import SelectSemester from './SelectSemester';
 import SelectKelas from './SelectKelas';
 import SelectMataPelajaran from './SelectMataPelajaran';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   ACTION_NILAI_REDUCER,
   INITIAL_STATE_NILAI_REDUCER,
@@ -18,8 +18,10 @@ import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableNilai from './TableNilai';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function GuruPenilaian() {
+  const { state } = useLocation();
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
@@ -124,6 +126,7 @@ function GuruPenilaian() {
       <Header>Penilaian</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahNilai()}>
               Tambah Nilai <IconPlus />

@@ -39,7 +39,7 @@ function EditData({ NilaiSiswa }) {
       console.log(data);
       console.log('updated nilai siswa');
       navigate(`/penilaian/${data.id}`, {
-        state: { message: 'Berhasil mengubah nilai siswa' },
+        state: { success: true, message: 'Berhasil mengubah nilai siswa' },
       });
     } catch (error) {
       setIsError(true);

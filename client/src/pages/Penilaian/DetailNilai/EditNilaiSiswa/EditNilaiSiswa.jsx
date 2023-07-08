@@ -11,8 +11,12 @@ import Container from '../../components/Container';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import EditData from './components/EditData';
+import jwtDecode from 'jwt-decode';
 
 function EditNilaiSiswa() {
+  const getAccessToken = localStorage.getItem('accessToken');
+  const decodeAccessToken = jwtDecode(getAccessToken);
+
   const { id } = useParams();
   const [namaSiswa, setNamaSiswa] = useState('');
   const [detailNilai, dispatch] = useReducer(
@@ -29,8 +33,15 @@ function EditNilaiSiswa() {
     try {
       const response = await getNilai(id);
       const data = response.data.data;
-      setNamaSiswa(data.siswa.nama);
-      if (!data.semester.status) return navigate(`/penilaian/${id}`);
+      if (decodeAccessToken?.id !== data?.guru?.user_id)
+        return navigate(`/penilaian/${id}`, {
+          state: { success: false, message: 'Anda tidak memiliki akses' },
+        });
+      if (!data?.semester?.status)
+        return navigate(`/penilaian/${id}`, {
+          state: { success: false, message: 'Semester sudah tidak aktif' },
+        });
+      setNamaSiswa(data?.siswa?.nama);
       dispatch({
         type: ACTION_DETAIL_NILAI_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
