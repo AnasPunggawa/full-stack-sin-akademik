@@ -14,6 +14,10 @@ import {
   nilaiReducer,
 } from '../../../../reducer/nilai/nilaiReducer';
 import { getAllNilai } from '../../../../api/nilai';
+import LayoutLoading from '../../../../components/ui/LayoutLoading';
+import LayoutError from '../../../../components/ui/LayoutError';
+import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
+import TableNilai from './TableNilai';
 
 function GuruPenilaian() {
   const [kodeSemester, setKodeSemester] = useState('');
@@ -46,9 +50,12 @@ function GuruPenilaian() {
       );
       const data = response.data.data;
       console.log(data);
-      // dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_SUCCESS, payload: data });
-      // setPage(data.current_page);
-      // setLimit(data.limit_data);
+      dispatch({
+        type: ACTION_NILAI_REDUCER.FETCH_DATA_SUCCESS,
+        payload: data,
+      });
+      setPage(data.current_page);
+      setLimit(data.limit_data);
     } catch (error) {
       console.log(error);
       if (error.response.status === 500) {
@@ -124,7 +131,7 @@ function GuruPenilaian() {
           </div>
           <div className="flex flex-wrap gap-3 items-end justify-between">
             {/* <div className="flex w-full sm:w-2/6 flex-col gap-2"> */}
-            <div className="w-full grid gap-2 md:grid-cols-2">
+            <div className="w-full grid gap-2 sm:grid-cols-2">
               <SelectSemester SetKodeSemester={setKodeSemester} />
               <SelectKelas SetKodeKelas={setKodeKelas} />
               <SelectMataPelajaran
@@ -152,6 +159,13 @@ function GuruPenilaian() {
             </div> */}
           </div>
         </div>
+        {nilai.loading && <LayoutLoading>Loading...</LayoutLoading>}
+        {nilai.error && <LayoutError>{nilai.errorMessage}</LayoutError>}
+        {!nilai.loading && !nilai.error && nilai.data && (
+          <LayoutSuccess>
+            <TableNilai DataTable={nilai.data} SetPage={setPage} />
+          </LayoutSuccess>
+        )}
       </Container>
     </>
   );
