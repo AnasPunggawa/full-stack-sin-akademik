@@ -15,8 +15,10 @@ import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableKelas from './TableKelas';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SELECT_KELAS } from '../../../../config/kelas';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
+import BoxError from '../../../../components/ui/BoxError';
 
 // const SELECT_KELAS = [
 //   { id: '7', name: '7' },
@@ -30,6 +32,7 @@ function AdminKelas() {
   const [inputSearch, setInputSearch] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [kelas, dispatch] = useReducer(
     kelasReducer,
@@ -37,6 +40,7 @@ function AdminKelas() {
   );
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const isComponentMounted = useRef(true);
 
@@ -49,7 +53,7 @@ function AdminKelas() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [kategoriKelas, searchKelas, page, limit]);
+  }, [kategoriKelas, searchKelas, page, limit, refreshCount]);
 
   async function fetchAllKelas() {
     dispatch({ type: ACTION_KELAS_REDUCER.FETCH_DATA_LOADING });
@@ -104,6 +108,8 @@ function AdminKelas() {
       <Header>Kelas</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahKelas()}>
               Tambah Kelas <IconPlus />
@@ -133,7 +139,11 @@ function AdminKelas() {
         {kelas.error && <LayoutError>{kelas.errorMessage}</LayoutError>}
         {!kelas.loading && !kelas.error && kelas.data && (
           <LayoutSuccess>
-            <TableKelas DataTable={kelas.data} SetPage={setPage} />
+            <TableKelas
+              DataTable={kelas.data}
+              SetPage={setPage}
+              SetRefreshCount={setRefreshCount}
+            />
           </LayoutSuccess>
         )}
       </Container>

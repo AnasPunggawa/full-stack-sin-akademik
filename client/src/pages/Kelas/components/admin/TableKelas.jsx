@@ -25,7 +25,7 @@ const TABLE_HEAD_KELAS = [
   },
 ];
 
-function TableKelas({ DataTable, SetPage }) {
+function TableKelas({ DataTable, SetPage, SetRefreshCount }) {
   const { kelas, total_data, total_page, current_page } = DataTable;
 
   function handlePageChange(e) {
@@ -60,7 +60,10 @@ function TableKelas({ DataTable, SetPage }) {
                   <td className="px-6 py-2.5">{item.kelas}</td>
                   <td className="px-6 py-2.5">{item.kode}</td>
                   <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
-                    <DeleteKelas Kelas={item} />
+                    <DeleteKelas
+                      Kelas={item}
+                      SetRefreshCount={SetRefreshCount}
+                    />
                   </td>
                 </tr>
               );
@@ -109,6 +112,7 @@ function TableKelas({ DataTable, SetPage }) {
 TableKelas.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableKelas;

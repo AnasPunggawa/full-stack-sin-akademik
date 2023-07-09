@@ -47,7 +47,10 @@ function NewKelas() {
     try {
       const response = await createKelas(formData);
       console.log(response);
-      navigate('/kelas');
+      navigate('/kelas', {
+        state: { success: true, message: 'Berhasil menambahkan kelas' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)

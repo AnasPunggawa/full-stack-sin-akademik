@@ -6,7 +6,7 @@ import { IconWarning, IconXMark } from '../../../../components/ui/Icons';
 import BoxError from '../../../../components/ui/BoxError';
 import { deleteKelas } from '../../../../api/kelas';
 
-function DeleteKelas({ Kelas }) {
+function DeleteKelas({ Kelas, SetRefreshCount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -30,7 +30,11 @@ function DeleteKelas({ Kelas }) {
       const data = await deleteKelas(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      SetRefreshCount((prev) => prev + 1);
+      navigate('/kelas', {
+        state: { success: true, message: 'Berhasil menghapus kelas' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500 && !error.response.data.success)
@@ -98,6 +102,7 @@ function DeleteKelas({ Kelas }) {
 
 DeleteKelas.propTypes = {
   Kelas: PropTypes.object,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default DeleteKelas;
