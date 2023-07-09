@@ -57,6 +57,7 @@ function EditData({ DataMataPelajaran }) {
     }
 
     const formData = {
+      ...DataMataPelajaran,
       nama: namaMataPelajaran,
       guru: dataGuru?.map((nmGuru) => {
         return { id: nmGuru.id };

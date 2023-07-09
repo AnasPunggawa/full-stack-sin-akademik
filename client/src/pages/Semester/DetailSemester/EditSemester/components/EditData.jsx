@@ -41,7 +41,13 @@ function EditData({ DataSemester }) {
       const response = await updateSemester(id, formData);
       const data = response.data.data;
       console.log(data);
-      navigate(`/semester/${data.id}`);
+      navigate(`/semester/${data.id}`, {
+        state: {
+          success: true,
+          message: 'Berhasil mengubah data semester',
+        },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
@@ -81,6 +87,7 @@ function EditData({ DataSemester }) {
     }
 
     const formData = {
+      ...DataSemester,
       tahunAjaran: tahunAjaranSemester,
       semester: tingkatSemester,
       status: statusSemester === 'true',
