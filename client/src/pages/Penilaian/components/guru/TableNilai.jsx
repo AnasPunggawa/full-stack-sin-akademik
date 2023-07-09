@@ -35,7 +35,7 @@ const TABLE_HEAD_NILAI = [
   },
 ];
 
-function TableNilai({ DataTable, SetPage }) {
+function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
   const { nilai, total_data, total_page, current_page } = DataTable;
 
   const navigate = useNavigate();
@@ -86,7 +86,10 @@ function TableNilai({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteNilai Nilai={item} />
+                    <DeleteNilai
+                      Nilai={item}
+                      SetRefreshCount={SetRefreshCount}
+                    />
                   </td>
                 </tr>
               );
@@ -135,6 +138,7 @@ function TableNilai({ DataTable, SetPage }) {
 TableNilai.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableNilai;

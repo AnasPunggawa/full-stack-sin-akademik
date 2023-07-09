@@ -44,9 +44,9 @@ function AddBiodataSiswa({ User }) {
       console.log(data);
       console.log('add biodata siswa');
       navigate('/profile', {
-        state: { message: 'Biodata berhasil ditambahkan' },
+        state: { success: true, message: 'Berhasil menambahkan biodata' },
+        replace: true,
       });
-      // navigate('/profile');
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)

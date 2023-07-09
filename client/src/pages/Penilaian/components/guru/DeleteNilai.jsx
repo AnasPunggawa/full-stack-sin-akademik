@@ -6,7 +6,7 @@ import Button from '../../../../components/ui/Button';
 import { IconWarning, IconXMark } from '../../../../components/ui/Icons';
 import BoxError from '../../../../components/ui/BoxError';
 
-function DeleteNilai({ Nilai }) {
+function DeleteNilai({ Nilai, SetRefreshCount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -32,7 +32,11 @@ function DeleteNilai({ Nilai }) {
       const data = await deleteNilai(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      SetRefreshCount((prev) => prev + 1);
+      navigate('/penilaian', {
+        state: { success: true, message: 'Berhasil menghapus nilai' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
@@ -100,6 +104,7 @@ function DeleteNilai({ Nilai }) {
 
 DeleteNilai.propTypes = {
   Nilai: PropTypes.object,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default DeleteNilai;

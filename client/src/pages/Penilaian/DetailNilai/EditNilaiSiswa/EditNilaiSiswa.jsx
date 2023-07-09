@@ -35,7 +35,8 @@ function EditNilaiSiswa() {
       const response = await getNilai(id);
       const data = response?.data.data;
       if (decodeAccessToken?.id !== data?.guru?.user_id)
-        return navigate('/penilaian', {
+        // return navigate('/penilaian', {
+        return navigate(`/penilaian/${id}`, {
           state: { success: false, message: 'Anda tidak memiliki akses' },
           replace: true,
         });

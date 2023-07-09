@@ -32,7 +32,10 @@ function DeleteNilai({ Nilai }) {
       const data = await deleteNilai(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      navigate('/penilaian', {
+        state: { success: true, message: 'Berhasil menghapus nilai' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)

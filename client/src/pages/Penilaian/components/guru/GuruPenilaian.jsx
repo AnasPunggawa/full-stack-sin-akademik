@@ -30,6 +30,7 @@ function GuruPenilaian() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputSearch, setInputSearch] = useState('');
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [nilai, dispatch] = useReducer(
     nilaiReducer,
@@ -94,7 +95,15 @@ function GuruPenilaian() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [kodeSemester, kodeKelas, kodeMataPelajaran, searchSiswa]);
+  }, [
+    kodeSemester,
+    kodeKelas,
+    kodeMataPelajaran,
+    searchSiswa,
+    page,
+    limit,
+    refreshCount,
+  ]);
 
   useEffect(() => {
     if (!kodeSemester) {
@@ -168,7 +177,11 @@ function GuruPenilaian() {
         {nilai.error && <LayoutError>{nilai.errorMessage}</LayoutError>}
         {!nilai.loading && !nilai.error && nilai.data && (
           <LayoutSuccess>
-            <TableNilai DataTable={nilai.data} SetPage={setPage} />
+            <TableNilai
+              DataTable={nilai.data}
+              SetPage={setPage}
+              SetRefreshCount={setRefreshCount}
+            />
           </LayoutSuccess>
         )}
       </Container>
