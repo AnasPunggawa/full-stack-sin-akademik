@@ -21,7 +21,6 @@ function DetailData({ DataNilai }) {
     catatan: DataNilai?.catatan,
     statusSemester: semester?.status,
   };
-  console.log(state && !state?.success);
   return (
     <div className="w-full h-full p-4 space-y-4">
       {/* <Form OnSubmit={() => {}}> */}

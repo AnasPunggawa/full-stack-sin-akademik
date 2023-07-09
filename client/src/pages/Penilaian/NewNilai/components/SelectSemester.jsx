@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import { getAllSemester } from '../../../../api/semester';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
-import { SELECT_SEMESTER } from '../../../../config/semester';
 import InputRequired from '../../../../components/form/InputRequired';
 
 function SelectSemester({ SetKodeSemester }) {
+  const [dataTahunAjaran, setDataTahunAjaran] = useState(null);
   const [dataSemester, setDataSemester] = useState(null);
   const [tahunAjaran, setTahunAjaran] = useState('');
   const [semester, setSemester] = useState('');
@@ -22,8 +22,11 @@ function SelectSemester({ SetKodeSemester }) {
     try {
       const response = await getAllSemester('', '', 1, 100);
       const data = response.data.data;
-      const listSemester = listArray(data?.semester);
+      const listTahunAjaran = listArrayTahunAjaran(data?.semester);
+      const listSemester = listArraySemester(data?.semester);
+      const filteredTahunAjaran = filterByValue(listTahunAjaran, 'id');
       const filteredSemester = filterByValue(listSemester, 'id');
+      setDataTahunAjaran(filteredTahunAjaran);
       setDataSemester(filteredSemester);
     } catch (error) {
       setIsError(true);
@@ -36,11 +39,27 @@ function SelectSemester({ SetKodeSemester }) {
     }
   }
 
-  function listArray(arr) {
-    return arr.map((item) => {
-      const idTahunAjaran = item?.tahunAjaran.split('/').join('-');
-      return { id: idTahunAjaran, name: item?.tahunAjaran };
-    });
+  function listArrayTahunAjaran(arr) {
+    return arr
+      .filter((item) => {
+        if (item.status) return item;
+      })
+      .map((item) => {
+        const listTahunAjaran = item?.tahunAjaran.split('/').join('-');
+        return { id: listTahunAjaran, name: item?.tahunAjaran };
+      });
+  }
+  function listArraySemester(arr) {
+    return arr
+      .filter((item) => {
+        if (item?.status) return item;
+      })
+      .map((item) => {
+        return {
+          id: item?.semester,
+          name: item.semester.charAt(0).toUpperCase() + item?.semester.slice(1),
+        };
+      });
   }
 
   function filterByValue(arr, prop) {
@@ -80,12 +99,12 @@ function SelectSemester({ SetKodeSemester }) {
     <>
       {isLoading && <p>Loading...</p>}
       {isError && <BoxError>{errorMessage}</BoxError>}
-      {dataSemester && (
+      {dataTahunAjaran && dataSemester && (
         <>
           <InputSelect
             HtmlFor={'tahun-ajaran'}
             PlaceHolder={'Pilih Tahun Ajaran'}
-            Options={dataSemester}
+            Options={dataTahunAjaran}
             Value={tahunAjaran}
             OnChange={(e) => setTahunAjaran(e.target.value)}
           >
@@ -95,7 +114,7 @@ function SelectSemester({ SetKodeSemester }) {
           <InputSelect
             HtmlFor={'semester'}
             PlaceHolder={'Pilih Semester'}
-            Options={SELECT_SEMESTER}
+            Options={dataSemester}
             Value={semester}
             OnChange={(e) => setSemester(e.target.value)}
           >

@@ -72,12 +72,10 @@ function TableNilai({ DataTable, SetPage }) {
                   className="bg-white border-b dark:bg-gray-700 dark:border-gray-800 hover:text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 dark:hover:text-gray-200"
                 >
                   <td className="px-6 py-2.5">{index + 1}</td>
-                  <td className="px-6 py-2.5">
+                  <td className="px-6 py-2.5 font-semibold text-gray-900 dark:text-white">
                     {item?.semester?.kodeSemester}
                   </td>
-                  <td className="px-6 py-2.5 font-semibold text-gray-900 dark:text-white">
-                    {item?.siswa?.nisn}
-                  </td>
+                  <td className="px-6 py-2.5">{item?.siswa?.nisn}</td>
                   <td className="px-6 py-2.5">{item?.siswa?.nama}</td>
                   <td className="px-6 py-2.5">{item?.nilai}</td>
                   <td className="px-6 py-2.5">{item?.predikat}</td>
