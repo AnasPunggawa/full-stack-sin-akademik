@@ -29,7 +29,13 @@ function EditData({ DataMataPelajaran }) {
       const response = await updateMataPelajaran(id, formData);
       const data = response.data.data;
       console.log(data);
-      navigate(`/mata-pelajaran/${data.id}`);
+      navigate(`/mata-pelajaran/${data.id}`, {
+        state: {
+          success: true,
+          message: 'Berhasil mengubah data mata pelajaran',
+        },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
