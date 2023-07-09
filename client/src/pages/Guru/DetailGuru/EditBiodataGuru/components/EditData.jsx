@@ -69,7 +69,10 @@ function EditData({ BiodataGuru }) {
       const data = response.data.data;
       console.log(data);
       console.log('updated biodata guru');
-      navigate(`/guru/${data.id}`);
+      navigate(`/guru/${data.id}`, {
+        state: { success: true, message: 'Berhasil mengubah biodata guru' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
