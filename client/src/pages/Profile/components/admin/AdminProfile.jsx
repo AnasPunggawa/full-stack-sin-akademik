@@ -33,7 +33,6 @@ function AdminProfile() {
     try {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
-      console.log(data);
       dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_SUCCESS, payload: data });
       // if (data.admin[0]) return navigate('add-biodata');
       // if (data.admin.length === 1)
@@ -80,7 +79,6 @@ function AdminProfile() {
           <LayoutError>{detailUser.errorMessage}</LayoutError>
         )}
         {!detailUser.loading && !detailUser.error && detailUser.data && (
-          // <AdminDetailProfile DataUser={detailUser.data} />
           <>
             {detailUser.data.admin[0] ? (
               <AdminDetailProfile DataUser={detailUser.data} />

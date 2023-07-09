@@ -40,7 +40,6 @@ function DetailNilai() {
     dispatch({ type: ACTION_DETAIL_NILAI_REDUCER.FETCH_DATA_LOADING });
     try {
       const response = await getNilai(id);
-      console.log(response);
       const data = response?.data?.data;
       if (data?.guru?.user_id === decodeAccessToken?.id) setAuthorized(true);
       // if (decodeAccessToken?.id !== data.guru.user_id)

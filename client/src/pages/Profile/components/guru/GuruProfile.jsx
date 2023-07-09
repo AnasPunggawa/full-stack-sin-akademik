@@ -29,7 +29,6 @@ function GuruProfile() {
     try {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
-      console.log(data);
       dispatch({ type: ACTION_USER_REDUCER.FETCH_DATA_SUCCESS, payload: data });
     } catch (error) {
       if (error.response?.status === 500) {
