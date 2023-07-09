@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types';
 import BiodataUserSiswa from './BiodataUserSiswa';
 import AkunUserSiswa from './AkunUserSiswa';
+import { useLocation } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function SiswaDetailProfile({ DataUser }) {
+  const { state } = useLocation();
+
   const biodataUserSiswa = {
     id: DataUser.siswa[0]?.id,
     user_id: DataUser.siswa[0]?.user_id,
@@ -31,6 +36,8 @@ function SiswaDetailProfile({ DataUser }) {
   return (
     <div className="w-full h-full p-4 space-y-4">
       {/* <Form OnSubmit={() => {}}> */}
+      {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+      {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
       <BiodataUserSiswa Biodata={biodataUserSiswa} />
       <AkunUserSiswa DataAkunUserSiswa={dataAkunUserSiswa} />
       {/* </Form> */}

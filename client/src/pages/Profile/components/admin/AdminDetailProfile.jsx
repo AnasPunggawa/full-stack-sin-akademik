@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types';
 import BiodataUserAdmin from './BiodataUserAdmin';
 import AkunUserAdmin from './AkunUserAdmin';
+import { useLocation } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function AdminDetailProfile({ DataUser }) {
+  const { state } = useLocation();
+
   const biodataUserAdmin = {
     id: DataUser.admin[0]?.id,
     user_id: DataUser.admin[0]?.user_id,
@@ -24,6 +29,8 @@ function AdminDetailProfile({ DataUser }) {
 
   return (
     <div className="w-full h-full p-4 space-y-4">
+      {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+      {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
       {/* <Form OnSubmit={() => {}}> */}
       <BiodataUserAdmin Biodata={biodataUserAdmin} />
       <AkunUserAdmin DataAkunUserAdmin={dataAkunUserAdmin} />

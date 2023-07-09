@@ -2,8 +2,13 @@ import PropTypes from 'prop-types';
 import BiodataUserGuru from './BiodataUserGuru';
 import AkunUserGuru from './AkunUserGuru';
 import TableDataMataPelajaranGuru from './TableDataMataPelajaranGuru';
+import { useLocation } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function GuruDetailProfile({ DataUser }) {
+  const { state } = useLocation();
+
   const biodataUserGuru = {
     id: DataUser.guru[0]?.id,
     user_id: DataUser.guru[0]?.user_id,
@@ -30,6 +35,8 @@ function GuruDetailProfile({ DataUser }) {
   return (
     <div className="w-full h-full p-4 space-y-4">
       {/* <Form OnSubmit={() => {}}> */}
+      {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+      {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
       <BiodataUserGuru Biodata={biodataUserGuru} />
       <AkunUserGuru DataAkunUserGuru={dataAkunUserGuru} />
       <TableDataMataPelajaranGuru

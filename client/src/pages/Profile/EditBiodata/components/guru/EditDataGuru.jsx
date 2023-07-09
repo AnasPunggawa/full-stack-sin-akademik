@@ -66,7 +66,10 @@ function EditDataGuru({ BiodataGuru }) {
       const data = response.data.data;
       console.log(data);
       console.log('updated biodata guru');
-      navigate(`/profile`);
+      navigate('/profile', {
+        state: { success: true, message: 'Berhasil mengubah biodata' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)

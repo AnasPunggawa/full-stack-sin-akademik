@@ -30,7 +30,10 @@ function EditData({ AkunUser }) {
       const response = await updateUser(id, formData);
       console.log(response);
       console.log('updated akun user');
-      navigate(`/profile`);
+      navigate('/profile', {
+        state: { success: true, message: 'Berhasil mengubah password' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)
