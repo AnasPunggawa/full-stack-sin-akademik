@@ -27,10 +27,7 @@ function SelectKelas({ SetKodeKelas }) {
       const listKelas = listArray(data?.kelas, 'kelas');
       const listKode = listArray(data?.kelas, 'kode');
       if (listKelas.length === 0 || listKode.length === 0)
-        throw new CustomError(
-          404,
-          'Tidak ada kelas yang terdaftar, segera hubungi admin untuk mendaftarkan kelas'
-        );
+        throw new CustomError(404, 'Belum ada kelas yang tersedia');
       const filteredKelas = filterByValue(listKelas, 'id');
       const filteredKode = filterByValue(listKode, 'id');
       setDataKelas(filteredKelas);

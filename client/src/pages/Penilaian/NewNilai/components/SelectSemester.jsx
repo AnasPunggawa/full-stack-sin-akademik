@@ -28,7 +28,7 @@ function SelectSemester({ SetKodeSemester }) {
       if (listSemester.length === 0 || listTahunAjaran.length === 0)
         throw new CustomError(
           404,
-          'Tidak ada tahun ajaran atau semester yang aktif, segera hubungi admin untuk mengaktifkan'
+          'Tidak ada tahun ajaran semester yang aktif'
         );
       const filteredTahunAjaran = filterByValue(listTahunAjaran, 'id');
       const filteredSemester = filterByValue(listSemester, 'id');
