@@ -24,6 +24,8 @@ function DetailNilai() {
 
   const [namaSiswa, setNamaSiswa] = useState('');
   const [statusSemester, setStatusSemester] = useState(true);
+  const [statusGuru, setStatusGuru] = useState(true);
+  const [statusSiswa, setStatusSiswa] = useState(true);
   const [authorized, setAuthorized] = useState(false);
   const [detailNilai, dispatch] = useReducer(
     detailNilaiReducer,
@@ -39,15 +41,17 @@ function DetailNilai() {
     try {
       const response = await getNilai(id);
       console.log(response);
-      const data = response.data.data;
-      if (data.guru.user_id === decodeAccessToken.id) setAuthorized(true);
+      const data = response?.data?.data;
+      if (data?.guru?.user_id === decodeAccessToken?.id) setAuthorized(true);
       // if (decodeAccessToken?.id !== data.guru.user_id)
       //   return navigate('/penilaian', {
       //     state: { success: false, message: 'Anda tidak memiliki akses' },
       //     replace: true,
       //   });
-      setNamaSiswa(data.siswa.nama);
-      setStatusSemester(data.semester.status);
+      setNamaSiswa(data?.siswa?.nama);
+      setStatusSemester(data?.semester?.status);
+      setStatusGuru(data?.guru?.status);
+      setStatusSiswa(data?.siswa?.status);
       dispatch({
         type: ACTION_DETAIL_NILAI_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
@@ -104,7 +108,7 @@ function DetailNilai() {
                 <IconChevronLeft /> Kembali
               </div>
             </Button>
-            {authorized && statusSemester && (
+            {authorized && statusSemester && statusGuru && statusSiswa && (
               <div className="flex gap-2 sm:gap-4">
                 <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
                   Edit

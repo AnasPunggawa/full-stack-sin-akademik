@@ -91,12 +91,14 @@ function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
                     >
                       Detail
                     </Button>
-                    {item.guru.user_id === decodeAccessToken.id && (
-                      <DeleteNilai
-                        Nilai={item}
-                        SetRefreshCount={SetRefreshCount}
-                      />
-                    )}
+                    {item?.guru?.user_id === decodeAccessToken?.id &&
+                      item?.guru?.status &&
+                      item?.siswa?.status && (
+                        <DeleteNilai
+                          Nilai={item}
+                          SetRefreshCount={SetRefreshCount}
+                        />
+                      )}
                   </td>
                 </tr>
               );

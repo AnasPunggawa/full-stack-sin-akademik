@@ -34,6 +34,7 @@ async function find_all_datas(
           user_id: true,
           nisn: true,
           nama: true,
+          status: true,
         },
       },
       semester: {
@@ -63,6 +64,7 @@ async function find_all_datas(
           user_id: true,
           nip: true,
           nama: true,
+          status: true,
         },
       },
     },
@@ -107,6 +109,7 @@ async function find_single_data(id) {
           user_id: true,
           nisn: true,
           nama: true,
+          status: true,
         },
       },
       semester: {
@@ -136,6 +139,7 @@ async function find_single_data(id) {
           user_id: true,
           nip: true,
           nama: true,
+          status: true,
         },
       },
     },
