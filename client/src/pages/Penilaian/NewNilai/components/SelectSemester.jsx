@@ -4,6 +4,7 @@ import { getAllSemester } from '../../../../api/semester';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
 import InputRequired from '../../../../components/form/InputRequired';
+import { CustomError } from '../../../../utils/CustomError';
 
 function SelectSemester({ SetKodeSemester }) {
   const [dataTahunAjaran, setDataTahunAjaran] = useState(null);
@@ -24,12 +25,18 @@ function SelectSemester({ SetKodeSemester }) {
       const data = response.data.data;
       const listTahunAjaran = listArrayTahunAjaran(data?.semester);
       const listSemester = listArraySemester(data?.semester);
+      if (listSemester.length === 0 || listTahunAjaran.length === 0)
+        throw new CustomError(
+          404,
+          'Tidak ada tahun ajaran atau semester yang aktif, segera hubungi admin untuk mengaktifkan'
+        );
       const filteredTahunAjaran = filterByValue(listTahunAjaran, 'id');
       const filteredSemester = filterByValue(listSemester, 'id');
       setDataTahunAjaran(filteredTahunAjaran);
       setDataSemester(filteredSemester);
     } catch (error) {
       setIsError(true);
+      if (error.statusCode === 404) return setErrorMessage(error.message);
       if (error.response.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);
@@ -64,6 +71,8 @@ function SelectSemester({ SetKodeSemester }) {
 
   function filterByValue(arr, prop) {
     const result = [];
+    if (arr.length === 0) return result;
+
     const map = new Map();
 
     for (const obj of arr) {

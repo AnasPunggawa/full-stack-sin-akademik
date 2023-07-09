@@ -5,6 +5,7 @@ import InputRequired from '../../../../components/form/InputRequired';
 import jwtDecode from 'jwt-decode';
 import BoxError from '../../../../components/ui/BoxError';
 import { getUser } from '../../../../api/users';
+import { CustomError } from '../../../../utils/CustomError';
 
 function NamaGuru({ SetGuruID }) {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -24,11 +25,17 @@ function NamaGuru({ SetGuruID }) {
     try {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
-      setDataGuru(data);
+      if (data.guru.length === 0)
+        throw new CustomError(
+          404,
+          'Data Guru belum lengkap, tolong lengkapi data guru di menu My Profile'
+        );
+      setDataGuru(data?.guru[0]);
       setNamaGuru(data?.guru[0]?.nama);
       SetGuruID(data?.guru[0]?.id);
     } catch (error) {
       setIsError(true);
+      if (error.statusCode === 404) return setErrorMessage(error.message);
       if (error.response.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);

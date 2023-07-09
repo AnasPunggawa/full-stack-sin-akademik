@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import { getUser } from '../../../../api/users';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
+import { CustomError } from '../../../../utils/CustomError';
 
 function SelectMataPelajaran({ SetKodeMataPelajaran }) {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -24,10 +25,13 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
       const dataResMataPelajaran = data?.guru[0]?.matapelajaran;
+      if (!dataResMataPelajaran)
+        throw new CustomError(404, 'Anda belum memiliki mata pelajaran');
       const listMataPelajaran = listArray(dataResMataPelajaran);
       setDataMataPelajaran(listMataPelajaran);
     } catch (error) {
       setIsError(true);
+      if (error.statusCode === 404) return setErrorMessage(error.message);
       if (error.response.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);
