@@ -31,7 +31,10 @@ function EditData({ AkunSiswa }) {
       const response = await updateUser(user_id, formData);
       console.log(response);
       console.log('updated akun siswa');
-      navigate(`/siswa/${id}`);
+      navigate(`/siswa/${id}`, {
+        state: { success: true, message: 'Berhasil mengubah password siswa' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.status === 500)
