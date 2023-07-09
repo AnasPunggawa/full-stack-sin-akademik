@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/ui/Button';
 import ReactPaginate from 'react-paginate';
 import DeleteNilai from './DeleteNilai';
+import jwtDecode from 'jwt-decode';
 
 const TABLE_HEAD_NILAI = [
   {
@@ -36,7 +37,11 @@ const TABLE_HEAD_NILAI = [
 ];
 
 function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
+  const getAccessToken = localStorage.getItem('accessToken');
+  const decodeAccessToken = jwtDecode(getAccessToken);
+
   const { nilai, total_data, total_page, current_page } = DataTable;
+  // console.log(decodeAccessToken.id === nilai?.guru?.user_id);
 
   const navigate = useNavigate();
 
@@ -86,10 +91,12 @@ function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
                     >
                       Detail
                     </Button>
-                    <DeleteNilai
-                      Nilai={item}
-                      SetRefreshCount={SetRefreshCount}
-                    />
+                    {item.guru.user_id === decodeAccessToken.id && (
+                      <DeleteNilai
+                        Nilai={item}
+                        SetRefreshCount={SetRefreshCount}
+                      />
+                    )}
                   </td>
                 </tr>
               );

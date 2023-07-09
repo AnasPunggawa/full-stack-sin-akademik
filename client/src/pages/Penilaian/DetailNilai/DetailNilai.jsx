@@ -38,9 +38,8 @@ function DetailNilai() {
     dispatch({ type: ACTION_DETAIL_NILAI_REDUCER.FETCH_DATA_LOADING });
     try {
       const response = await getNilai(id);
+      console.log(response);
       const data = response.data.data;
-      console.log(data);
-      console.log(decodeAccessToken);
       if (data.guru.user_id === decodeAccessToken.id) setAuthorized(true);
       // if (decodeAccessToken?.id !== data.guru.user_id)
       //   return navigate('/penilaian', {
@@ -105,16 +104,11 @@ function DetailNilai() {
                 <IconChevronLeft /> Kembali
               </div>
             </Button>
-            {authorized && (
+            {authorized && statusSemester && (
               <div className="flex gap-2 sm:gap-4">
-                {statusSemester && (
-                  <Button
-                    OnClick={() => handleEdit()}
-                    ButtonStyle="LINK_PRIMARY"
-                  >
-                    Edit
-                  </Button>
-                )}
+                <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
+                  Edit
+                </Button>
                 <DeleteNilai Nilai={detailNilai.data} />
               </div>
             )}
