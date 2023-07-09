@@ -6,7 +6,7 @@ import { deleteUser } from '../../../../api/users';
 import { useNavigate } from 'react-router-dom';
 import BoxError from '../../../../components/ui/BoxError';
 
-function DeleteUser({ User }) {
+function DeleteUser({ User, SetRefreshCount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -30,11 +30,19 @@ function DeleteUser({ User }) {
       const data = await deleteUser(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      SetRefreshCount((prev) => prev + 1);
+      navigate('/users', {
+        state: { success: true, message: 'Berhasil menghapus user' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
-      console.log(error.response.data);
-      setErrorMessage(error.response.data.message);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('User tidak bisa dihapus');
+      if (error.response.data.status === 500)
+        return setErrorMessage('Something went wrong');
+      if (error.response) return setErrorMessage(error.response.data.message);
+      return setErrorMessage('Something went wrong');
     } finally {
       setIsLoading(false);
     }
@@ -98,6 +106,7 @@ function DeleteUser({ User }) {
 
 DeleteUser.propTypes = {
   User: PropTypes.object,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default DeleteUser;

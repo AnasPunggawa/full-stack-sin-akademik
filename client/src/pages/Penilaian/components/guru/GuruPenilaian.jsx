@@ -19,6 +19,7 @@ import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableNilai from './TableNilai';
 import BoxSuccess from '../../../../components/ui/BoxSuccess';
+import BoxError from '../../../../components/ui/BoxError';
 
 function GuruPenilaian() {
   const { state } = useLocation();
@@ -126,6 +127,7 @@ function GuruPenilaian() {
       <Header>Penilaian</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
           {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahNilai()}>

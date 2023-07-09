@@ -40,6 +40,7 @@ function EditData({ NilaiSiswa }) {
       console.log('updated nilai siswa');
       navigate(`/penilaian/${data.id}`, {
         state: { success: true, message: 'Berhasil mengubah nilai siswa' },
+        replace: true,
       });
     } catch (error) {
       setIsError(true);

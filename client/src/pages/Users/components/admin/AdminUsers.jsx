@@ -4,7 +4,7 @@ import TableUser from './TableUser';
 import Button from '../../../../components/ui/Button';
 import Header from '../Header';
 import Container from '../Container';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import InputSelect from '../../../../components/form/InputSelect';
 import InputSearch from '../../../../components/form/InputSearch';
 import {
@@ -17,6 +17,8 @@ import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import { SELECT_ROLE } from '../../../../config/role';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
+import BoxError from '../../../../components/ui/BoxError';
 
 // const SELECT_ROLE = [
 //   {
@@ -39,6 +41,7 @@ function AdminUsers() {
   const [inputSearch, setInputSearch] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [users, dispatch] = useReducer(
     usersReducer,
@@ -48,6 +51,7 @@ function AdminUsers() {
   const isComponentMounted = useRef(true);
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   async function fetchUsers() {
     dispatch({ type: ACTION_USERS_REDUCER.FETCH_DATA_LOADING });
@@ -88,6 +92,7 @@ function AdminUsers() {
   }
 
   useEffect(() => {
+    console.log(refreshCount);
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
@@ -96,7 +101,7 @@ function AdminUsers() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [searchUsername, kategoriRole, page, limit]);
+  }, [searchUsername, kategoriRole, page, limit, refreshCount]);
 
   function tambahUser() {
     navigate('new');
@@ -113,6 +118,8 @@ function AdminUsers() {
       <Header>Users</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahUser()}>
               Tambah User <IconPlus />
@@ -142,7 +149,11 @@ function AdminUsers() {
         {users.error && <LayoutError>{users.errorMessage}</LayoutError>}
         {!users.loading && !users.error && users.data && (
           <LayoutSuccess>
-            <TableUser DataTable={users.data} SetPage={setPage} />
+            <TableUser
+              DataTable={users.data}
+              SetPage={setPage}
+              SetRefreshCount={setRefreshCount}
+            />
           </LayoutSuccess>
         )}
       </Container>

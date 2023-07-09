@@ -26,7 +26,7 @@ const TABLE_HEAD_USERS = [
   },
 ];
 
-function TableUser({ DataTable, SetPage }) {
+function TableUser({ DataTable, SetPage, SetRefreshCount }) {
   const { users, total_data, total_page, current_page } = DataTable;
 
   function handlePageChange(e) {
@@ -65,7 +65,7 @@ function TableUser({ DataTable, SetPage }) {
                   </td>
                   <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
                     <PasswordUser User={item} />
-                    <DeleteUser User={item} />
+                    <DeleteUser User={item} SetRefreshCount={SetRefreshCount} />
                   </td>
                 </tr>
               );
@@ -114,6 +114,7 @@ function TableUser({ DataTable, SetPage }) {
 TableUser.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableUser;

@@ -18,6 +18,7 @@ function EditNilaiSiswa() {
   const decodeAccessToken = jwtDecode(getAccessToken);
 
   const { id } = useParams();
+
   const [namaSiswa, setNamaSiswa] = useState('');
   const [detailNilai, dispatch] = useReducer(
     detailNilaiReducer,
@@ -32,14 +33,16 @@ function EditNilaiSiswa() {
     dispatch({ type: ACTION_DETAIL_NILAI_REDUCER.FETCH_DATA_LOADING });
     try {
       const response = await getNilai(id);
-      const data = response.data.data;
+      const data = response?.data.data;
       if (decodeAccessToken?.id !== data?.guru?.user_id)
-        return navigate(`/penilaian/${id}`, {
+        return navigate('/penilaian', {
           state: { success: false, message: 'Anda tidak memiliki akses' },
+          replace: true,
         });
       if (!data?.semester?.status)
         return navigate(`/penilaian/${id}`, {
           state: { success: false, message: 'Semester sudah tidak aktif' },
+          replace: true,
         });
       setNamaSiswa(data?.siswa?.nama);
       dispatch({

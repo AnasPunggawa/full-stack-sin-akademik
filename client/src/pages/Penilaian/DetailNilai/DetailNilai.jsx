@@ -14,8 +14,12 @@ import LayoutError from '../../../components/ui/LayoutError';
 import LayoutLoading from '../../../components/ui/LayoutLoading';
 import DetailData from './components/DetailData';
 import DeleteNilai from './components/DeleteNilai';
+import jwtDecode from 'jwt-decode';
 
 function DetailNilai() {
+  const getAccessToken = localStorage.getItem('accessToken');
+  const decodeAccessToken = jwtDecode(getAccessToken);
+
   const { id } = useParams();
 
   const [namaSiswa, setNamaSiswa] = useState('');
@@ -34,6 +38,12 @@ function DetailNilai() {
     try {
       const response = await getNilai(id);
       const data = response.data.data;
+      if (decodeAccessToken?.id !== data.guru.user_id)
+        return navigate('/penilaian', {
+          state: { success: false, message: 'Anda tidak memiliki akses' },
+          replace: true,
+        });
+
       setNamaSiswa(data.siswa.nama);
       setStatusSemester(data.semester.status);
       dispatch({

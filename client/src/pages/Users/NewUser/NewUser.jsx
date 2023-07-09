@@ -50,7 +50,10 @@ function NewUser() {
       const response = await createUser(formData);
       const data = response.data.data;
       console.log(data);
-      navigate('/users');
+      navigate('/users', {
+        state: { success: true, message: 'Berhasil menambahkan user' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)
