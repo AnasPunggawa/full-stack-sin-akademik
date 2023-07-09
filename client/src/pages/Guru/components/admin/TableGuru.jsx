@@ -35,7 +35,7 @@ const TABLE_HEAD_GURU = [
   },
 ];
 
-function TableGuru({ DataTable, SetPage }) {
+function TableGuru({ DataTable, SetPage, SetRefreshCount }) {
   const { guru, total_data, total_page, current_page } = DataTable;
 
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ function TableGuru({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteGuru Guru={item} />
+                    <DeleteGuru Guru={item} SetRefreshCount={SetRefreshCount} />
                   </td>
                 </tr>
               );
@@ -137,6 +137,7 @@ function TableGuru({ DataTable, SetPage }) {
 TableGuru.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableGuru;

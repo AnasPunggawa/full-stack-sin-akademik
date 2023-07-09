@@ -31,9 +31,14 @@ function DeleteSiswa({ Siswa }) {
       const data = await deleteSiswa(id);
       console.log(data);
       setIsOpen(false);
-      navigate('/siswa');
+      navigate('/siswa', {
+        state: { success: true, message: 'Berhasil menghapus siswa' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Siswa tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);

@@ -14,13 +14,16 @@ import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import { getAllSiswa } from '../../../../api/siswa';
 import TableSiswa from './TableSiswa';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function AdminSiswa() {
   const [searchSiswa, setSearchSiswa] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputSearch, setInputSearch] = useState('');
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [siswa, dispatch] = useReducer(
     siswaReducer,
@@ -30,6 +33,7 @@ function AdminSiswa() {
   const isComponentMounted = useRef(false);
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   async function fetchAllSiswa() {
     dispatch({ type: ACTION_SISWA_REDUCER.FETCH_DATA_LOADING });
@@ -73,7 +77,7 @@ function AdminSiswa() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [searchSiswa, page, limit]);
+  }, [searchSiswa, page, limit, refreshCount]);
 
   function tambahSiswa() {
     navigate('new');
@@ -90,6 +94,8 @@ function AdminSiswa() {
       <Header>Siswa</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahSiswa()}>
               Tambah Siswa <IconPlus />
@@ -109,7 +115,11 @@ function AdminSiswa() {
         {siswa.error && <LayoutError>{siswa.errorMessage}</LayoutError>}
         {!siswa.loading && !siswa.error && siswa.data && (
           <LayoutSuccess>
-            <TableSiswa DataTable={siswa.data} SetPage={setPage} />
+            <TableSiswa
+              DataTable={siswa.data}
+              SetPage={setPage}
+              SetRefreshCount={setRefreshCount}
+            />
           </LayoutSuccess>
         )}
       </Container>

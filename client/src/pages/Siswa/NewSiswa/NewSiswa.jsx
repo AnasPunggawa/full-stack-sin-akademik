@@ -58,7 +58,8 @@ function NewSiswa() {
       console.log(data);
       console.log('created new siswa');
       navigate('/siswa', {
-        state: { message: 'Berhasilkan menambahkan siswa' },
+        state: { success: true, message: 'Berhasil menambahkan siswa' },
+        replace: true,
       });
     } catch (error) {
       setIsError(true);

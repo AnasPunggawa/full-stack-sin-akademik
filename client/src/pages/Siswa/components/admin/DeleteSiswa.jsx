@@ -6,7 +6,7 @@ import BoxError from '../../../../components/ui/BoxError';
 import { IconWarning, IconXMark } from '../../../../components/ui/Icons';
 import { deleteSiswa } from '../../../../api/siswa';
 
-function DeleteSiswa({ Siswa }) {
+function DeleteSiswa({ Siswa, SetRefreshCount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -31,9 +31,15 @@ function DeleteSiswa({ Siswa }) {
       const data = await deleteSiswa(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      SetRefreshCount((prev) => prev + 1);
+      navigate('/siswa', {
+        state: { success: true, message: 'Berhasil menghapus siswa' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Siswa tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);
@@ -99,6 +105,7 @@ function DeleteSiswa({ Siswa }) {
 
 DeleteSiswa.propTypes = {
   Siswa: PropTypes.object,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default DeleteSiswa;

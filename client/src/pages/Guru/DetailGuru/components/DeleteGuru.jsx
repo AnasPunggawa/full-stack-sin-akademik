@@ -31,9 +31,14 @@ function DeleteGuru({ Guru }) {
       const data = await deleteGuru(id);
       console.log(data);
       setIsOpen(false);
-      navigate('/guru');
+      navigate('/guru', {
+        state: { success: true, message: 'Berhasil menghapus guru' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Guru tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);

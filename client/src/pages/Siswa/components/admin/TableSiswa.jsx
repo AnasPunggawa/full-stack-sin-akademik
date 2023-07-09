@@ -35,7 +35,7 @@ const TABLE_HEAD_SISWA = [
   },
 ];
 
-function TableSiswa({ DataTable, SetPage }) {
+function TableSiswa({ DataTable, SetPage, SetRefreshCount }) {
   const { siswa, total_data, total_page, current_page } = DataTable;
 
   const navigate = useNavigate();
@@ -87,7 +87,10 @@ function TableSiswa({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteSiswa Siswa={item} />
+                    <DeleteSiswa
+                      Siswa={item}
+                      SetRefreshCount={SetRefreshCount}
+                    />
                   </td>
                 </tr>
               );
@@ -136,6 +139,7 @@ function TableSiswa({ DataTable, SetPage }) {
 TableSiswa.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableSiswa;

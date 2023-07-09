@@ -14,19 +14,23 @@ import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableGuru from './TableGuru';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function AdminGuru() {
   const [searchGuru, setSearchGuru] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputSearch, setInputSearch] = useState('');
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [guru, dispatch] = useReducer(guruReducer, INITIAL_STATE_GURU_REDUCER);
 
   const isComponentMounted = useRef(false);
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   async function fetchAllGuru() {
     dispatch({ type: ACTION_GURU_REDUCER.FETCH_DATA_LOADING });
@@ -68,7 +72,7 @@ function AdminGuru() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [searchGuru, page, limit]);
+  }, [searchGuru, page, limit, refreshCount]);
 
   function tambahGuru() {
     navigate('new');
@@ -85,6 +89,8 @@ function AdminGuru() {
       <Header>Guru</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahGuru()}>
               Tambah Guru <IconPlus />
@@ -104,7 +110,11 @@ function AdminGuru() {
         {guru.error && <LayoutError>{guru.errorMessage}</LayoutError>}
         {!guru.loading && !guru.error && guru.data && (
           <LayoutSuccess>
-            <TableGuru DataTable={guru.data} SetPage={setPage} />
+            <TableGuru
+              DataTable={guru.data}
+              SetPage={setPage}
+              SetRefreshCount={setRefreshCount}
+            />
           </LayoutSuccess>
         )}
       </Container>

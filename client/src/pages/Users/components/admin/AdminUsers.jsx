@@ -92,7 +92,6 @@ function AdminUsers() {
   }
 
   useEffect(() => {
-    console.log(refreshCount);
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
