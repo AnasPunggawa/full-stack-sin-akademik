@@ -5,7 +5,7 @@ import Button from '../../../../components/ui/Button';
 import { IconPlus } from '../../../../components/ui/Icons';
 import Container from '../Container';
 import Header from '../Header';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   ACTION_SEMESTER_REDUCER,
   INITIAL_STATE_SEMESTER_REDUCER,
@@ -17,6 +17,8 @@ import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import { getAllSemester } from '../../../../api/semester';
 import TableSemester from './TableSemester';
 import { SELECT_SEMESTER } from '../../../../config/semester';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
+import BoxError from '../../../../components/ui/BoxError';
 
 // const SELECT_SEMESTER = [
 //   { id: 'ganjil', name: 'Ganjil' },
@@ -29,6 +31,7 @@ function AdminSemester() {
   const [inputSearch, setInputSearch] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [semester, dispatch] = useReducer(
     semesterReducer,
@@ -36,6 +39,7 @@ function AdminSemester() {
   );
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const isComponentMounted = useRef(true);
 
@@ -86,7 +90,7 @@ function AdminSemester() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [kategoriSemester, searchSemester, page, limit]);
+  }, [kategoriSemester, searchSemester, page, limit, refreshCount]);
 
   function tambahSemester() {
     navigate('new');
@@ -103,6 +107,8 @@ function AdminSemester() {
       <Header>Semester</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahSemester()}>
               Tambah Semester <IconPlus />
@@ -132,7 +138,11 @@ function AdminSemester() {
         {semester.error && <LayoutError>{semester.errorMessage}</LayoutError>}
         {!semester.loading && !semester.error && semester.data && (
           <LayoutSuccess>
-            <TableSemester DataTable={semester.data} SetPage={setPage} />
+            <TableSemester
+              DataTable={semester.data}
+              SetPage={setPage}
+              SetRefreshCount={setRefreshCount}
+            />
           </LayoutSuccess>
         )}
       </Container>

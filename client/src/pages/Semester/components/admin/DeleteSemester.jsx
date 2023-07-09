@@ -6,7 +6,7 @@ import { IconWarning, IconXMark } from '../../../../components/ui/Icons';
 import BoxError from '../../../../components/ui/BoxError';
 import { deleteSemester } from '../../../../api/semester';
 
-function DeleteSemester({ Semester }) {
+function DeleteSemester({ Semester, SetRefreshCount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -30,9 +30,15 @@ function DeleteSemester({ Semester }) {
       const data = await deleteSemester(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      SetRefreshCount((prev) => prev + 1);
+      navigate('/semester', {
+        state: { success: true, message: 'Berhasil menghapus semester' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Semester tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);
@@ -96,6 +102,7 @@ function DeleteSemester({ Semester }) {
 
 DeleteSemester.propTypes = {
   Semester: PropTypes.object,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default DeleteSemester;

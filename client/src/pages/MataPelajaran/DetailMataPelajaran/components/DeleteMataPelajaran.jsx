@@ -29,9 +29,14 @@ function DeleteMataPelajaran({ MataPelajaran }) {
     try {
       const data = await deleteMataPelajaran(id);
       console.log(data);
-      navigate('/mata-pelajaran');
+      navigate('/mata-pelajaran', {
+        state: { success: true, message: 'Berhasil menghapus mata pelajaran' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Mata pelajaran tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);

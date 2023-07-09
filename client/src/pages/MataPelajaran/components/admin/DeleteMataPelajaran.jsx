@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import BoxError from '../../../../components/ui/BoxError';
 import { deleteMataPelajaran } from '../../../../api/mataPelajaran';
 
-function DeleteMataPelajaran({ MataPelajaran }) {
+function DeleteMataPelajaran({ MataPelajaran, SetRefreshCount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -30,9 +30,15 @@ function DeleteMataPelajaran({ MataPelajaran }) {
       const data = await deleteMataPelajaran(id);
       console.log(data);
       setIsOpen(false);
-      navigate(0);
+      SetRefreshCount((prev) => prev + 1);
+      navigate('/mata-pelajaran', {
+        state: { success: true, message: 'Berhasil menghapus mata pelajaran' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Mata pelajaran tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);
@@ -96,6 +102,7 @@ function DeleteMataPelajaran({ MataPelajaran }) {
 
 DeleteMataPelajaran.propTypes = {
   MataPelajaran: PropTypes.object,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default DeleteMataPelajaran;

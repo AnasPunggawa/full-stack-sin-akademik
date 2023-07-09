@@ -23,7 +23,7 @@ const TABLE_HEAD_MATAPELAJARAN = [
   },
 ];
 
-function TableMataPelajaran({ DataTable, SetPage }) {
+function TableMataPelajaran({ DataTable, SetPage, SetRefreshCount }) {
   const { mataPelajaran, total_data, total_page, current_page } = DataTable;
 
   const navigate = useNavigate();
@@ -84,7 +84,10 @@ function TableMataPelajaran({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteMataPelajaran MataPelajaran={item} />
+                    <DeleteMataPelajaran
+                      MataPelajaran={item}
+                      SetRefreshCount={SetRefreshCount}
+                    />
                   </td>
                 </tr>
               );
@@ -134,6 +137,7 @@ function TableMataPelajaran({ DataTable, SetPage }) {
 TableMataPelajaran.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableMataPelajaran;

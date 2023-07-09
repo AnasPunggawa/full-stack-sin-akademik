@@ -29,9 +29,14 @@ function DeleteSemester({ Semester }) {
     try {
       const data = await deleteSemester(id);
       console.log(data);
-      navigate('/semester');
+      navigate('/semester', {
+        state: { success: true, message: 'Berhasil menghapus semester' },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
+      if (error.response.data.status === 500 && !error.response.data.success)
+        return setErrorMessage('Semester tidak bisa dihapus');
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);

@@ -14,13 +14,16 @@ import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import Button from '../../../../components/ui/Button';
 import { IconPlus } from '../../../../components/ui/Icons';
 import InputSearch from '../../../../components/form/InputSearch';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 
 function AdminMataPelajaran() {
   const [searchMataPelajaran, setSearchMataPelajaran] = useState('');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputSearch, setInputSearch] = useState('');
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const [mataPelajaran, dispatch] = useReducer(
     mataPelajaranReducer,
@@ -30,6 +33,7 @@ function AdminMataPelajaran() {
   const isComponentMounted = useRef(false);
 
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   async function fetchAllMataPelajaran() {
     dispatch({ type: ACTION_MATAPELAJARAN_REDUCER.FETCH_DATA_LOADING });
@@ -77,7 +81,7 @@ function AdminMataPelajaran() {
     return () => {
       isComponentMounted.current = false;
     };
-  }, [searchMataPelajaran, page, limit]);
+  }, [searchMataPelajaran, page, limit, refreshCount]);
 
   function tambahMataPelajaran() {
     navigate('new');
@@ -94,6 +98,8 @@ function AdminMataPelajaran() {
       <Header>Mata Pelajaran</Header>
       <Container>
         <div className="w-full flex flex-col gap-3 p-4">
+          {state && !state?.success && <BoxError>{state?.message}</BoxError>}
+          {state && state?.success && <BoxSuccess>{state?.message}</BoxSuccess>}
           <div className="w-full">
             <Button OnClick={() => tambahMataPelajaran()}>
               Tambah Mata Pelajaran <IconPlus />
@@ -120,6 +126,7 @@ function AdminMataPelajaran() {
               <TableMataPelajaran
                 DataTable={mataPelajaran.data}
                 SetPage={setPage}
+                SetRefreshCount={setRefreshCount}
               />
             </LayoutSuccess>
           )}

@@ -32,7 +32,7 @@ const TABLE_HEAD_SEMESTER = [
   },
 ];
 
-function TableSemester({ DataTable, SetPage }) {
+function TableSemester({ DataTable, SetPage, SetRefreshCount }) {
   const { semester, total_data, total_page, current_page } = DataTable;
 
   const navigate = useNavigate();
@@ -83,7 +83,10 @@ function TableSemester({ DataTable, SetPage }) {
                     >
                       Detail
                     </Button>
-                    <DeleteSemester Semester={item} />
+                    <DeleteSemester
+                      Semester={item}
+                      SetRefreshCount={SetRefreshCount}
+                    />
                   </td>
                 </tr>
               );
@@ -133,6 +136,7 @@ function TableSemester({ DataTable, SetPage }) {
 TableSemester.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
+  SetRefreshCount: PropTypes.func,
 };
 
 export default TableSemester;
