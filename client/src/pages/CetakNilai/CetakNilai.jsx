@@ -14,7 +14,6 @@ function CetakNilai() {
       {user.role === 'admin' && <AdminCetakNilai />}
       {user.role === 'guru' && <GuruCetakNilai />}
       {user.role === 'siswa' && <SiswaCetakNilai />}
-      <h1 className="text-2xl font-bold">Cetak Nilai Public</h1>
     </>
   );
 }

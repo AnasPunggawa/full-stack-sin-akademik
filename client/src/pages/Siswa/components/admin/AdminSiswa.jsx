@@ -39,13 +39,13 @@ function AdminSiswa() {
     dispatch({ type: ACTION_SISWA_REDUCER.FETCH_DATA_LOADING });
     try {
       const response = await getAllSiswa(searchSiswa, page, limit);
-      const data = response.data.data;
+      const data = response?.data?.data;
       dispatch({
         type: ACTION_SISWA_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
       });
-      setPage(data.current_page);
-      setLimit(data.limit_data);
+      setPage(data?.current_page);
+      setLimit(data?.limit_data);
     } catch (error) {
       if (error.response?.status === 500) {
         dispatch({
@@ -111,12 +111,12 @@ function AdminSiswa() {
             </form>
           </div>
         </div>
-        {siswa.loading && <LayoutLoading>Loading...</LayoutLoading>}
-        {siswa.error && <LayoutError>{siswa.errorMessage}</LayoutError>}
-        {!siswa.loading && !siswa.error && siswa.data && (
+        {siswa?.loading && <LayoutLoading>Loading...</LayoutLoading>}
+        {siswa?.error && <LayoutError>{siswa?.errorMessage}</LayoutError>}
+        {!siswa?.loading && !siswa?.error && siswa?.data && (
           <LayoutSuccess>
             <TableSiswa
-              DataTable={siswa.data}
+              DataTable={siswa?.data}
               SetPage={setPage}
               SetRefreshCount={setRefreshCount}
             />
