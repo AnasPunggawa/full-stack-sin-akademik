@@ -11,6 +11,8 @@ import SelectSemester from './SelectSemester';
 import SelectKelas from './SelectKelas';
 import SelectMataPelajaran from './SelectMataPelajaran';
 import SelectSiswa from './SelectSiswa';
+import LayoutLoading from '../../../../components/ui/LayoutLoading';
+import LayoutError from '../../../../components/ui/LayoutError';
 
 function AdminCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');
@@ -76,8 +78,10 @@ function AdminCetakNilai() {
       if (!isComponentMounted.current) return;
       // fetchAllNilai();
       if (kodeSemester && kodeKelas) {
-        // fetchAllNilai();
-        return;
+        if (siswaId || kodeMataPelajaran) {
+          fetchAllNilai();
+          return;
+        }
       }
     }
     return () => {
@@ -114,8 +118,14 @@ function AdminCetakNilai() {
         <div className="w-full grid gap-2 sm:grid-cols-2 p-4">
           <SelectSemester SetKodeSemester={setKodeSemester} />
           <SelectKelas SetKodeKelas={setKodeKelas} />
-          <SelectMataPelajaran SetKodeMataPelajaran={setKodeMataPelajaran} />
-          <SelectSiswa SetSiswaId={setSiswaId} />
+          {kodeSemester && kodeKelas && (
+            <>
+              <SelectSiswa SetSiswaId={setSiswaId} />
+              <SelectMataPelajaran
+                SetKodeMataPelajaran={setKodeMataPelajaran}
+              />
+            </>
+          )}
         </div>
         {/* </div> */}
         {/* </div> */}
@@ -123,6 +133,8 @@ function AdminCetakNilai() {
         <h1>Kode Kelas: {kodeKelas}</h1>
         <h1>Kode Mata Pelajaran: {kodeMataPelajaran}</h1>
         <h1>Siswa ID: {siswaId}</h1>
+        {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
+        {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
       </Container>
     </>
   );

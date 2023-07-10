@@ -72,6 +72,9 @@ async function find_all_datas(
         },
       },
     },
+    orderBy: {
+      id: 'asc',
+    },
   });
 }
 
