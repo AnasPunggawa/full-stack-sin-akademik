@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { getAllNilai } from '../../../../api/nilai';
 import { CustomError } from '../../../../utils/CustomError';
-import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
+import BoxError from '../../../../components/ui/BoxError';
 
 function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
   const [dataSiswa, setDataSiswa] = useState(null);
