@@ -1,9 +1,5 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import Button from '../../../../components/ui/Button';
 import ReactPaginate from 'react-paginate';
-import DeleteNilai from './DeleteNilai';
-import jwtDecode from 'jwt-decode';
 
 const TABLE_HEAD_NILAI = [
   {
@@ -19,6 +15,10 @@ const TABLE_HEAD_NILAI = [
     style: 'px-6 py-3 w-3/12',
   },
   {
+    name: 'Mata Pelajaran',
+    style: 'px-6 py-3 w-2/12',
+  },
+  {
     name: 'Nilai',
     style: 'px-6 py-3 w-1/12',
   },
@@ -30,25 +30,10 @@ const TABLE_HEAD_NILAI = [
     name: 'Catatan',
     style: 'px-6 py-3 w-2/12',
   },
-  {
-    name: 'Aksi',
-    style: 'px-6 py-3 w-2/12',
-  },
 ];
 
-function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
-  const getAccessToken = localStorage.getItem('accessToken');
-  const decodeAccessToken = jwtDecode(getAccessToken);
-
+function TableNilai({ DataTable, SetPage }) {
   const { nilai, total_data, total_page, current_page } = DataTable;
-  // console.log(decodeAccessToken.id === nilai?.guru?.user_id);
-
-  const navigate = useNavigate();
-
-  function handleDetail(id) {
-    // console.log('go to detail', id);
-    navigate(id);
-  }
 
   function handlePageChange(e) {
     SetPage(e.selected + 1);
@@ -81,25 +66,10 @@ function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
                     {item?.siswa?.nisn}
                   </td>
                   <td className="px-6 py-2.5">{item?.siswa?.nama}</td>
+                  <td className="px-6 py-2.5">{item?.matapelajaran?.nama}</td>
                   <td className="px-6 py-2.5">{item?.nilai}</td>
                   <td className="px-6 py-2.5">{item?.predikat}</td>
                   <td className="px-6 py-2.5">{item?.catatan}</td>
-                  <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
-                    <Button
-                      OnClick={() => handleDetail(item?.id)}
-                      ButtonStyle="LINK_PRIMARY"
-                    >
-                      Detail
-                    </Button>
-                    {item?.guru?.user_id === decodeAccessToken?.id &&
-                      item?.guru?.status &&
-                      item?.siswa?.status && (
-                        <DeleteNilai
-                          Nilai={item}
-                          SetRefreshCount={SetRefreshCount}
-                        />
-                      )}
-                  </td>
                 </tr>
               );
             })}
@@ -147,7 +117,6 @@ function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
 TableNilai.propTypes = {
   DataTable: PropTypes.object,
   SetPage: PropTypes.func,
-  SetRefreshCount: PropTypes.func,
 };
 
 export default TableNilai;

@@ -5,6 +5,7 @@ import { SELECT_SEMESTER } from '../../../../config/semester';
 import { getAllSemester } from '../../../../api/semester';
 import BoxError from '../../../../components/ui/BoxError';
 import { CustomError } from '../../../../utils/CustomError';
+import InputRequired from '../../../../components/form/InputRequired';
 
 function SelectSemester({ SetKodeSemester }) {
   const [dataSemester, setDataSemester] = useState(null);
@@ -94,6 +95,7 @@ function SelectSemester({ SetKodeSemester }) {
             OnChange={(e) => setTahunAjaran(e.target.value)}
           >
             Tahun Ajaran
+            <InputRequired />
           </InputSelect>
           <InputSelect
             HtmlFor={'semester'}
@@ -104,6 +106,7 @@ function SelectSemester({ SetKodeSemester }) {
             OnChange={(e) => setSemester(e.target.value)}
           >
             Semester
+            <InputRequired />
           </InputSelect>
         </>
       )}

@@ -5,6 +5,7 @@ import InputSelect from '../../../../components/form/InputSelect';
 import { getAllKelas } from '../../../../api/kelas';
 import { CustomError } from '../../../../utils/CustomError';
 import BoxError from '../../../../components/ui/BoxError';
+import InputRequired from '../../../../components/form/InputRequired';
 
 function SelectKelas({ SetKodeKelas }) {
   const [dataKelas, setDataKelas] = useState(null);
@@ -99,6 +100,7 @@ function SelectKelas({ SetKodeKelas }) {
             OnChange={(e) => setKelas(e.target.value)}
           >
             Kelas
+            <InputRequired />
           </InputSelect>
           <InputSelect
             HtmlFor={'kode'}
@@ -110,6 +112,7 @@ function SelectKelas({ SetKodeKelas }) {
             OnChange={(e) => setKode(e.target.value)}
           >
             Kode
+            <InputRequired />
           </InputSelect>
         </>
       )}

@@ -13,13 +13,15 @@ import SelectMataPelajaran from './SelectMataPelajaran';
 import SelectSiswa from './SelectSiswa';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
+import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
+import TableNilai from './TableNilai';
 
 function AdminCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
   const [siswaId, setSiswaId] = useState('');
-  const [page, SetPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
   const [nilai, dispatch] = useReducer(
@@ -47,7 +49,7 @@ function AdminCetakNilai() {
         type: ACTION_NILAI_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
       });
-      SetPage(data.current_page);
+      setPage(data.current_page);
       setLimit(data.limit_data);
     } catch (error) {
       console.log(error);
@@ -113,28 +115,29 @@ function AdminCetakNilai() {
     <>
       <Header>Cetak Nilai</Header>
       <Container>
-        {/* <div className="w-full flex flex-col gap-3 p-4"> */}
-        {/* <div className="flex flex-wrap gap-3 items-end justify-between"> */}
         <div className="w-full grid gap-2 sm:grid-cols-2 p-4">
           <SelectSemester SetKodeSemester={setKodeSemester} />
           <SelectKelas SetKodeKelas={setKodeKelas} />
           {kodeSemester && kodeKelas && (
             <>
-              <SelectSiswa SetSiswaId={setSiswaId} />
+              <SelectSiswa
+                KodeSemester={kodeSemester}
+                KodeKelas={kodeKelas}
+                SetSiswaId={setSiswaId}
+              />
               <SelectMataPelajaran
                 SetKodeMataPelajaran={setKodeMataPelajaran}
               />
             </>
           )}
         </div>
-        {/* </div> */}
-        {/* </div> */}
-        <h1>Kode Semester: {kodeSemester}</h1>
-        <h1>Kode Kelas: {kodeKelas}</h1>
-        <h1>Kode Mata Pelajaran: {kodeMataPelajaran}</h1>
-        <h1>Siswa ID: {siswaId}</h1>
         {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
+        {!nilai?.loading && !nilai?.error && nilai?.data && (
+          <LayoutSuccess>
+            <TableNilai DataTable={nilai?.data} SetPage={setPage} />
+          </LayoutSuccess>
+        )}
       </Container>
     </>
   );

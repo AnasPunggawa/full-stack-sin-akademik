@@ -5,7 +5,7 @@ import { CustomError } from '../../../../utils/CustomError';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
 
-function SelectSiswa({ SetSiswaId }) {
+function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
   const [dataSiswa, setDataSiswa] = useState(null);
   const [siswa, setSiswa] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +18,15 @@ function SelectSiswa({ SetSiswaId }) {
     setIsLoading(true);
     setIsError(false);
     try {
-      const response = await getAllNilai('', '', '', '', '', 1, 1000);
+      const response = await getAllNilai(
+        '',
+        '',
+        KodeSemester,
+        KodeKelas,
+        '',
+        1,
+        1000
+      );
       const data = response?.data?.data;
       const listSiswa = listArray(data?.nilai);
       if (listSiswa.length === 0)
@@ -99,6 +107,8 @@ function SelectSiswa({ SetSiswaId }) {
 }
 
 SelectSiswa.propTypes = {
+  KodeSemester: PropTypes.string,
+  KodeKelas: PropTypes.string,
   SetSiswaId: PropTypes.func,
 };
 

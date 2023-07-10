@@ -5,6 +5,7 @@ import { getUser } from '../../../../api/users';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
 import { CustomError } from '../../../../utils/CustomError';
+import InputRequired from '../../../../components/form/InputRequired';
 
 function SelectMataPelajaran({ SetKodeMataPelajaran }) {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -78,6 +79,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
           OnChange={(e) => setMataPelajaran(e.target.value)}
         >
           Mata Pelajaran
+          <InputRequired />
         </InputSelect>
       )}
     </>
