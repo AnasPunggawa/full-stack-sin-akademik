@@ -78,7 +78,6 @@ function AdminCetakNilai() {
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
-      // fetchAllNilai();
       if (kodeSemester && kodeKelas) {
         if (siswaId || kodeMataPelajaran) {
           fetchAllNilai();

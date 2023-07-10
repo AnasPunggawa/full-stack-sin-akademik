@@ -13,6 +13,7 @@ import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import SelectSiswa from './SelectSiswa';
 import SelectSemester from './SelectSemester';
 import SelectMataPelajaran from './SelectMataPelajaran';
+import TableNilai from './TableNilai';
 
 function SiswaCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');
@@ -20,7 +21,7 @@ function SiswaCetakNilai() {
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
   const [siswaId, setSiswaId] = useState('');
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
 
   const [nilai, dispatch] = useReducer(
     nilaiReducer,
@@ -42,7 +43,6 @@ function SiswaCetakNilai() {
         limit
       );
       const data = response.data.data;
-      console.log(data.nilai);
       dispatch({
         type: ACTION_NILAI_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
@@ -76,10 +76,8 @@ function SiswaCetakNilai() {
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
-      // fetchAllNilai();
       if (kodeSemester && kodeKelas && siswaId) {
         fetchAllNilai();
-        return;
       }
     }
     return () => {
@@ -130,13 +128,9 @@ function SiswaCetakNilai() {
         {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
         {!nilai?.loading && !nilai?.error && nilai?.data && (
           <LayoutSuccess>
-            {/* <TableNilai DataTable={nilai?.data} SetPage={setPage} /> */}
+            <TableNilai DataTable={nilai?.data} SetPage={setPage} />
           </LayoutSuccess>
         )}
-        <h1>Siswa ID: {siswaId}</h1>
-        <h1>Kode Semester: {kodeSemester}</h1>
-        <h1>Kode Kelas: {kodeKelas}</h1>
-        <h1>Kode Mata Pelajara: {kodeMataPelajaran}</h1>
       </Container>
     </>
   );

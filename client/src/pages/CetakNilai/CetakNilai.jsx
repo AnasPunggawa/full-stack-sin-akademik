@@ -11,9 +11,9 @@ function CetakNilai() {
 
   return (
     <>
-      {user.role === 'admin' && <AdminCetakNilai />}
-      {user.role === 'guru' && <GuruCetakNilai />}
-      {user.role === 'siswa' && <SiswaCetakNilai />}
+      {user?.role === 'admin' && <AdminCetakNilai />}
+      {user?.role === 'guru' && <GuruCetakNilai />}
+      {user?.role === 'siswa' && <SiswaCetakNilai />}
     </>
   );
 }

@@ -122,7 +122,7 @@ function SelectSemester({ SiswaId, SetKodeSemester, SetKodeKelas }) {
             HtmlFor="kode-kelas"
             Type="text"
             Value={kelas}
-            Placeholder={kelas}
+            Placeholder="kode kelas"
             Required={true}
             Disabled={true}
             InputSize="SMALL"
