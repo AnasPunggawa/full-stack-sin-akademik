@@ -93,6 +93,7 @@ async function find_details_single_data_siswa(id) {
       siswa: {
         include: {
           semester: true,
+          nilai: true,
         },
       },
     },
