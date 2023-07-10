@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { SELECT_SEMESTER } from '../../../../config/semester';
 import { getAllSemester } from '../../../../api/semester';
 import BoxError from '../../../../components/ui/BoxError';
+import { CustomError } from '../../../../utils/CustomError';
 
 function SelectSemester({ SetKodeSemester }) {
   const [dataSemester, setDataSemester] = useState(null);
@@ -22,10 +23,13 @@ function SelectSemester({ SetKodeSemester }) {
       const response = await getAllSemester('', '', 1, 100);
       const data = response.data.data;
       const listSemester = listArray(data?.semester);
+      if (listSemester.length === 0)
+        throw new CustomError(404, 'Belum ada semester yang tersedia');
       const filteredSemester = filterByValue(listSemester, 'id');
       setDataSemester(filteredSemester);
     } catch (error) {
       setIsError(true);
+      if (error.statusCode === 404) return setErrorMessage(error.message);
       if (error.response.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);

@@ -1,10 +1,10 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
-import {
-  INITIAL_STATE_SISWA_REDUCER,
-  siswaReducer,
-} from '../../../../reducer/siswa/siswaReducer';
 import { getAllNilai } from '../../../../api/nilai';
-import { ACTION_NILAI_REDUCER } from '../../../../reducer/nilai/nilaiReducer';
+import {
+  ACTION_NILAI_REDUCER,
+  INITIAL_STATE_NILAI_REDUCER,
+  nilaiReducer,
+} from '../../../../reducer/nilai/nilaiReducer';
 import Header from '../Header';
 import Container from '../Container';
 import SelectSemester from './SelectSemester';
@@ -20,9 +20,9 @@ function AdminCetakNilai() {
   const [page, SetPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const [siswa, dispatch] = useReducer(
-    siswaReducer,
-    INITIAL_STATE_SISWA_REDUCER
+  const [nilai, dispatch] = useReducer(
+    nilaiReducer,
+    INITIAL_STATE_NILAI_REDUCER
   );
 
   const isComponentMounted = useRef(false);
@@ -74,9 +74,9 @@ function AdminCetakNilai() {
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
-      fetchAllNilai();
+      // fetchAllNilai();
       if (kodeSemester && kodeKelas) {
-        fetchAllNilai();
+        // fetchAllNilai();
         return;
       }
     }
@@ -119,6 +119,10 @@ function AdminCetakNilai() {
         </div>
         {/* </div> */}
         {/* </div> */}
+        <h1>Kode Semester: {kodeSemester}</h1>
+        <h1>Kode Kelas: {kodeKelas}</h1>
+        <h1>Kode Mata Pelajaran: {kodeMataPelajaran}</h1>
+        <h1>Siswa ID: {siswaId}</h1>
       </Container>
     </>
   );
