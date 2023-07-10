@@ -7,6 +7,10 @@ import { getAllNilai } from '../../../../api/nilai';
 import { ACTION_NILAI_REDUCER } from '../../../../reducer/nilai/nilaiReducer';
 import Header from '../Header';
 import Container from '../Container';
+import SelectSemester from './SelectSemester';
+import SelectKelas from './SelectKelas';
+import SelectMataPelajaran from './SelectMataPelajaran';
+import SelectSiswa from './SelectSiswa';
 
 function AdminCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');
@@ -104,7 +108,18 @@ function AdminCetakNilai() {
   return (
     <>
       <Header>Cetak Nilai</Header>
-      <Container>Halaman Cetak Nilai</Container>
+      <Container>
+        {/* <div className="w-full flex flex-col gap-3 p-4"> */}
+        {/* <div className="flex flex-wrap gap-3 items-end justify-between"> */}
+        <div className="w-full grid gap-2 sm:grid-cols-2 p-4">
+          <SelectSemester SetKodeSemester={setKodeSemester} />
+          <SelectKelas SetKodeKelas={setKodeKelas} />
+          <SelectMataPelajaran SetKodeMataPelajaran={setKodeMataPelajaran} />
+          <SelectSiswa SetSiswaId={setSiswaId} />
+        </div>
+        {/* </div> */}
+        {/* </div> */}
+      </Container>
     </>
   );
 }
