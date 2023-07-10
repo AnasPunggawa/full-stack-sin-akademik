@@ -46,6 +46,7 @@ function GuruPenilaian() {
     try {
       const response = await getAllNilai(
         searchSiswa,
+        '',
         kodeSemester,
         kodeKelas,
         kodeMataPelajaran,

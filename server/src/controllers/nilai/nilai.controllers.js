@@ -24,6 +24,7 @@ async function getAllNilai(req, res, next) {
   try {
     const {
       searchNama = '',
+      siswaID = '',
       kodeSemester = '',
       kodeKelas = '',
       kodeMataPelajaran = '',
@@ -33,6 +34,7 @@ async function getAllNilai(req, res, next) {
     const skip = (Number(page) - 1) * Number(limit);
     const data = await find_all_datas(
       searchNama,
+      siswaID,
       kodeSemester,
       kodeKelas,
       kodeMataPelajaran,

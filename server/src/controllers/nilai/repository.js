@@ -2,6 +2,7 @@ const prisma = require('../../../prisma/seed');
 
 async function find_all_datas(
   searchNama,
+  siswaID,
   kodeSemester,
   kodeKelas,
   kodeMataPelajaran,
@@ -16,6 +17,9 @@ async function find_all_datas(
         nama: {
           contains: searchNama,
         },
+      },
+      siswa_id: {
+        contains: siswaID,
       },
       semester_id: {
         contains: kodeSemester,

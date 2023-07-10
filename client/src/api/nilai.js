@@ -2,6 +2,7 @@ import api from './api';
 
 export async function getAllNilai(
   searchSiswa = '',
+  siswaID = '',
   kodeSemester = '',
   kodeKelas = '',
   kodeMataPelajaran = '',
@@ -9,7 +10,7 @@ export async function getAllNilai(
   limit = 10
 ) {
   return await api.get(
-    `/api/v1/nilai?searchNama=${searchSiswa}&kodeSemester=${kodeSemester}&kodeKelas=${kodeKelas}&kodeMataPelajaran=${kodeMataPelajaran}&page=${page}&limit=${limit}`,
+    `/api/v1/nilai?searchNama=${searchSiswa}&siswaID=${siswaID}&kodeSemester=${kodeSemester}&kodeKelas=${kodeKelas}&kodeMataPelajaran=${kodeMataPelajaran}&page=${page}&limit=${limit}`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
