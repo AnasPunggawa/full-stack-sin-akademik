@@ -37,6 +37,7 @@ import AddBiodata from './pages/Profile/AddBiodata/AddBiodata';
 import NewNilai from './pages/Penilaian/NewNilai/NewNilai';
 import DetailNilai from './pages/Penilaian/DetailNilai/DetailNilai';
 import EditNilaiSiswa from './pages/Penilaian/DetailNilai/EditNilaiSiswa/EditNilaiSiswa';
+import Print from './pages/CetakNilai/Print/Print';
 
 function Router() {
   return (
@@ -57,7 +58,10 @@ function Router() {
               <Route path="edit-biodata" element={<EditBiodata />} />
               <Route path="edit-akun" element={<EditAkun />} />
             </Route>
-            <Route path="cetak-nilai" element={<CetakNilai />} />
+            <Route path="cetak-nilai">
+              <Route index element={<CetakNilai />} />
+              <Route path="print" element={<Print />} />
+            </Route>
             {/* ONLY ADMIN AND GURU CAN ACCESS */}
             <Route
               element={<PermissionRoutes Roles={[ROLES.ADMIN, ROLES.GURU]} />}

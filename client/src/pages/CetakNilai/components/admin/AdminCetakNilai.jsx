@@ -15,14 +15,18 @@ import LayoutLoading from '../../../../components/ui/LayoutLoading';
 import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableNilai from './TableNilai';
+import Button from '../../../../components/ui/Button';
+import { useNavigate } from 'react-router-dom';
+import { IconPrint } from '../../../../components/ui/Icons';
 
 function AdminCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
+  const [allMataPelajaran, setAllMataPelajaran] = useState(null);
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
   const [siswaId, setSiswaId] = useState('');
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(250);
 
   const [nilai, dispatch] = useReducer(
     nilaiReducer,
@@ -30,6 +34,8 @@ function AdminCetakNilai() {
   );
 
   const isComponentMounted = useRef(false);
+
+  const navigate = useNavigate();
 
   async function fetchAllNilai() {
     dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_LOADING });
@@ -109,6 +115,43 @@ function AdminCetakNilai() {
     return;
   }, [kodeSemester, kodeKelas, kodeMataPelajaran, siswaId]);
 
+  function goToCetakPage() {
+    const nilaiSiswa = nilai?.data?.nilai;
+    const mergedNilaiMaPel = nilaiAndMataPelajaran(
+      nilaiSiswa,
+      allMataPelajaran
+    );
+    navigate('print', {
+      state: {
+        success: true,
+        data: {
+          siswa_id: siswaId,
+          semester_id: kodeSemester,
+          kelas_id: kodeKelas,
+          nilai: mergedNilaiMaPel,
+        },
+      },
+    });
+  }
+
+  function nilaiAndMataPelajaran(nilaiSiswa, allMataPelajaran) {
+    const mergedNilaiAndMataPelajaran = allMataPelajaran.map(function (
+      matapelajaran
+    ) {
+      const hasNilai = nilaiSiswa.find(function (nilai) {
+        return nilai?.matapelajaran_id === matapelajaran?.id;
+      });
+      return {
+        ...matapelajaran,
+        nilai_id: hasNilai ? hasNilai?.id : null,
+        nilai: hasNilai ? hasNilai?.nilai : null,
+        predikat: hasNilai ? hasNilai?.predikat : null,
+        catatan: hasNilai ? hasNilai?.catatan : null,
+      };
+    });
+    return mergedNilaiAndMataPelajaran;
+  }
+
   return (
     <>
       <Header>Cetak Nilai</Header>
@@ -126,6 +169,7 @@ function AdminCetakNilai() {
               {siswaId && (
                 <SelectMataPelajaran
                   SetKodeMataPelajaran={setKodeMataPelajaran}
+                  SetAllMataPelajaran={setAllMataPelajaran}
                 />
               )}
             </>
@@ -134,9 +178,19 @@ function AdminCetakNilai() {
         {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
         {!nilai?.loading && !nilai?.error && nilai?.data && (
-          <LayoutSuccess>
-            <TableNilai DataTable={nilai?.data} SetPage={setPage} />
-          </LayoutSuccess>
+          <>
+            <div className="flex justify-end p-4">
+              <Button
+                OnClick={() => goToCetakPage()}
+                ButtonStyle="LINK_PRIMARY"
+              >
+                <IconPrint /> Cetak
+              </Button>
+            </div>
+            <LayoutSuccess>
+              <TableNilai DataTable={nilai?.data} SetPage={setPage} />
+            </LayoutSuccess>
+          </>
         )}
       </Container>
     </>

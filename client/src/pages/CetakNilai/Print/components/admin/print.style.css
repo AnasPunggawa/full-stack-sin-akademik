@@ -1,0 +1,9 @@
+@media print {
+  .page-print {
+    font: 'Arial';
+    /* size: 210mm 297mm; */
+    /* margin: 5mm 5mm 5mm 5mm !important; */
+  }
+
+  /* Aturan gaya lainnya untuk media cetak */
+}

@@ -5,7 +5,7 @@ import InputSelect from '../../../../components/form/InputSelect';
 import BoxError from '../../../../components/ui/BoxError';
 import { CustomError } from '../../../../utils/CustomError';
 
-function SelectMataPelajaran({ SetKodeMataPelajaran }) {
+function SelectMataPelajaran({ SetKodeMataPelajaran, SetAllMataPelajaran }) {
   const [dataMataPelajaran, setDataMataPelajaran] = useState(null);
   const [mataPelajaran, setMataPelajaran] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +25,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
         throw new CustomError(404, 'Belum ada mata pelajaran yang tersedia');
       const filteredMataPelajaran = filterByValue(listMataPelajaran, 'id');
       setDataMataPelajaran(filteredMataPelajaran);
+      SetAllMataPelajaran(filteredMataPelajaran);
     } catch (error) {
       setIsError(true);
       if (error?.statusCode === 404) return setErrorMessage(error?.message);
@@ -84,7 +85,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
         <>
           <InputSelect
             HtmlFor={'mata-pelajaran'}
-            PlaceHolder={'Pilih Mata Pelajaran'}
+            PlaceHolder={'Semua'}
             SelectSize="SMALL"
             Options={dataMataPelajaran}
             Value={mataPelajaran}
@@ -100,6 +101,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
 
 SelectMataPelajaran.propTypes = {
   SetKodeMataPelajaran: PropTypes.func,
+  SetAllMataPelajaran: PropTypes.func,
 };
 
 export default SelectMataPelajaran;

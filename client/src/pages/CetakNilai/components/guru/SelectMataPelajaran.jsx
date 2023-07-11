@@ -72,7 +72,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
       {dataMataPelajaran && (
         <InputSelect
           HtmlFor={'mata-pelajaran'}
-          PlaceHolder={'Pilih Mata Pelajaran'}
+          PlaceHolder={'Semua'}
           SelectSize="SMALL"
           Options={dataMataPelajaran}
           Value={mataPelajaran}

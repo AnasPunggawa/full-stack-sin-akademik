@@ -36,7 +36,7 @@ function Navbar() {
     <nav className="fixed top-0 z-50 w-full bg-gray-100 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center justify-start">
+          <div className="flex items-center">
             <button
               onClick={toggle}
               data-drawer-target="logo-sidebar"
@@ -64,18 +64,16 @@ function Navbar() {
               </span>
             </Link>
           </div>
-          <div className="flex items-center">
-            <div className="flex items-center ml-3 gap-5">
-              <h1 className="hidden md:block text-lg font-semibold  dark:text-white">
-                {/* {Role} */}
-                {/* {user?.role} */}
-                {decodeAccessToken?.role.charAt(0).toUpperCase() +
-                  decodeAccessToken?.role.slice(1)}
-              </h1>
-              <Button Type="button" OnClick={handleLogout}>
-                Logout
-              </Button>
-            </div>
+          <div className="flex items-center ml-3 gap-5">
+            <h1 className="hidden md:block text-xl font-semibold  dark:text-white">
+              {/* {Role} */}
+              {/* {user?.role} */}
+              {decodeAccessToken?.role.charAt(0).toUpperCase() +
+                decodeAccessToken?.role.slice(1)}
+            </h1>
+            <Button Type="button" OnClick={handleLogout}>
+              Logout
+            </Button>
           </div>
         </div>
       </div>

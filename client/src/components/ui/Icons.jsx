@@ -107,6 +107,10 @@ export function IconEyeSlash() {
   return <FontAwesomeIcon icon={faEyeSlash} className="w-4 h-4" />;
 }
 
+export function IconPrint() {
+  return <FontAwesomeIcon icon={faPrint} className="w-4 h-4" />;
+}
+
 export function IconWarning() {
   return (
     <svg
