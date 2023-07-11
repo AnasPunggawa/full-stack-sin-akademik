@@ -22,8 +22,8 @@ function ComponentPrint({ ComponentToPrint, DataDocument }) {
   });
 
   return (
-    <div>
-      <div className="flex justify-end p-4">
+    <div className="w-full p-4 space-y-4">
+      <div className="flex justify-end">
         <Button OnClick={() => handlePrint()} ButtonStyle="LINK_PRIMARY">
           <IconPrint /> Cetak
         </Button>
