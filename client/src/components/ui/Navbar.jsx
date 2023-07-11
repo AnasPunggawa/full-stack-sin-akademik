@@ -7,9 +7,14 @@ import { useSidebarContext } from '../../hooks/useSidebarContext';
 import { authLogout } from '../../api/auth';
 import { ACTION_AUTH_REDUCER_CONTEXT } from '../../reducer/authReducerContext';
 import Button from './Button';
+import jwtDecode from 'jwt-decode';
 
 function Navbar() {
-  const { user, dispatch } = useAuthContext();
+  const getAccessToken = localStorage.getItem('accessToken');
+  const decodeAccessToken = jwtDecode(getAccessToken);
+
+  // const { user, dispatch } = useAuthContext();
+  const { dispatch } = useAuthContext();
   const { isOpen, toggle } = useSidebarContext();
 
   const navigate = useNavigate();
@@ -63,7 +68,9 @@ function Navbar() {
             <div className="flex items-center ml-3 gap-5">
               <h1 className="hidden md:block text-lg font-semibold  dark:text-white">
                 {/* {Role} */}
-                {user?.role}
+                {/* {user?.role} */}
+                {decodeAccessToken?.role.charAt(0).toUpperCase() +
+                  decodeAccessToken?.role.slice(1)}
               </h1>
               <Button Type="button" OnClick={handleLogout}>
                 Logout

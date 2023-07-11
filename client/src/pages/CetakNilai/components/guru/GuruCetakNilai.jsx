@@ -44,7 +44,6 @@ function GuruCetakNilai() {
         limit
       );
       const data = response.data.data;
-      console.log(data.nilai);
       dispatch({
         type: ACTION_NILAI_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
@@ -125,9 +124,11 @@ function GuruCetakNilai() {
                 KodeKelas={kodeKelas}
                 SetSiswaId={setSiswaId}
               />
-              <SelectMataPelajaran
-                SetKodeMataPelajaran={setKodeMataPelajaran}
-              />
+              {siswaId && (
+                <SelectMataPelajaran
+                  SetKodeMataPelajaran={setKodeMataPelajaran}
+                />
+              )}
             </>
           )}
         </div>
