@@ -1,11 +1,11 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import Header from '../../../components/Header';
 import Container from '../../../components/Container';
-import ComponentPrint from '../../../../../components/ui/ComponentPrint';
 import ComponentToPrint from './ComponentToPrint';
 import { useEffect, useRef, useState } from 'react';
 import { getSiswa } from '../../../../../api/siswa';
 import BoxError from '../../../../../components/ui/BoxError';
+import ComponentPrint from './ComponentPrint';
 
 function AdminPrint() {
   const { state } = useLocation();
@@ -53,6 +53,7 @@ function AdminPrint() {
       const documentTitle = `${state?.data?.siswa_id}-${state?.data?.semester_id}`;
       setDataDocument({
         documentTitle: documentTitle,
+        prevLocation: state?.data?.prevLocation,
         data: {
           siswa: {
             siswa_id: state?.data?.siswa_id,

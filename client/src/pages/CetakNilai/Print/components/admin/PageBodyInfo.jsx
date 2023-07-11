@@ -15,7 +15,7 @@ function PageBodyInfo({ Info }) {
     { title: 'TAHUN AJARAN', value: tahunAjaran, style: 'text-sm' },
   ];
   return (
-    <table className="w-full mb-4">
+    <table className="w-full mb-4 uppercase">
       <tbody>
         {documentInfo.map((item, index) => {
           return (

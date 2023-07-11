@@ -2,7 +2,7 @@ import LogoSekolah from './../../../../../assets/images/logo-smpn1-binamu.webp';
 
 function PageHeader() {
   return (
-    <table className="w-full">
+    <table className="w-full uppercase">
       <tbody className="w-full flex flex-col items-center text-center">
         <tr className="mb-2">
           <td>
@@ -25,7 +25,7 @@ function PageHeader() {
         </tr>
         <tr>
           <td className="text-sm text-center">
-            Jl. Lanto Daeng Pasewang No. 32 Bontosunggu, Kelurahan Empoang
+            Jl. Lanto Daeng Pasewang No. 32 Bontosunggu, Kelurahan Empoang,
             <br />
             Kecamatan Binamu 92311
           </td>

@@ -16,7 +16,7 @@ import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableNilai from './TableNilai';
 import Button from '../../../../components/ui/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { IconPrint } from '../../../../components/ui/Icons';
 
 function AdminCetakNilai() {
@@ -36,6 +36,7 @@ function AdminCetakNilai() {
   const isComponentMounted = useRef(false);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   async function fetchAllNilai() {
     dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_LOADING });
@@ -125,6 +126,7 @@ function AdminCetakNilai() {
       state: {
         success: true,
         data: {
+          prevLocation: pathname,
           siswa_id: siswaId,
           semester_id: kodeSemester,
           kelas_id: kodeKelas,
@@ -179,14 +181,16 @@ function AdminCetakNilai() {
         {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
         {!nilai?.loading && !nilai?.error && nilai?.data && (
           <>
-            <div className="flex justify-end p-4">
-              <Button
-                OnClick={() => goToCetakPage()}
-                ButtonStyle="LINK_PRIMARY"
-              >
-                <IconPrint /> Cetak
-              </Button>
-            </div>
+            {!kodeMataPelajaran && (
+              <div className="flex justify-end p-4">
+                <Button
+                  OnClick={() => goToCetakPage()}
+                  ButtonStyle="LINK_PRIMARY"
+                >
+                  <IconPrint /> Cetak
+                </Button>
+              </div>
+            )}
             <LayoutSuccess>
               <TableNilai DataTable={nilai?.data} SetPage={setPage} />
             </LayoutSuccess>

@@ -29,7 +29,13 @@ function NewMataPelajaran() {
       const response = await createMataPelajaran(formData);
       const data = response.data.data;
       console.log(data);
-      navigate('/mata-pelajaran');
+      navigate('/mata-pelajaran', {
+        state: {
+          success: true,
+          message: 'Berhasil menambahkan mata pelajaran',
+        },
+        replace: true,
+      });
     } catch (error) {
       setIsError(true);
       if (error.response.data.status === 500)

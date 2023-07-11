@@ -4,6 +4,7 @@ import { getAllNilai } from '../../../../api/nilai';
 import { CustomError } from '../../../../utils/CustomError';
 import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
+import InputRequired from '../../../../components/form/InputRequired';
 
 function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
   const [dataSiswa, setDataSiswa] = useState(null);
@@ -100,6 +101,7 @@ function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
             OnChange={(e) => setSiswa(e.target.value)}
           >
             Siswa
+            <InputRequired />
           </InputSelect>
         </>
       )}

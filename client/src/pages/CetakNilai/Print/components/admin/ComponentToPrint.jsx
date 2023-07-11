@@ -11,7 +11,7 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
     <div className="flex justify-start min-[900px]:justify-center overflow-x-auto">
       <div
         ref={ref}
-        className="bg-white text-black font-sans page-print py-8 px-12 min-w-[21cm] min-h-[29.7cm] uppercase rounded-md"
+        className="bg-white text-black font-sans page-print py-8 px-12 min-w-[21cm] min-h-[29.7cm] rounded-md"
       >
         <PageHeader />
         <PageBodyInfo Info={siswa} />

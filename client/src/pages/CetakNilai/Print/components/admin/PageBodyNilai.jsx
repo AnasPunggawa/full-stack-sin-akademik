@@ -30,9 +30,11 @@ function PageBodyNilai({ Nilai }) {
     acc += parseInt(cur?.nilai);
     return acc;
   }, 0);
+
   const rataRataNilai = (totalNilai / Nilai.length).toFixed(2);
+
   return (
-    <table className="w-full border border-black mb-4">
+    <table className="w-full border border-black mb-4 uppercase">
       <thead className="uppercase text-center">
         <tr>
           {TABLE_HEAD_LAPORAN.map((item, index) => {
