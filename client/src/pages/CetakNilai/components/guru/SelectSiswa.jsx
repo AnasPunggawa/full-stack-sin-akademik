@@ -5,7 +5,7 @@ import { CustomError } from '../../../../utils/CustomError';
 import InputSelect from '../../../../components/form/InputSelect';
 import BoxError from '../../../../components/ui/BoxError';
 
-function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
+function SelectSiswa({ KodeSemester, KodeKelas, SetAllSiswa, SetSiswaId }) {
   const [dataSiswa, setDataSiswa] = useState(null);
   const [siswa, setSiswa] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +32,7 @@ function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
       if (listSiswa.length === 0)
         throw new CustomError(404, 'Belum ada siswa yang memiliki nilai');
       const filteredSiswa = filterByValue(listSiswa, 'id');
+      SetAllSiswa(filteredSiswa);
       setDataSiswa(filteredSiswa);
     } catch (error) {
       setIsError(true);
@@ -49,7 +50,13 @@ function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
   function listArray(arr) {
     return arr.map((item) => {
       const namaNISN = `${item?.siswa?.nisn} - ${item?.siswa?.nama}`;
-      return { id: item?.siswa?.id, name: namaNISN };
+      return {
+        id: item?.siswa?.id,
+        name: namaNISN,
+        siswa_nama: item?.siswa?.nama,
+        siswa_nisn: item?.siswa?.nisn,
+        siswa_nis: item?.siswa?.nis,
+      };
     });
   }
 
@@ -78,18 +85,18 @@ function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
     return () => {
       isComponentMounted.current = false;
     };
-  }, []);
+  }, [KodeSemester, KodeKelas]);
 
   useEffect(() => {
-    if (siswa) return SetSiswaId(siswa);
+    if (siswa && !isError) return SetSiswaId(siswa);
     return SetSiswaId('');
-  }, [siswa]);
+  }, [siswa, isError]);
 
   return (
     <>
       {isLoading && <p>Loading...</p>}
       {isError && <BoxError>{errorMessage}</BoxError>}
-      {dataSiswa && (
+      {!isLoading && !isError && dataSiswa && (
         <>
           <InputSelect
             HtmlFor={'siswa'}
@@ -110,6 +117,7 @@ function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
 SelectSiswa.propTypes = {
   KodeSemester: PropTypes.string,
   KodeKelas: PropTypes.string,
+  SetAllSiswa: PropTypes.func,
   SetSiswaId: PropTypes.func,
 };
 

@@ -37,6 +37,7 @@ async function find_all_datas(
           id: true,
           user_id: true,
           nisn: true,
+          nis: true,
           nama: true,
           status: true,
         },

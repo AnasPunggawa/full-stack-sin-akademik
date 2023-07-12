@@ -7,8 +7,7 @@ import PageFooter from './PageFooter';
 import './page.style.css';
 
 const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
-  const { siswa, nilai } = Data;
-
+  const { guru, nilai } = Data;
   return (
     <div className="flex justify-start min-[900px]:justify-center overflow-x-auto">
       <div
@@ -16,7 +15,7 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
         className="bg-white text-black font-sans page-print py-8 px-12 min-w-[21cm] min-h-[29.7cm] rounded-md page-body"
       >
         <PageHeader />
-        <PageBodyInfo Info={siswa} />
+        <PageBodyInfo Info={guru} />
         <PageBodyNilai Nilai={nilai} />
         <PageFooter />
       </div>

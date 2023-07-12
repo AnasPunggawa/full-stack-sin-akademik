@@ -190,7 +190,6 @@ function AdminCetakNilai() {
             {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
             {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
             {!nilai?.loading && !nilai?.error && nilai?.data && (
-              // {!nilai?.loading && !nilai?.error && nilai?.data && (
               <>
                 {!kodeMataPelajaran && (
                   <div className="flex justify-end p-4">

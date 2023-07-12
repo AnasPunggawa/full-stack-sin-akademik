@@ -7,7 +7,7 @@ import BoxError from '../../../../components/ui/BoxError';
 import InputSelect from '../../../../components/form/InputSelect';
 import InputRequired from '../../../../components/form/InputRequired';
 
-function SelectMataPelajaran({ SetKodeMataPelajaran }) {
+function SelectMataPelajaran({ SetKodeMataPelajaran, SetGuruInfo }) {
   const getAccessToken = localStorage.getItem('accessToken');
   const decodeAccessToken = jwtDecode(getAccessToken);
 
@@ -25,6 +25,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
     try {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
+      SetGuruInfo(data?.guru[0]);
       const dataResMataPelajaran = data?.guru[0]?.matapelajaran;
       if (dataResMataPelajaran.length === 0)
         throw new CustomError(404, 'Anda belum memiliki mata pelajaran');
@@ -72,7 +73,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
       {dataMataPelajaran && (
         <InputSelect
           HtmlFor={'mata-pelajaran'}
-          PlaceHolder={'Semua'}
+          PlaceHolder={'Pilih Mata Pelajaran'}
           SelectSize="SMALL"
           Options={dataMataPelajaran}
           Value={mataPelajaran}
@@ -88,6 +89,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
 
 SelectMataPelajaran.propTypes = {
   SetKodeMataPelajaran: PropTypes.func,
+  SetGuruInfo: PropTypes.func,
 };
 
 export default SelectMataPelajaran;

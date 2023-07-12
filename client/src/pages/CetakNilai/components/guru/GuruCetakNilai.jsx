@@ -15,12 +15,18 @@ import SelectKelas from './SelectKelas';
 import SelectSemester from './SelectSemester';
 import SelectMataPelajaran from './SelectMataPelajaran';
 import TableNilai from './TableNilai';
+import Button from '../../../../components/ui/Button';
+import { IconPrint } from '../../../../components/ui/Icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function GuruCetakNilai() {
+  const [guruInfo, setGuruInfo] = useState(null);
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
+  const [allSiswa, setAllSiswa] = useState(null);
   const [siswaId, setSiswaId] = useState('');
+  const [showTable, setShowTable] = useState(false);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -30,6 +36,9 @@ function GuruCetakNilai() {
   );
 
   const isComponentMounted = useRef(false);
+
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   async function fetchAllNilai() {
     dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_LOADING });
@@ -51,7 +60,6 @@ function GuruCetakNilai() {
       setPage(data.current_page);
       setLimit(data.limit_data);
     } catch (error) {
-      console.log(error);
       if (error.response.status === 500) {
         dispatch({
           type: ACTION_NILAI_REDUCER.FETCH_DATA_ERROR,
@@ -77,13 +85,13 @@ function GuruCetakNilai() {
     isComponentMounted.current = true;
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
-      // fetchAllNilai();
-      if (kodeSemester && kodeKelas) {
-        if (siswaId || kodeMataPelajaran) {
-          fetchAllNilai();
-          return;
-        }
+      if (kodeSemester && kodeKelas && kodeMataPelajaran) {
+        setShowTable(true);
+        fetchAllNilai();
+        return;
       }
+      setShowTable(false);
+      return;
     }
     return () => {
       isComponentMounted.current = false;
@@ -101,6 +109,7 @@ function GuruCetakNilai() {
     }
     if (!kodeMataPelajaran) {
       setKodeMataPelajaran('');
+      setSiswaId('');
       return;
     }
     if (!siswaId) {
@@ -109,6 +118,45 @@ function GuruCetakNilai() {
     }
     return;
   }, [kodeSemester, kodeKelas, kodeMataPelajaran, siswaId]);
+
+  function goToCetakPage() {
+    const nilaiSiswa = nilai?.data?.nilai;
+    const mergedNilaiSiswa = mergeNilaiAllSiswa(nilaiSiswa, allSiswa);
+    const data = {
+      prevLocation: pathname,
+      semester_id: kodeSemester,
+      kelas_id: kodeKelas,
+      matapelajaran_id: kodeMataPelajaran,
+      guruInfo: {
+        guru_id: guruInfo?.id,
+        nama: guruInfo?.nama,
+        nip: guruInfo?.nip,
+      },
+      nilai: mergedNilaiSiswa,
+    };
+    navigate('print', {
+      state: {
+        success: true,
+        data: data,
+      },
+    });
+  }
+
+  function mergeNilaiAllSiswa(nilaiSiswa, allSiswa) {
+    const mergedNilaiAndAllSiswa = allSiswa.map(function (siswa) {
+      const hasNilai = nilaiSiswa.find(function (nilai) {
+        return nilai.siswa_id === siswa.id;
+      });
+      return {
+        ...siswa,
+        nilai_id: hasNilai ? hasNilai.id : null,
+        nilai: hasNilai ? hasNilai.nilai : null,
+        predikat: hasNilai ? hasNilai.predikat : null,
+        catatan: hasNilai ? hasNilai.catatan : null,
+      };
+    });
+    return mergedNilaiAndAllSiswa;
+  }
 
   return (
     <>
@@ -119,25 +167,45 @@ function GuruCetakNilai() {
           <SelectKelas SetKodeKelas={setKodeKelas} />
           {kodeSemester && kodeKelas && (
             <>
-              <SelectSiswa
-                KodeSemester={kodeSemester}
-                KodeKelas={kodeKelas}
-                SetSiswaId={setSiswaId}
+              <SelectMataPelajaran
+                SetKodeMataPelajaran={setKodeMataPelajaran}
+                SetGuruInfo={setGuruInfo}
               />
-              {siswaId && (
-                <SelectMataPelajaran
-                  SetKodeMataPelajaran={setKodeMataPelajaran}
-                />
+              {kodeMataPelajaran && (
+                <>
+                  <SelectSiswa
+                    KodeSemester={kodeSemester}
+                    KodeKelas={kodeKelas}
+                    SetAllSiswa={setAllSiswa}
+                    SetSiswaId={setSiswaId}
+                  />
+                </>
               )}
             </>
           )}
         </div>
-        {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
-        {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
-        {!nilai?.loading && !nilai?.error && nilai?.data && (
-          <LayoutSuccess>
-            <TableNilai DataTable={nilai?.data} SetPage={setPage} />
-          </LayoutSuccess>
+        {showTable && (
+          <>
+            {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
+            {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
+            {!nilai?.loading && !nilai?.error && nilai?.data && (
+              <>
+                {!siswaId && (
+                  <div className="flex justify-end p-4">
+                    <Button
+                      OnClick={() => goToCetakPage()}
+                      ButtonStyle="LINK_PRIMARY"
+                    >
+                      <IconPrint /> Cetak
+                    </Button>
+                  </div>
+                )}
+                <LayoutSuccess>
+                  <TableNilai DataTable={nilai?.data} SetPage={setPage} />
+                </LayoutSuccess>
+              </>
+            )}
+          </>
         )}
       </Container>
     </>

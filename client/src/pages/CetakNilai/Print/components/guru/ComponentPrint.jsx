@@ -9,6 +9,10 @@ function ComponentPrint({ ComponentToPrint, DataDocument }) {
   const componentRef = useRef(null);
   const navigate = useNavigate();
 
+  // const handleBeforePrint = useCallback(() => {
+  //   console.log('first');
+  // }, []);
+
   const reactToPrintContent = useCallback(() => {
     return componentRef.current;
   }, [componentRef]);
@@ -16,6 +20,7 @@ function ComponentPrint({ ComponentToPrint, DataDocument }) {
   const handlePrint = useReactToPrint({
     documentTitle: DataDocument?.documentTitle,
     content: reactToPrintContent,
+    // onBeforePrint: handleBeforePrint,
   });
 
   function handleKembali() {
