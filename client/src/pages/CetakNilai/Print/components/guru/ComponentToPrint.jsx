@@ -4,7 +4,7 @@ import PageHeader from './PageHeader';
 import PageBodyInfo from './PageBodyInfo';
 import PageBodyNilai from './PageBodyNilai';
 import PageFooter from './PageFooter';
-import './page.style.css';
+import '../page-print.style.css';
 
 const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
   const { guru, nilai } = Data;

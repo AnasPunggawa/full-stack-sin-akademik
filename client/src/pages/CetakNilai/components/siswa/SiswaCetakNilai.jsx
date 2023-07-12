@@ -14,14 +14,19 @@ import SelectSiswa from './SelectSiswa';
 import SelectSemester from './SelectSemester';
 import SelectMataPelajaran from './SelectMataPelajaran';
 import TableNilai from './TableNilai';
+import Button from '../../../../components/ui/Button';
+import { IconPrint } from '../../../../components/ui/Icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function SiswaCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');
   const [kodeKelas, setKodeKelas] = useState('');
+  const [allMataPelajaran, setAllMataPelajaran] = useState(null);
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
   const [siswaId, setSiswaId] = useState('');
+  const [siswaInfo, setSiswaInfo] = useState(null);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(20);
+  const [limit, setLimit] = useState(50);
 
   const [nilai, dispatch] = useReducer(
     nilaiReducer,
@@ -29,6 +34,9 @@ function SiswaCetakNilai() {
   );
 
   const isComponentMounted = useRef(false);
+
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   async function fetchAllNilai() {
     dispatch({ type: ACTION_NILAI_REDUCER.FETCH_DATA_LOADING });
@@ -105,12 +113,56 @@ function SiswaCetakNilai() {
     return;
   }, [kodeSemester, kodeKelas, kodeMataPelajaran, siswaId]);
 
+  function goToCetakPage() {
+    const nilaiSiswa = nilai?.data?.nilai;
+    const mergedNilaiMaPel = nilaiAndMataPelajaran(
+      nilaiSiswa,
+      allMataPelajaran
+    );
+    const data = {
+      prevLocation: pathname,
+      semester_id: kodeSemester,
+      kelas_id: kodeKelas,
+      siswaInfo: {
+        siswa_id: siswaInfo?.id,
+        siswa_nama: siswaInfo?.nama,
+        siswa_nis: siswaInfo.nis,
+        siswa_nisn: siswaInfo.nisn,
+      },
+      nilai: mergedNilaiMaPel,
+    };
+    navigate('print', {
+      state: {
+        success: true,
+        data: data,
+      },
+    });
+  }
+
+  function nilaiAndMataPelajaran(nilaiSiswa, allMataPelajaran) {
+    const mergedNilaiAndMataPelajaran = allMataPelajaran.map(function (
+      matapelajaran
+    ) {
+      const hasNilai = nilaiSiswa.find(function (nilai) {
+        return nilai?.matapelajaran_id === matapelajaran?.id;
+      });
+      return {
+        ...matapelajaran,
+        nilai_id: hasNilai ? hasNilai?.id : null,
+        nilai: hasNilai ? hasNilai?.nilai : null,
+        predikat: hasNilai ? hasNilai?.predikat : null,
+        catatan: hasNilai ? hasNilai?.catatan : null,
+      };
+    });
+    return mergedNilaiAndMataPelajaran;
+  }
+
   return (
     <>
       <Header>Cetak Nilai</Header>
       <Container>
         <div className="w-full grid gap-2 sm:grid-cols-2 p-4">
-          <SelectSiswa SetSiswaId={setSiswaId} />
+          <SelectSiswa SetSiswaId={setSiswaId} SetSiswaInfo={setSiswaInfo} />
           <SelectSemester
             SiswaId={siswaId}
             SetKodeSemester={setKodeSemester}
@@ -120,16 +172,29 @@ function SiswaCetakNilai() {
             <>
               <SelectMataPelajaran
                 SetKodeMataPelajaran={setKodeMataPelajaran}
+                SetAllMataPelajaran={setAllMataPelajaran}
               />
+              {!kodeMataPelajaran && (
+                <div className="w-full mt-3 sm:mt-0 flex justify-end items-end">
+                  <Button
+                    OnClick={() => goToCetakPage()}
+                    ButtonStyle="LINK_PRIMARY"
+                  >
+                    <IconPrint /> Cetak
+                  </Button>
+                </div>
+              )}
             </>
           )}
         </div>
         {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
         {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
         {!nilai?.loading && !nilai?.error && nilai?.data && (
-          <LayoutSuccess>
-            <TableNilai DataTable={nilai?.data} SetPage={setPage} />
-          </LayoutSuccess>
+          <>
+            <LayoutSuccess>
+              <TableNilai DataTable={nilai?.data} SetPage={setPage} />
+            </LayoutSuccess>
+          </>
         )}
       </Container>
     </>

@@ -6,7 +6,7 @@ import BoxError from '../../../../components/ui/BoxError';
 import InputField from '../../../../components/form/InputField';
 import { CustomError } from '../../../../utils/CustomError';
 
-function SelectSiswa({ SetSiswaId }) {
+function SelectSiswa({ SetSiswaId, SetSiswaInfo }) {
   const getAccessToken = localStorage.getItem('accessToken');
   const decodeAccessToken = jwtDecode(getAccessToken);
   const [dataSiswa, setDataSiswa] = useState(null);
@@ -26,6 +26,7 @@ function SelectSiswa({ SetSiswaId }) {
         throw new CustomError(404, 'Siswa belum terdaftar');
       setDataSiswa(data?.siswa[0]);
       SetSiswaId(data?.siswa[0]?.id);
+      SetSiswaInfo(data?.siswa[0]);
     } catch (error) {
       setIsError(true);
       if (error.statusCode === 404) return setErrorMessage(error.message);
@@ -89,6 +90,7 @@ function SelectSiswa({ SetSiswaId }) {
 
 SelectSiswa.propTypes = {
   SetSiswaId: PropTypes.func,
+  SetSiswaInfo: PropTypes.func,
 };
 
 export default SelectSiswa;
