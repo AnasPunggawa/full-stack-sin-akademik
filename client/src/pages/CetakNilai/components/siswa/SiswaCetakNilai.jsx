@@ -25,6 +25,7 @@ function SiswaCetakNilai() {
   const [kodeMataPelajaran, setKodeMataPelajaran] = useState('');
   const [siswaId, setSiswaId] = useState('');
   const [siswaInfo, setSiswaInfo] = useState(null);
+  const [showTable, setShowTable] = useState(false);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(50);
 
@@ -85,8 +86,11 @@ function SiswaCetakNilai() {
     if (isComponentMounted.current) {
       if (!isComponentMounted.current) return;
       if (kodeSemester && kodeKelas && siswaId) {
+        setShowTable(true);
         fetchAllNilai();
+        return;
       }
+      setShowTable(false);
     }
     return () => {
       isComponentMounted.current = false;
@@ -96,6 +100,7 @@ function SiswaCetakNilai() {
   useEffect(() => {
     if (!kodeSemester) {
       setKodeSemester('');
+      setKodeMataPelajaran('');
       return;
     }
     if (!kodeKelas) {
@@ -187,13 +192,17 @@ function SiswaCetakNilai() {
             </>
           )}
         </div>
-        {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
-        {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
-        {!nilai?.loading && !nilai?.error && nilai?.data && (
+        {showTable && (
           <>
-            <LayoutSuccess>
-              <TableNilai DataTable={nilai?.data} SetPage={setPage} />
-            </LayoutSuccess>
+            {nilai?.loading && <LayoutLoading>Loading...</LayoutLoading>}
+            {nilai?.error && <LayoutError>{nilai?.errorMessage}</LayoutError>}
+            {!nilai?.loading && !nilai?.error && nilai?.data && (
+              <>
+                <LayoutSuccess>
+                  <TableNilai DataTable={nilai?.data} SetPage={setPage} />
+                </LayoutSuccess>
+              </>
+            )}
           </>
         )}
       </Container>
