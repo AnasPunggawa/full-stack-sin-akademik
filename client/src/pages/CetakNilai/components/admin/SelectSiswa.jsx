@@ -79,18 +79,19 @@ function SelectSiswa({ KodeSemester, KodeKelas, SetSiswaId }) {
     return () => {
       isComponentMounted.current = false;
     };
-  }, []);
+  }, [KodeKelas, KodeSemester]);
 
   useEffect(() => {
-    if (siswa) return SetSiswaId(siswa);
+    if (siswa && !isError) return SetSiswaId(siswa);
+    // if (siswa) return SetSiswaId(siswa);
     return SetSiswaId('');
-  }, [siswa]);
+  }, [siswa, isError]);
 
   return (
     <>
       {isLoading && <p>Loading...</p>}
       {isError && <BoxError>{errorMessage}</BoxError>}
-      {dataSiswa && (
+      {!isLoading && !isError && dataSiswa && (
         <>
           <InputSelect
             HtmlFor={'siswa'}
