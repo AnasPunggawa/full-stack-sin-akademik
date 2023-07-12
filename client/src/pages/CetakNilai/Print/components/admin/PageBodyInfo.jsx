@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 
 function PageBodyInfo({ Info }) {
-  const { nama_siswa, nis_siswa, nisn_siswa, kelas_id, semester_id } = Info;
+  const { kelas_id, semester_id, siswa_nama, siswa_nis, siswa_nisn } = Info;
   const kelas = kelas_id.split('-').join('').toUpperCase();
   const arrSemester = semester_id.split('-');
   const tahunAjaran = `${arrSemester[0]}/${arrSemester[1]}`;
   const semester = arrSemester[2].toUpperCase();
   const documentInfo = [
-    { title: 'Nama', value: nama_siswa.toUpperCase(), style: 'text-sm' },
-    { title: 'NIS', value: nis_siswa, style: 'text-sm' },
-    { title: 'NISN', value: nisn_siswa, style: 'text-sm' },
+    { title: 'Nama', value: siswa_nama.toUpperCase(), style: 'text-sm' },
+    { title: 'NIS', value: siswa_nis, style: 'text-sm' },
+    { title: 'NISN', value: siswa_nisn, style: 'text-sm' },
     { title: 'KELAS', value: kelas, style: 'text-sm' },
     { title: 'SEMESTER', value: semester, style: 'text-sm' },
     { title: 'TAHUN AJARAN', value: tahunAjaran, style: 'text-sm' },

@@ -130,16 +130,17 @@ function AdminCetakNilai() {
       nilaiSiswa,
       allMataPelajaran
     );
+    const data = {
+      prevLocation: pathname,
+      siswa_id: siswaId,
+      semester_id: kodeSemester,
+      kelas_id: kodeKelas,
+      nilai: mergedNilaiMaPel,
+    };
     navigate('print', {
       state: {
         success: true,
-        data: {
-          prevLocation: pathname,
-          siswa_id: siswaId,
-          semester_id: kodeSemester,
-          kelas_id: kodeKelas,
-          nilai: mergedNilaiMaPel,
-        },
+        data: data,
       },
     });
   }

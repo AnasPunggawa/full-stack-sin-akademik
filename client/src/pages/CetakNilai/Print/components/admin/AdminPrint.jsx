@@ -57,9 +57,9 @@ function AdminPrint() {
         data: {
           siswa: {
             siswa_id: state?.data?.siswa_id,
-            nama_siswa: dataSiswa?.nama,
-            nis_siswa: dataSiswa?.nis,
-            nisn_siswa: dataSiswa?.nisn,
+            siswa_nama: dataSiswa?.nama,
+            siswa_nis: dataSiswa?.nis,
+            siswa_nisn: dataSiswa?.nisn,
             semester_id: state?.data?.semester_id,
             kelas_id: state?.data?.kelas_id,
           },
