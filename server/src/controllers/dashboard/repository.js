@@ -85,6 +85,75 @@ async function count_all_matapelajaran() {
   return await prisma.matapelajaran.count();
 }
 
+async function find_profil_sekolah(npsn) {
+  return await prisma.profil_sekolah.findUnique({
+    where: {
+      id: npsn,
+    },
+  });
+}
+
+async function find_identitas_sekolah(npsn) {
+  return await prisma.identitas_sekolah.findUnique({
+    where: {
+      id: npsn,
+    },
+  });
+}
+
+async function find_kontak_sekolah(npsn) {
+  return await prisma.kontak_sekolah.findUnique({
+    where: {
+      id: npsn,
+    },
+  });
+}
+
+async function create_data_profil_sekolah(data) {
+  return await prisma.profil_sekolah.create({
+    data,
+  });
+}
+
+async function update_data_profil_sekolah(id, data) {
+  return await prisma.profil_sekolah.update({
+    where: {
+      id,
+    },
+    data,
+  });
+}
+
+async function create_data_identitas_sekolah(data) {
+  return await prisma.identitas_sekolah.create({
+    data,
+  });
+}
+
+async function update_data_identitas_sekolah(id, data) {
+  return await prisma.identitas_sekolah.update({
+    where: {
+      id,
+    },
+    data,
+  });
+}
+
+async function create_data_kontak_sekolah(data) {
+  return await prisma.kontak_sekolah.create({
+    data,
+  });
+}
+
+async function update_data_kontak_sekolah(id, data) {
+  return await prisma.kontak_sekolah.update({
+    where: {
+      id,
+    },
+    data,
+  });
+}
+
 module.exports = {
   check_user_id,
   find_single_data,
@@ -95,4 +164,13 @@ module.exports = {
   count_all_siswa_aktif,
   count_all_kelas,
   count_all_matapelajaran,
+  find_profil_sekolah,
+  find_identitas_sekolah,
+  find_kontak_sekolah,
+  create_data_profil_sekolah,
+  update_data_profil_sekolah,
+  create_data_identitas_sekolah,
+  update_data_identitas_sekolah,
+  create_data_kontak_sekolah,
+  update_data_kontak_sekolah,
 };
