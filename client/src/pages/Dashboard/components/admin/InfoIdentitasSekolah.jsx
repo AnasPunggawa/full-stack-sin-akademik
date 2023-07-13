@@ -1,7 +1,7 @@
 function InfoIdentitasSekolah() {
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
-      <h3 className="p-3 font-semibold text-base text-white bg-blue-500 dark:bg-blue-600 rounded-t-md">
+      <h3 className="p-3 font-semibold text-base text-white bg-yellow-500 dark:bg-yellow-600 rounded-t-md">
         Identitas Sekolah
       </h3>
       <div className="w-full p-3">
@@ -43,7 +43,7 @@ function InfoIdentitasSekolah() {
               <td>420/1089/DISDIKBUD-JP</td>
             </tr>
             <tr>
-              <td>Tanggal SK Izin Operasional</td>
+              <td width="50%">Tanggal SK Izin Operasional</td>
               <td>:</td>
               <td>2021-08-04</td>
             </tr>

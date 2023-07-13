@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import {
   IconKelas,
   IconMapel,
+  IconServer,
   IconUser,
   IconUsers,
 } from '../../../../components/ui/Icons';
@@ -36,11 +37,18 @@ const cardsContent = [
 
 function DashboardCardsInfo({ ClassName }) {
   return (
-    <div className={ClassName}>
-      {cardsContent.map((cardContent, index) => {
-        return <DashboardCardInfo CardContent={cardContent} key={index} />;
-      })}
-    </div>
+    <>
+      <div className="w-full p-3 bg-blue-500 dark:bg-blue-600 rounded-md">
+        <h3 className="text-white font-semibold text-base">
+          <IconServer /> Sistem Informasi Nilai Akademik
+        </h3>
+      </div>
+      <div className={ClassName}>
+        {cardsContent.map((cardContent, index) => {
+          return <DashboardCardInfo CardContent={cardContent} key={index} />;
+        })}
+      </div>
+    </>
   );
 }
 

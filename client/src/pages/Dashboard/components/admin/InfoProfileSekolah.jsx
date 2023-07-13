@@ -2,7 +2,8 @@ import LogoSekolah from '../../../../assets/images/logo-smpn1-binamu.webp';
 function InfoProfileSekolah() {
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
-      <h3 className="p-3 font-semibold text-base text-white bg-blue-500 dark:bg-blue-600 rounded-t-md">
+      {/* <h3 className="p-3 font-semibold text-base text-gray-900 dark:text-white bg-gray-200 dark:bg-gray-800 rounded-t-md"> */}
+      <h3 className="p-3 font-semibold text-base text-white bg-red-500 dark:bg-red-600 rounded-t-md">
         Profil Sekolah
       </h3>
       <div className="p-3 space-y-2">

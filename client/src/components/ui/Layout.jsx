@@ -15,7 +15,7 @@ function Layout() {
       <main
         className={`${
           isOpen ? 'sm:ml-64' : ''
-        } min-h-screen p-4 text-gray-900 dark:text-white dark:bg-gray-700 transition-all`}
+        } min-h-screen md:p-4 text-gray-900 dark:text-white dark:bg-gray-700 transition-all`}
       >
         <div className="p-4 mt-14">
           <Outlet />

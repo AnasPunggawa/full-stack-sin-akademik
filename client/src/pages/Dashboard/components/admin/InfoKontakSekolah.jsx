@@ -1,51 +1,61 @@
 function InfoKontakSekolah() {
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
-      <h3 className="p-3 font-semibold text-base text-white bg-blue-500 dark:bg-blue-600 rounded-t-md">
-        Identitas Sekolah
+      <h3 className="p-3 font-semibold text-base text-white bg-green-500 dark:bg-green-600 rounded-t-md">
+        Kontak Sekolah
       </h3>
       <div className="w-full p-3">
         <table className="w-full p-3">
           <tbody>
             <tr>
-              <td>NPSN</td>
+              <td>Alamat</td>
               <td>:</td>
-              <td>40301862</td>
+              <td>Jl. Lanto Daeng Pasewang No. 32 Bontosunggu</td>
             </tr>
             <tr>
-              <td>Status</td>
+              <td>RT / RW</td>
               <td>:</td>
-              <td>Negeri</td>
+              <td>0 / 0</td>
             </tr>
             <tr>
-              <td>Bentuk Pendidikan</td>
+              <td>Dusun</td>
               <td>:</td>
-              <td>SMP</td>
+              <td>Bontosunggu</td>
             </tr>
             <tr>
-              <td>Status Kepemilikan</td>
+              <td>Desa / Kelurahan</td>
               <td>:</td>
-              <td>Pemerintah Pusat</td>
+              <td>Empoang</td>
             </tr>
             <tr>
-              <td>SK Pendirian Sekolah</td>
+              <td>Kecamatan</td>
               <td>:</td>
-              <td>187/SK/B/III/1960</td>
+              <td>Binamu</td>
             </tr>
             <tr>
-              <td>Tanggal SK Pendirian</td>
+              <td>Kabupaten</td>
               <td>:</td>
-              <td>1960-05-25</td>
+              <td>Jeneponto</td>
             </tr>
             <tr>
-              <td>SK Izin Operasional</td>
+              <td>Provinsi</td>
               <td>:</td>
-              <td>420/1089/DISDIKBUD-JP</td>
+              <td>Sulawesi Selatan</td>
             </tr>
             <tr>
-              <td>Tanggal SK Izin Operasional</td>
+              <td>Kode Pos</td>
               <td>:</td>
-              <td>2021-08-04</td>
+              <td>92311</td>
+            </tr>
+            <tr>
+              <td>Lintang</td>
+              <td>:</td>
+              <td>-5</td>
+            </tr>
+            <tr>
+              <td>Bujur</td>
+              <td>:</td>
+              <td>119</td>
             </tr>
           </tbody>
         </table>

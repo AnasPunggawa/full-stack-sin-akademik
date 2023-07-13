@@ -19,6 +19,8 @@ import {
   faChevronLeft,
   faEye,
   faEyeSlash,
+  faServer,
+  faCircleInfo,
 } from '@fortawesome/free-solid-svg-icons';
 
 export function IconMenu() {
@@ -109,6 +111,14 @@ export function IconEyeSlash() {
 
 export function IconPrint() {
   return <FontAwesomeIcon icon={faPrint} className="w-4 h-4" />;
+}
+
+export function IconServer() {
+  return <FontAwesomeIcon icon={faServer} className="w-4 h-4" />;
+}
+
+export function IconInfo() {
+  return <FontAwesomeIcon icon={faCircleInfo} className="w-4 h-4" />;
 }
 
 export function IconWarning() {
