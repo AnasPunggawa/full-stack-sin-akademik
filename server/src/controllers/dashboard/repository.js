@@ -66,11 +66,6 @@ async function count_all_guru_aktif() {
     where: {
       status: true,
     },
-    // where: {
-    //   status: {
-    //     contains: true,
-    //   },
-    // },
   });
 }
 
@@ -79,11 +74,6 @@ async function count_all_siswa_aktif() {
     where: {
       status: true,
     },
-    // where: {
-    //   status: {
-    //     contains: true,
-    //   },
-    // },
   });
 }
 
