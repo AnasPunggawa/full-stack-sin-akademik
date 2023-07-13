@@ -141,6 +141,55 @@ CREATE TABLE `nilai` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `profil_sekolah` (
+    `id` VARCHAR(191) NOT NULL,
+    `npsn` VARCHAR(191) NULL,
+    `nama_sekolah` VARCHAR(191) NULL,
+    `nama_kepala_sekolah` VARCHAR(191) NULL,
+    `nama_operator` VARCHAR(191) NULL,
+    `akreditasi` VARCHAR(191) NULL,
+
+    UNIQUE INDEX `profil_sekolah_npsn_key`(`npsn`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `identitas_sekolah` (
+    `id` VARCHAR(191) NOT NULL,
+    `npsn` VARCHAR(191) NULL,
+    `status` VARCHAR(191) NULL,
+    `bentuk_pendidikan` VARCHAR(191) NULL,
+    `status_kepemilikan` VARCHAR(191) NULL,
+    `sk_pendirian_sekolah` VARCHAR(191) NULL,
+    `tanggal_sk_pendirian` VARCHAR(191) NULL,
+    `sk_izin_operasional` VARCHAR(191) NULL,
+    `tanggal_sk_izin_operasional` VARCHAR(191) NULL,
+
+    UNIQUE INDEX `identitas_sekolah_npsn_key`(`npsn`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `kontak_sekolah` (
+    `id` VARCHAR(191) NOT NULL,
+    `npsn` VARCHAR(191) NULL,
+    `alamat` VARCHAR(191) NULL,
+    `rt` VARCHAR(191) NULL,
+    `rw` VARCHAR(191) NULL,
+    `dusun` VARCHAR(191) NULL,
+    `desa_kelurahan` VARCHAR(191) NULL,
+    `kecamatan` VARCHAR(191) NULL,
+    `kabupaten` VARCHAR(191) NULL,
+    `provinsi` VARCHAR(191) NULL,
+    `kode_pos` VARCHAR(191) NULL,
+    `nomor_telepon` VARCHAR(191) NULL,
+    `email` VARCHAR(191) NULL,
+
+    UNIQUE INDEX `kontak_sekolah_npsn_key`(`npsn`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `_guruTomatapelajaran` (
     `A` VARCHAR(191) NOT NULL,
     `B` VARCHAR(191) NOT NULL,

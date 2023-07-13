@@ -130,3 +130,40 @@ model nilai {
   matapelajaran    matapelajaran @relation(fields: [matapelajaran_id], references: [id])
   guru             guru          @relation(fields: [guru_id], references: [id])
 }
+
+model profil_sekolah {
+  id                  String  @id @default(uuid())
+  npsn                String? @unique
+  nama_sekolah        String?
+  nama_kepala_sekolah String?
+  nama_operator       String?
+  akreditasi          String?
+}
+
+model identitas_sekolah {
+  id                          String  @id @default(uuid())
+  npsn                        String? @unique
+  status                      String?
+  bentuk_pendidikan           String?
+  status_kepemilikan          String?
+  sk_pendirian_sekolah        String?
+  tanggal_sk_pendirian        String?
+  sk_izin_operasional         String?
+  tanggal_sk_izin_operasional String?
+}
+
+model kontak_sekolah {
+  id             String  @id @default(uuid())
+  npsn           String? @unique
+  alamat         String?
+  rt             String?
+  rw             String?
+  dusun          String?
+  desa_kelurahan String?
+  kecamatan      String?
+  kabupaten      String?
+  provinsi       String?
+  kode_pos       String?
+  nomor_telepon  String?
+  email          String?
+}
