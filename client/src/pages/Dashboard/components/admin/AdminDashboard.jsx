@@ -1,36 +1,84 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { getDataDashboardByRole } from '../../../../api/dashboard';
 import Container from '../Container';
 import Header from '../Header';
 import DashboardCardsInfo from './DashboardCardsInfo';
 import DashboardHeader from './DashboardHeader';
 import DashboardInfoSekolah from './DashboardInfoSekolah';
+import {
+  ACTION_DATA_DASHBOARD_REDUCER,
+  INITIAL_STATE_DATA_DASHBOARD_REDUCER,
+  dataDashboardReducer,
+} from '../../../../reducer/dashboard/dashboardReducer';
 
 function AdminDashboard({ User_id }) {
+  const [dataDashboard, dispatch] = useReducer(
+    dataDashboardReducer,
+    INITIAL_STATE_DATA_DASHBOARD_REDUCER
+  );
+
+  const isComponentMounted = useRef(false);
+
   async function fetchDataDashboard() {
+    dispatch({ type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_LOADING });
     try {
       const response = await getDataDashboardByRole(User_id);
-      console.log(response);
+      const data = response.data.data;
+      dispatch({
+        type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_SUCCESS,
+        payload: data,
+      });
     } catch (error) {
-      console.log(error);
+      if (error.response?.status === 500) {
+        dispatch({
+          type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_ERROR,
+          payload: 'Something went wrong',
+        });
+        return;
+      }
+      if (error.response) {
+        dispatch({
+          type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_ERROR,
+          payload: error.response.data.message,
+        });
+        return;
+      }
+      dispatch({
+        type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_ERROR,
+        payload: 'Something went wrong',
+      });
     }
   }
 
   useEffect(() => {
-    fetchDataDashboard();
+    isComponentMounted.current = true;
+    if (isComponentMounted.current) {
+      if (!isComponentMounted.current) return;
+      fetchDataDashboard();
+    }
+    return () => {
+      isComponentMounted.current = false;
+    };
   }, []);
 
   return (
     <>
-      <Header>Dashboard</Header>
-      <Container>
-        <div className="w-full p-4 space-y-4">
-          <DashboardHeader />
-          <DashboardCardsInfo ClassName="w-full grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3" />
-          <DashboardInfoSekolah />
-        </div>
-      </Container>
+      {User_id && dataDashboard?.data && (
+        <>
+          <Header>Dashboard</Header>
+          <Container>
+            <div className="w-full p-4 space-y-4">
+              <DashboardHeader />
+              <DashboardCardsInfo
+                ClassName="w-full grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3"
+                CardsCountValue={dataDashboard?.data?.data_count}
+              />
+              <DashboardInfoSekolah />
+            </div>
+          </Container>
+        </>
+      )}
     </>
   );
 }
