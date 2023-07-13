@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   IconKelas,
   IconMapel,
@@ -33,14 +34,18 @@ const cardsContent = [
   },
 ];
 
-function DashboardCardsInfo() {
+function DashboardCardsInfo({ ClassName }) {
   return (
-    <>
+    <div className={ClassName}>
       {cardsContent.map((cardContent, index) => {
         return <DashboardCardInfo CardContent={cardContent} key={index} />;
       })}
-    </>
+    </div>
   );
 }
+
+DashboardCardsInfo.propTypes = {
+  ClassName: PropTypes.string,
+};
 
 export default DashboardCardsInfo;
