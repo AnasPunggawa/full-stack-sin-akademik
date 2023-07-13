@@ -1,4 +1,4 @@
-import { IconInfo, IconServer } from '../../../../components/ui/Icons';
+import { IconInfo } from '../../../../components/ui/Icons';
 import InfoIdentitasSekolah from './InfoIdentitasSekolah';
 import InfoKontakSekolah from './InfoKontakSekolah';
 import InfoProfileSekolah from './InfoProfileSekolah';
