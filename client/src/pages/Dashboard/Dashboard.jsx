@@ -3,6 +3,7 @@ import { useTitle } from '../../hooks/useTitle';
 import AdminDashboard from './components/admin/AdminDashboard';
 import GuruDashboard from './components/guru/GuruDashboard';
 import SiswaDashboard from './components/siswa/SiswaDashboard';
+const NPSN = import.meta.env.VITE_NPSN;
 
 function Dashboard() {
   useTitle('Dashboard');
@@ -11,9 +12,13 @@ function Dashboard() {
 
   return (
     <>
-      {user.role === 'admin' && <AdminDashboard User_id={user?.id} />}
-      {user.role === 'guru' && <GuruDashboard User_id={user?.id} />}
-      {user.role === 'siswa' && <SiswaDashboard User_id={user?.id} />}
+      {user.role === 'admin' && (
+        <AdminDashboard User_id={user?.id} NPSN={NPSN} />
+      )}
+      {user.role === 'guru' && <GuruDashboard User_id={user?.id} NPSN={NPSN} />}
+      {user.role === 'siswa' && (
+        <SiswaDashboard User_id={user?.id} NPSN={NPSN} />
+      )}
     </>
   );
 }

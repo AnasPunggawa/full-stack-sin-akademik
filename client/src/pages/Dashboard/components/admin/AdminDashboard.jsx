@@ -12,7 +12,7 @@ import {
   dataDashboardReducer,
 } from '../../../../reducer/dashboard/dashboardReducer';
 
-function AdminDashboard({ User_id }) {
+function AdminDashboard({ User_id, NPSN }) {
   const [dataDashboard, dispatch] = useReducer(
     dataDashboardReducer,
     INITIAL_STATE_DATA_DASHBOARD_REDUCER
@@ -23,7 +23,7 @@ function AdminDashboard({ User_id }) {
   async function fetchDataDashboard() {
     dispatch({ type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_LOADING });
     try {
-      const response = await getDataDashboardByRole(User_id);
+      const response = await getDataDashboardByRole(User_id, NPSN);
       const data = response.data.data;
       dispatch({
         type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_SUCCESS,
@@ -85,6 +85,7 @@ function AdminDashboard({ User_id }) {
 
 AdminDashboard.propTypes = {
   User_id: PropTypes.string,
+  NPSN: PropTypes.string,
 };
 
 export default AdminDashboard;

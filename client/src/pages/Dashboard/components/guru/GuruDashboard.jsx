@@ -11,7 +11,7 @@ import {
   dataDashboardReducer,
 } from '../../../../reducer/dashboard/dashboardReducer';
 
-function GuruDashboard({ User_id }) {
+function GuruDashboard({ User_id, NPSN }) {
   const [dataDashboard, dispatch] = useReducer(
     dataDashboardReducer,
     INITIAL_STATE_DATA_DASHBOARD_REDUCER
@@ -22,7 +22,7 @@ function GuruDashboard({ User_id }) {
   async function fetchDataDashboard() {
     dispatch({ type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_LOADING });
     try {
-      const response = await getDataDashboardByRole(User_id);
+      const response = await getDataDashboardByRole(User_id, NPSN);
       const data = response.data.data;
       dispatch({
         type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_SUCCESS,
@@ -80,6 +80,7 @@ function GuruDashboard({ User_id }) {
 
 GuruDashboard.propTypes = {
   User_id: PropTypes.string,
+  NPSN: PropTypes.string,
 };
 
 export default GuruDashboard;
