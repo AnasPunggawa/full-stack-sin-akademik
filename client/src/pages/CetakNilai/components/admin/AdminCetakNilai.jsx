@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getAllNilai } from '../../../../api/nilai';
 import {
   ACTION_NILAI_REDUCER,
@@ -16,7 +17,6 @@ import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutSuccess from '../../../../components/ui/LayoutSuccess';
 import TableNilai from './TableNilai';
 import Button from '../../../../components/ui/Button';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { IconPrint } from '../../../../components/ui/Icons';
 
 function AdminCetakNilai() {

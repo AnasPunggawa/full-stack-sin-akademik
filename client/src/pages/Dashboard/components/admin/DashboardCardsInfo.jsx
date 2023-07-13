@@ -1,0 +1,46 @@
+import {
+  IconKelas,
+  IconMapel,
+  IconUser,
+  IconUsers,
+} from '../../../../components/ui/Icons';
+import DashboardCardInfo from './DashboardCardInfo';
+
+const cardsContent = [
+  {
+    bgColor: 'bg-blue-500 dark:bg-blue-600',
+    title: 'Jumlah Guru Aktif',
+    value: '100 Orang',
+    Icon: <IconUser />,
+  },
+  {
+    bgColor: 'bg-red-500 dark:bg-red-600',
+    title: 'Jumlah Siswa Aktif',
+    value: '100 Orang',
+    Icon: <IconUsers />,
+  },
+  {
+    bgColor: 'bg-yellow-500 dark:bg-yellow-600',
+    title: 'Jumlah Kelas',
+    value: '100 Orang',
+    Icon: <IconKelas />,
+  },
+  {
+    bgColor: 'bg-green-500 dark:bg-green-600',
+    title: 'Jumlah Mata Pelajaran',
+    value: '100 Orang',
+    Icon: <IconMapel />,
+  },
+];
+
+function DashboardCardsInfo() {
+  return (
+    <>
+      {cardsContent.map((cardContent, index) => {
+        return <DashboardCardInfo CardContent={cardContent} key={index} />;
+      })}
+    </>
+  );
+}
+
+export default DashboardCardsInfo;

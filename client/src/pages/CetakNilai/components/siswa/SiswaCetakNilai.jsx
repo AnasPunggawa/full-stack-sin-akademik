@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   ACTION_NILAI_REDUCER,
   INITIAL_STATE_NILAI_REDUCER,
@@ -16,7 +17,6 @@ import SelectMataPelajaran from './SelectMataPelajaran';
 import TableNilai from './TableNilai';
 import Button from '../../../../components/ui/Button';
 import { IconPrint } from '../../../../components/ui/Icons';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 function SiswaCetakNilai() {
   const [kodeSemester, setKodeSemester] = useState('');

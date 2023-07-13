@@ -14,7 +14,6 @@ function Dashboard() {
       {user.role === 'admin' && <AdminDashboard />}
       {user.role === 'guru' && <GuruDashboard />}
       {user.role === 'siswa' && <SiswaDashboard />}
-      <h1 className="text-2xl font-bold">Dashboard Public</h1>
     </>
   );
 }
