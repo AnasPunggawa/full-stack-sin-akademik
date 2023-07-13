@@ -11,9 +11,9 @@ function Dashboard() {
 
   return (
     <>
-      {user.role === 'admin' && <AdminDashboard />}
-      {user.role === 'guru' && <GuruDashboard />}
-      {user.role === 'siswa' && <SiswaDashboard />}
+      {user.role === 'admin' && <AdminDashboard User_id={user?.id} />}
+      {user.role === 'guru' && <GuruDashboard User_id={user?.id} />}
+      {user.role === 'siswa' && <SiswaDashboard User_id={user?.id} />}
     </>
   );
 }

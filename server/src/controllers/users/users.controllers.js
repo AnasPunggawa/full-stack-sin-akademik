@@ -79,9 +79,7 @@ async function getUser(req, res, next) {
     if (roleUser === 'admin') data = await find_details_single_data_admin(id);
     if (roleUser === 'guru') data = await find_details_single_data_guru(id);
     if (roleUser === 'siswa') data = await find_details_single_data_siswa(id);
-    // const data = await find_single_data(id);
     resSuccessController(res, 200, 'data pengguna berhasil ditemukan', data);
-    // res.status(200).json({ success: true, message: 'user found', data });
   } catch (err) {
     next(err);
   }

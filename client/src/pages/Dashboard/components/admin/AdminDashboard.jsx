@@ -1,10 +1,26 @@
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { getDataDashboardByRole } from '../../../../api/dashboard';
 import Container from '../Container';
 import Header from '../Header';
 import DashboardCardsInfo from './DashboardCardsInfo';
 import DashboardHeader from './DashboardHeader';
 import DashboardInfoSekolah from './DashboardInfoSekolah';
 
-function AdminDashboard() {
+function AdminDashboard({ User_id }) {
+  async function fetchDataDashboard() {
+    try {
+      const response = await getDataDashboardByRole(User_id);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchDataDashboard();
+  }, []);
+
   return (
     <>
       <Header>Dashboard</Header>
@@ -18,5 +34,9 @@ function AdminDashboard() {
     </>
   );
 }
+
+AdminDashboard.propTypes = {
+  User_id: PropTypes.string,
+};
 
 export default AdminDashboard;

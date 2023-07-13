@@ -2,6 +2,7 @@ const routes = require('express').Router();
 const { verifyToken } = require('../middlewares/verifyToken.middlewares');
 const adminRoutes = require('./admin.routes');
 const authRoutes = require('./auth.routes');
+const dashboardRoutes = require('./dashboard.routes');
 const guruRoutes = require('./guru.routes');
 const kelasRoutes = require('./kelas.routes');
 const matapelajaranRoutes = require('./matapelajaran.routes');
@@ -20,6 +21,7 @@ routes
   .use('/admin', adminRoutes)
   .use('/guru', guruRoutes)
   .use('/siswa', siswaRoutes)
+  .use('/dashboard', dashboardRoutes)
   .use('/semester', semesterRoutes)
   .use('/kelas', kelasRoutes)
   .use('/matapelajaran', matapelajaranRoutes)
