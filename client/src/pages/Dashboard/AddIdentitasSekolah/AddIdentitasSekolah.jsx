@@ -1,5 +1,23 @@
+import { Navigate, useLocation } from 'react-router-dom';
+import { useTitle } from '../../../hooks/useTitle';
+import AddIdentitasSekolahAdmin from './components/admin/AddIdentitasSekolahAdmin';
+
 function AddIdentitasSekolah() {
-  return <div>AddIdentitasSekolah</div>;
+  useTitle('Identitas Sekolah');
+  const { state } = useLocation();
+  console.log(state);
+
+  if (!state || state?.role !== 'admin') {
+    return <Navigate to="/" replace={true} />;
+  }
+
+  return (
+    <>
+      {state?.role === 'admin' && (
+        <AddIdentitasSekolahAdmin TextHeader={state?.textHeader} />
+      )}
+    </>
+  );
 }
 
 export default AddIdentitasSekolah;

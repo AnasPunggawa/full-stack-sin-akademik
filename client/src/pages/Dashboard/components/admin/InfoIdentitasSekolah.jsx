@@ -46,8 +46,14 @@ function InfoIdentitasSekolah() {
   }, []);
 
   function handleTambah() {
-    return navigate('/dashboard/add-identitas-sekolah');
+    return navigate('/dashboard/add-identitas-sekolah', {
+      state: {
+        role: 'admin',
+        textHeader: 'Tambah Identitas Sekolah',
+      },
+    });
   }
+
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
       <div className="w-full flex justify-between items-center p-3 bg-yellow-500 dark:bg-yellow-600 rounded-t-md">
