@@ -2,7 +2,7 @@ import api from './api';
 const NPSN = import.meta.env.VITE_NPSN;
 
 export async function getDataDashboardByRole(user_id = '', npsn = NPSN) {
-  return await api.get(`/api/v1/dashboard?user_id=${user_id}&npsn=${npsn}`, {
+  return await api.get(`/api/v1/dashboard?user_id=${user_id}&npsn=${npsn}/`, {
     // return await api.get(`/api/v1/dashboard/${user_id}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
@@ -18,6 +18,14 @@ export async function getProfilSekolah(id = NPSN) {
   });
 }
 
+export async function createProfilSekolah(formData) {
+  return await api.post('/api/v1/dashboard/profil/', formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function getIndetitasSekolah(id = NPSN) {
   return await api.get(`/api/v1/dashboard/identitas/${id}`, {
     headers: {
@@ -26,8 +34,24 @@ export async function getIndetitasSekolah(id = NPSN) {
   });
 }
 
+export async function createIdentitasSekolah(formData) {
+  return await api.post('/api/v1/dashboard/identitas/', formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function getKontakSekolah(id = NPSN) {
   return await api.get(`/api/v1/dashboard/kontak/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
+export async function createKontakSekolah(formData) {
+  return await api.post('/api/v1/dashboard/kontak/', formData, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },
