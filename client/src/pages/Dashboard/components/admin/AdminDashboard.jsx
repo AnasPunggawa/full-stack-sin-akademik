@@ -13,6 +13,9 @@ import {
 } from '../../../../reducer/dashboard/dashboardReducer';
 import LayoutError from '../../../../components/ui/LayoutError';
 import LayoutLoading from '../../../../components/ui/LayoutLoading';
+import { useLocation } from 'react-router-dom';
+import BoxError from '../../../../components/ui/BoxError';
+import BoxSuccess from '../../../../components/ui/BoxSuccess';
 // import { Navigate } from 'react-router-dom';
 
 function AdminDashboard({ User_id, NPSN }) {
@@ -22,6 +25,8 @@ function AdminDashboard({ User_id, NPSN }) {
   );
 
   const isComponentMounted = useRef(false);
+
+  const { state } = useLocation();
 
   async function fetchDataDashboard() {
     dispatch({ type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_LOADING });
@@ -81,6 +86,12 @@ function AdminDashboard({ User_id, NPSN }) {
             <>
               <div className="w-full p-4 space-y-4">
                 <DashboardHeader />
+                {state && !state?.success && (
+                  <BoxError>{state?.message}</BoxError>
+                )}
+                {state && state?.success && (
+                  <BoxSuccess>{state?.message}</BoxSuccess>
+                )}
                 <DashboardCardsInfo
                   ClassName="w-full grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3"
                   CardsCountValue={dataDashboard?.data?.data_count}
