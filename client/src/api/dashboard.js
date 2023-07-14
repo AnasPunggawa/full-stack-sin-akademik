@@ -26,6 +26,14 @@ export async function createProfilSekolah(formData) {
   });
 }
 
+export async function updateProfilSekolah(id, formData) {
+  return await api.put(`/api/v1/dashboard/profil/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function getIndetitasSekolah(id = NPSN) {
   return await api.get(`/api/v1/dashboard/identitas/${id}`, {
     headers: {
@@ -42,6 +50,14 @@ export async function createIdentitasSekolah(formData) {
   });
 }
 
+export async function updateIdentitasSekolah(id, formData) {
+  return await api.put(`/api/v1/dashboard/identitas/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
 export async function getKontakSekolah(id = NPSN) {
   return await api.get(`/api/v1/dashboard/kontak/${id}`, {
     headers: {
@@ -52,6 +68,14 @@ export async function getKontakSekolah(id = NPSN) {
 
 export async function createKontakSekolah(formData) {
   return await api.post('/api/v1/dashboard/kontak/', formData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+}
+
+export async function updateKontakSekolah(id, formData) {
+  return await api.put(`/api/v1/dashboard/kontak/${id}`, formData, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },
