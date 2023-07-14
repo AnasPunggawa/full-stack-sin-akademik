@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useTitle } from '../../../hooks/useTitle';
+import EditKontakSekolahAdmin from './components/admin/EditKontakSekolahAdmin';
 
 function EditKontakSekolah() {
   useTitle('Kontak Sekolah');
@@ -13,10 +14,10 @@ function EditKontakSekolah() {
   return (
     <>
       {state?.role === 'admin' && state?.data && (
-        <>
-          <h1>{state?.textHeader}</h1>
-          {/* <AddKontakSekolahAdmin TextHeader={state?.textHeader} /> */}
-        </>
+        <EditKontakSekolahAdmin
+          TextHeader={state?.textHeader}
+          DataKontakSekolah={state?.data}
+        />
       )}
     </>
   );
