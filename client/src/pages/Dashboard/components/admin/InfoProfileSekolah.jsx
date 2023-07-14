@@ -85,7 +85,7 @@ function InfoProfileSekolah() {
             <table className="w-full">
               <tbody>
                 <tr>
-                  <td>Kepala Sekolah</td>
+                  <td width="50%">Kepala Sekolah</td>
                   <td>:</td>
                   <td>
                     {dataProfilkSekolah?.nama_kepala_sekolah

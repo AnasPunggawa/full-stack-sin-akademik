@@ -37,7 +37,7 @@ function DashboardCardsInfo({ ClassName, CardsCountValue }) {
   ];
   return (
     <>
-      <div className="w-full p-3 bg-blue-500 dark:bg-blue-600 rounded-md">
+      <div className="w-full py-1.5 px-3 bg-blue-500 dark:bg-blue-600 rounded-md">
         <h3 className="text-white font-semibold text-base">
           <IconServer /> Sistem Informasi Nilai Akademik
         </h3>

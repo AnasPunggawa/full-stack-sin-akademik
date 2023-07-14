@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../../utils/capitalizeFirstLetter';
 
 function InfoKontakSekolah() {
-  const [dataKontakSekolah, setDataKontakSekolah] = useState({});
+  const [dataKontakSekolah, setDataKontakSekolah] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -22,7 +22,6 @@ function InfoKontakSekolah() {
     try {
       const response = await getKontakSekolah();
       const data = response?.data?.data;
-      console.log(data);
       setDataKontakSekolah(data);
     } catch (error) {
       setIsError(true);
@@ -47,14 +46,19 @@ function InfoKontakSekolah() {
   }, []);
 
   function handleTambah() {
-    return navigate('/dashboard/add-kontak-sekolah');
+    return navigate('/dashboard/add-kontak-sekolah', {
+      state: {
+        role: 'admin',
+        textHeader: 'Tambah Kontak Sekolah',
+      },
+    });
   }
 
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
       <div className="w-full flex justify-between items-center p-3 bg-green-500 dark:bg-green-600 rounded-t-md">
         <h3 className="font-semibold text-base text-white">Kontak Sekolah</h3>
-        {isError ? (
+        {isError && !dataKontakSekolah ? (
           <Button OnClick={handleTambah} ButtonStyle="LINK_WHITE">
             Tambah
           </Button>
@@ -84,7 +88,7 @@ function InfoKontakSekolah() {
                 {/* <td>0 / 0</td> */}
                 <td>
                   {dataKontakSekolah?.rt ? dataKontakSekolah?.rt : '-'} /{' '}
-                  {dataKontakSekolah?.rt ? dataKontakSekolah?.rt : '-'}
+                  {dataKontakSekolah?.rw ? dataKontakSekolah?.rw : '-'}
                 </td>
               </tr>
               <tr>
@@ -98,7 +102,7 @@ function InfoKontakSekolah() {
                 </td>
               </tr>
               <tr>
-                <td>Desa / Kelurahan</td>
+                <td width="50%">Desa atau Kelurahan</td>
                 <td>:</td>
                 {/* <td>Empoang</td> */}
                 <td>

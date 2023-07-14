@@ -60,7 +60,7 @@ function InfoIdentitasSekolah() {
         <h3 className="font-semibold text-base text-white">
           Identitas Sekolah
         </h3>
-        {isError ? (
+        {isError && !dataIdentitaskSekolah ? (
           <Button OnClick={handleTambah} ButtonStyle="LINK_WHITE">
             Tambah
           </Button>
