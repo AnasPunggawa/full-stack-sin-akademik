@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import LogoSekolah from '../../../../assets/images/logo-smpn1-binamu.webp';
-function InfoProfileSekolah() {
+function InfoProfileSekolah({ ProfilSekolah }) {
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
       {/* <h3 className="p-3 font-semibold text-base text-gray-900 dark:text-white bg-gray-200 dark:bg-gray-800 rounded-t-md"> */}
@@ -12,23 +13,39 @@ function InfoProfileSekolah() {
           className="h-24 mx-auto"
           alt="Logo UPT SMP Negeri 1 Binamu"
         />
-        <h4 className="text-center font-semibold">UPT SMP NEGERI 1 BINAMU</h4>
+        <h4 className="text-center font-semibold">
+          {ProfilSekolah?.nama_sekolah
+            ? ProfilSekolah?.nama_sekolah
+            : 'NAMA SEKOLAH'}
+        </h4>
         <table className="w-full">
           <tbody>
             <tr>
-              <td>Kepala Sekolah</td>
+              <td width="50%">Kepala Sekolah</td>
               <td>:</td>
-              <td>Nama Kepala Sekolah</td>
+              <td>
+                {ProfilSekolah?.nama_kepala_sekolah
+                  ? ProfilSekolah?.nama_kepala_sekolah
+                  : '-'}
+              </td>
             </tr>
             <tr>
-              <td>Operator</td>
+              <td width="50%">Operator</td>
               <td>:</td>
-              <td>Nama Operator Sekolah</td>
+              <td>
+                {ProfilSekolah?.nama_operator
+                  ? ProfilSekolah?.nama_operator
+                  : '-'}
+              </td>
             </tr>
             <tr>
-              <td>Akreditasi</td>
+              <td width="50%">Akreditasi</td>
               <td>:</td>
-              <td>Akreditasi Sekolah</td>
+              <td>
+                {ProfilSekolah?.akreditasi
+                  ? ProfilSekolah?.akreditasi.toUpperCase()
+                  : '-'}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -36,5 +53,9 @@ function InfoProfileSekolah() {
     </div>
   );
 }
+
+InfoProfileSekolah.propTypes = {
+  ProfilSekolah: PropTypes.object,
+};
 
 export default InfoProfileSekolah;

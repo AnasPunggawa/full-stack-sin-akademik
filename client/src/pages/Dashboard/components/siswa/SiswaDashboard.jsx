@@ -68,8 +68,14 @@ function SiswaDashboard({ User_id, NPSN }) {
           <Header>Dashboard</Header>
           <Container>
             <div className="w-full p-4 space-y-4">
-              <DashboardHeader />
-              <DashboardInfoSekolah />
+              <DashboardHeader
+                ProfilSekolah={
+                  dataDashboard?.data?.informasi_sekolah?.profil_sekolah
+                }
+              />
+              <DashboardInfoSekolah
+                InformasiSekolah={dataDashboard?.data?.informasi_sekolah}
+              />
             </div>
           </Container>
         </>

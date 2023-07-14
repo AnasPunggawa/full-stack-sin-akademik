@@ -24,7 +24,6 @@ function GuruDashboard({ User_id, NPSN }) {
     try {
       const response = await getDataDashboardByRole(User_id, NPSN);
       const data = response.data.data;
-      console.log(data);
       dispatch({
         type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
