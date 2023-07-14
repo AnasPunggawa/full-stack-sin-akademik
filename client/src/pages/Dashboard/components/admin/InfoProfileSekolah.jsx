@@ -46,7 +46,12 @@ function InfoProfileSekolah() {
   }, []);
 
   function handleTambah() {
-    return navigate('/dashboard/add-profil-sekolah');
+    return navigate('/dashboard/add-profil-sekolah', {
+      state: {
+        role: 'admin',
+        textHeader: 'Tambah Profil Sekolah',
+      },
+    });
   }
 
   return (
