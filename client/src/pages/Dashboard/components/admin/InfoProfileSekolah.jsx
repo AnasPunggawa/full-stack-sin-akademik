@@ -54,6 +54,16 @@ function InfoProfileSekolah() {
     });
   }
 
+  function handleEdit() {
+    return navigate('/dashboard/edit-profil-sekolah', {
+      state: {
+        role: 'admin',
+        textHeader: 'Edit Profil Sekolah',
+        data: dataProfilkSekolah,
+      },
+    });
+  }
+
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
       <div className="w-full flex justify-between items-center p-3 bg-red-500 dark:bg-red-600 rounded-t-md">
@@ -64,7 +74,9 @@ function InfoProfileSekolah() {
             Tambah
           </Button>
         ) : (
-          <Button ButtonStyle="LINK_WHITE">Edit</Button>
+          <Button OnClick={handleEdit} ButtonStyle="LINK_WHITE">
+            Edit
+          </Button>
         )}
       </div>
       <div className="p-3 space-y-2">

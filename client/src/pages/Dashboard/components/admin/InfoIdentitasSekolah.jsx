@@ -54,6 +54,16 @@ function InfoIdentitasSekolah() {
     });
   }
 
+  function handleEdit() {
+    return navigate('/dashboard/edit-identitas-sekolah', {
+      state: {
+        role: 'admin',
+        textHeader: 'Edit Identitas Sekolah',
+        data: dataIdentitaskSekolah,
+      },
+    });
+  }
+
   return (
     <div className="rounded-md bg-white dark:bg-gray-700">
       <div className="w-full flex justify-between items-center p-3 bg-yellow-500 dark:bg-yellow-600 rounded-t-md">
@@ -65,7 +75,9 @@ function InfoIdentitasSekolah() {
             Tambah
           </Button>
         ) : (
-          <Button ButtonStyle="LINK_WHITE">Edit</Button>
+          <Button OnClick={handleEdit} ButtonStyle="LINK_WHITE">
+            Edit
+          </Button>
         )}
       </div>
       <div className="w-full p-3">

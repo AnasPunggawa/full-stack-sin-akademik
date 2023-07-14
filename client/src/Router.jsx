@@ -41,6 +41,9 @@ import Print from './pages/CetakNilai/Print/Print';
 import AddProfileSekolah from './pages/Dashboard/AddProfileSekolah/AddProfileSekolah';
 import AddIdentitasSekolah from './pages/Dashboard/AddIdentitasSekolah/AddIdentitasSekolah';
 import AddKontakSekolah from './pages/Dashboard/AddKontakSekolah/AddKontakSekolah';
+import EditProfileSekolah from './pages/Dashboard/EditProfileSekolah/EditProfileSekolah';
+import EditIdentitasSekolah from './pages/Dashboard/EditIdentitasSekolah/EditIdentitasSekolah';
+import EditKontakSekolah from './pages/Dashboard/EditKontakSekolah/EditKontakSekolah';
 
 function Router() {
   return (
@@ -63,12 +66,24 @@ function Router() {
                   element={<AddProfileSekolah />}
                 />
                 <Route
+                  path="edit-profil-sekolah"
+                  element={<EditProfileSekolah />}
+                />
+                <Route
                   path="add-identitas-sekolah"
                   element={<AddIdentitasSekolah />}
                 />
                 <Route
+                  path="edit-identitas-sekolah"
+                  element={<EditIdentitasSekolah />}
+                />
+                <Route
                   path="add-kontak-sekolah"
                   element={<AddKontakSekolah />}
+                />
+                <Route
+                  path="edit-kontak-sekolah"
+                  element={<EditKontakSekolah />}
                 />
               </Route>
             </Route>
