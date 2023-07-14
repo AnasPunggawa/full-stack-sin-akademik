@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { getIndetitasSekolah } from '../../../../api/dashboard';
 import BoxError from '../../../../components/ui/BoxError';
 import Button from '../../../../components/ui/Button';
+import { capitalizeFirstLetter } from '../../../../utils/capitalizeFirstLetter';
 
 function InfoIdentitasSekolah() {
-  const [dataIdentitaskSekolah, setDataIdentitasSekolah] = useState({});
+  const [dataIdentitaskSekolah, setDataIdentitasSekolah] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +22,6 @@ function InfoIdentitasSekolah() {
     try {
       const response = await getIndetitasSekolah();
       const data = response?.data?.data;
-      console.log(data);
       setDataIdentitasSekolah(data);
     } catch (error) {
       setIsError(true);
@@ -77,42 +77,78 @@ function InfoIdentitasSekolah() {
               <tr>
                 <td>NPSN</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.npsn}</td>
+                <td>
+                  {dataIdentitaskSekolah?.npsn
+                    ? dataIdentitaskSekolah?.npsn
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Status</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.status}</td>
+                {/* <td>{dataIdentitaskSekolah?.status}</td> */}
+                <td>
+                  {dataIdentitaskSekolah?.status
+                    ? capitalizeFirstLetter(dataIdentitaskSekolah?.status)
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Bentuk Pendidikan</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.bentuk_pendidikan}</td>
+                <td>
+                  {dataIdentitaskSekolah?.bentuk_pendidikan
+                    ? dataIdentitaskSekolah?.bentuk_pendidikan
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Status Kepemilikan</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.status_kepemilikan}</td>
+                {/* <td>{dataIdentitaskSekolah?.status_kepemilikan}</td> */}
+                <td>
+                  {dataIdentitaskSekolah?.status_kepemilikan
+                    ? capitalizeFirstLetter(
+                        dataIdentitaskSekolah?.status_kepemilikan
+                      )
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>SK Pendirian Sekolah</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.sk_pendirian_sekolah}</td>
+                <td>
+                  {dataIdentitaskSekolah?.sk_pendirian_sekolah
+                    ? dataIdentitaskSekolah?.sk_pendirian_sekolah
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Tanggal SK Pendirian</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.tanggal_sk_pendirian}</td>
+                <td>
+                  {dataIdentitaskSekolah?.tanggal_sk_pendirian
+                    ? dataIdentitaskSekolah?.tanggal_sk_pendirian
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>SK Izin Operasional</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.sk_izin_operasional}</td>
+                <td>
+                  {dataIdentitaskSekolah?.sk_izin_operasional
+                    ? dataIdentitaskSekolah?.sk_izin_operasional
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td width="50%">Tanggal SK Izin Operasional</td>
                 <td>:</td>
-                <td>{dataIdentitaskSekolah?.tanggal_sk_izin_operasional}</td>
+                <td>
+                  {dataIdentitaskSekolah?.tanggal_sk_izin_operasional
+                    ? dataIdentitaskSekolah?.tanggal_sk_izin_operasional
+                    : '-'}
+                </td>
               </tr>
             </tbody>
           </table>

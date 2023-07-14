@@ -5,7 +5,8 @@ import { getProfilSekolah } from '../../../../api/dashboard';
 import BoxError from '../../../../components/ui/BoxError';
 import Button from '../../../../components/ui/Button';
 function InfoProfileSekolah() {
-  const [dataProfilkSekolah, setDataProfilSekolah] = useState({});
+  // const [dataProfilkSekolah, setDataProfilSekolah] = useState({});
+  const [dataProfilkSekolah, setDataProfilSekolah] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,7 +22,6 @@ function InfoProfileSekolah() {
     try {
       const response = await getProfilSekolah();
       const data = response?.data?.data;
-      console.log(data);
       setDataProfilSekolah(data);
     } catch (error) {
       setIsError(true);
@@ -58,7 +58,8 @@ function InfoProfileSekolah() {
     <div className="rounded-md bg-white dark:bg-gray-700">
       <div className="w-full flex justify-between items-center p-3 bg-red-500 dark:bg-red-600 rounded-t-md">
         <h3 className="font-semibold text-base text-white">Profil Sekolah</h3>
-        {isError ? (
+        {/* {isError && Object.keys(dataProfilkSekolah).length === 0 ? ( */}
+        {isError && !dataProfilkSekolah ? (
           <Button OnClick={handleTambah} ButtonStyle="LINK_WHITE">
             Tambah
           </Button>
@@ -77,24 +78,38 @@ function InfoProfileSekolah() {
               alt="Logo UPT SMP Negeri 1 Binamu"
             />
             <h4 className="text-center font-semibold">
-              {dataProfilkSekolah?.nama_sekolah}
+              {dataProfilkSekolah?.nama_sekolah
+                ? dataProfilkSekolah?.nama_sekolah?.toUpperCase()
+                : 'SEKOLAH'}
             </h4>
             <table className="w-full">
               <tbody>
                 <tr>
                   <td>Kepala Sekolah</td>
                   <td>:</td>
-                  <td>{dataProfilkSekolah?.nama_kepala_sekolah}</td>
+                  <td>
+                    {dataProfilkSekolah?.nama_kepala_sekolah
+                      ? dataProfilkSekolah?.nama_kepala_sekolah
+                      : '-'}
+                  </td>
                 </tr>
                 <tr>
                   <td>Operator</td>
                   <td>:</td>
-                  <td>{dataProfilkSekolah?.nama_operator}</td>
+                  <td>
+                    {dataProfilkSekolah?.nama_operator
+                      ? dataProfilkSekolah?.nama_operator
+                      : '-'}
+                  </td>
                 </tr>
                 <tr>
                   <td>Akreditasi</td>
                   <td>:</td>
-                  <td>{dataProfilkSekolah?.akreditasi}</td>
+                  <td>
+                    {dataProfilkSekolah?.akreditasi
+                      ? dataProfilkSekolah?.akreditasi?.toUpperCase()
+                      : '-'}
+                  </td>
                 </tr>
               </tbody>
             </table>
