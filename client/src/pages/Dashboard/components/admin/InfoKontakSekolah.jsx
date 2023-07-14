@@ -3,6 +3,7 @@ import { getKontakSekolah } from '../../../../api/dashboard';
 import BoxError from '../../../../components/ui/BoxError';
 import Button from '../../../../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
+import { capitalizeFirstLetter } from '../../../../utils/capitalizeFirstLetter';
 
 function InfoKontakSekolah() {
   const [dataKontakSekolah, setDataKontakSekolah] = useState({});
@@ -72,7 +73,9 @@ function InfoKontakSekolah() {
                 <td>:</td>
                 {/* <td>Jl. Lanto Daeng Pasewang No. 32 Bontosunggu</td> */}
                 <td>
-                  {dataKontakSekolah?.alamat ? dataKontakSekolah?.alamat : '-'}
+                  {dataKontakSekolah?.alamat
+                    ? capitalizeFirstLetter(dataKontakSekolah?.alamat)
+                    : '-'}
                 </td>
               </tr>
               <tr>
@@ -80,56 +83,87 @@ function InfoKontakSekolah() {
                 <td>:</td>
                 {/* <td>0 / 0</td> */}
                 <td>
-                  {dataKontakSekolah?.rt} / {dataKontakSekolah?.rt}
+                  {dataKontakSekolah?.rt ? dataKontakSekolah?.rt : '-'} /{' '}
+                  {dataKontakSekolah?.rt ? dataKontakSekolah?.rt : '-'}
                 </td>
               </tr>
               <tr>
                 <td>Dusun</td>
                 <td>:</td>
                 {/* <td>Bontosunggu</td> */}
-                <td>{dataKontakSekolah?.dusun}</td>
+                <td>
+                  {dataKontakSekolah?.dusun
+                    ? capitalizeFirstLetter(dataKontakSekolah?.dusun)
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Desa / Kelurahan</td>
                 <td>:</td>
                 {/* <td>Empoang</td> */}
-                <td>{dataKontakSekolah?.desa_kelurahan}</td>
+                <td>
+                  {dataKontakSekolah?.desa_kelurahan
+                    ? capitalizeFirstLetter(dataKontakSekolah?.desa_kelurahan)
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Kecamatan</td>
                 <td>:</td>
                 {/* <td>Binamu</td> */}
-                <td>{dataKontakSekolah?.kecamatan}</td>
+                <td>
+                  {dataKontakSekolah?.kecamatan
+                    ? capitalizeFirstLetter(dataKontakSekolah?.kecamatan)
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Kabupaten</td>
                 <td>:</td>
                 {/* <td>Jeneponto</td> */}
-                <td>{dataKontakSekolah?.kabupaten}</td>
+                <td>
+                  {dataKontakSekolah?.kabupaten
+                    ? capitalizeFirstLetter(dataKontakSekolah?.kabupaten)
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Provinsi</td>
                 <td>:</td>
                 {/* <td>Sulawesi Selatan</td> */}
-                <td>{dataKontakSekolah?.provinsi}</td>
+                <td>
+                  {dataKontakSekolah?.provinsi
+                    ? capitalizeFirstLetter(dataKontakSekolah?.provinsi)
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Kode Pos</td>
                 <td>:</td>
                 {/* <td>92311</td> */}
-                <td>{dataKontakSekolah?.kode_pos}</td>
+                <td>
+                  {dataKontakSekolah?.kode_pos
+                    ? dataKontakSekolah?.kode_pos
+                    : '-'}
+                </td>
               </tr>
               <tr>
                 <td>Nomor Telepon</td>
                 <td>:</td>
                 {/* <td>-5</td> */}
-                <td>{dataKontakSekolah?.nomor_telepon}</td>
+                <td>
+                  {dataKontakSekolah?.nomor_telepon
+                    ? dataKontakSekolah?.nomor_telepon
+                    : '-'}
+                </td>
               </tr>
               <tr>
-                <td>email</td>
+                <td>Email</td>
                 <td>:</td>
                 {/* <td>119</td> */}
-                <td>{dataKontakSekolah?.email}</td>
+                <td>
+                  {dataKontakSekolah?.email ? dataKontakSekolah?.email : '-'}
+                </td>
               </tr>
             </tbody>
           </table>
