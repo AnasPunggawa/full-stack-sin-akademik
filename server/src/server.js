@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // MIDDLEWARES
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN,
+    origin: [process.env.CLIENT_ORIGIN_DEV, process.env.CLIENT_ORIGIN_PROD],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
