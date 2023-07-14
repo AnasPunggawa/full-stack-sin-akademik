@@ -24,6 +24,7 @@ function GuruDashboard({ User_id, NPSN }) {
     try {
       const response = await getDataDashboardByRole(User_id, NPSN);
       const data = response.data.data;
+      console.log(data);
       dispatch({
         type: ACTION_DATA_DASHBOARD_REDUCER.FETCH_DATA_SUCCESS,
         payload: data,
@@ -68,8 +69,14 @@ function GuruDashboard({ User_id, NPSN }) {
           <Header>Dashboard</Header>
           <Container>
             <div className="w-full p-4 space-y-4">
-              <DashboardHeader />
-              <DashboardInfoSekolah />
+              <DashboardHeader
+                ProfilSekolah={
+                  dataDashboard?.data?.informasi_sekolah?.profil_sekolah
+                }
+              />
+              <DashboardInfoSekolah
+                InformasiSekolah={dataDashboard?.data?.informasi_sekolah}
+              />
             </div>
           </Container>
         </>

@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 // import LogoSekolah from '../../../../assets/images/logo-smpn1-binamu.webp';
 
-function DashboardHeader() {
+function DashboardHeader({ ProfilSekolah }) {
   return (
     <div className="w-full text-center border-b-2 border-gray-900 dark:border-white pb-2">
       {/* <img
@@ -12,10 +13,16 @@ function DashboardHeader() {
         SELAMAT DATANG
       </h1>
       <h2 className="text-lg sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
-        UPT SMP NEGERI 1 BINAMU
+        {ProfilSekolah?.nama_sekolah
+          ? ProfilSekolah?.nama_sekolah
+          : 'SISTEM INFORMASI NILAI AKADEMIK SISWA'}
       </h2>
     </div>
   );
 }
+
+DashboardHeader.propTypes = {
+  ProfilSekolah: PropTypes.object,
+};
 
 export default DashboardHeader;

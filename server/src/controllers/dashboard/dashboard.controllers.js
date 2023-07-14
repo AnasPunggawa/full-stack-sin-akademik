@@ -36,7 +36,6 @@ const {
 async function getDashboardByRole(req, res, next) {
   try {
     const { user_id: id, npsn } = req.query,
-      // const { id } = req.params,
       userExist = await check_user_id(id);
     if (!userExist)
       throw new CustomError(404, 'data pengguna tidak ditemukan!');
