@@ -10,6 +10,8 @@ import {
   INITIAL_STATE_DATA_DASHBOARD_REDUCER,
   dataDashboardReducer,
 } from '../../../../reducer/dashboard/dashboardReducer';
+import LayoutLoading from '../../../../components/ui/LayoutLoading';
+import LayoutError from '../../../../components/ui/LayoutError';
 
 function GuruDashboard({ User_id, NPSN }) {
   const [dataDashboard, dispatch] = useReducer(
@@ -63,23 +65,30 @@ function GuruDashboard({ User_id, NPSN }) {
 
   return (
     <>
-      {User_id && dataDashboard?.data && (
-        <>
-          <Header>Dashboard</Header>
-          <Container>
-            <div className="w-full p-4 space-y-4">
-              <DashboardHeader
-                ProfilSekolah={
-                  dataDashboard?.data?.informasi_sekolah?.profil_sekolah
-                }
-              />
-              <DashboardInfoSekolah
-                InformasiSekolah={dataDashboard?.data?.informasi_sekolah}
-              />
-            </div>
-          </Container>
-        </>
-      )}
+      <Header>Dashboard</Header>
+      <Container>
+        {dataDashboard.loading && <LayoutLoading>Loading...</LayoutLoading>}
+        {dataDashboard.error && (
+          <LayoutError>{dataDashboard.errorMessage}</LayoutError>
+        )}
+        {User_id &&
+          !dataDashboard.loading &&
+          !dataDashboard.error &&
+          dataDashboard?.data && (
+            <>
+              <div className="w-full p-4 space-y-4">
+                <DashboardHeader
+                  ProfilSekolah={
+                    dataDashboard?.data?.informasi_sekolah?.profil_sekolah
+                  }
+                />
+                <DashboardInfoSekolah
+                  InformasiSekolah={dataDashboard?.data?.informasi_sekolah}
+                />
+              </div>
+            </>
+          )}
+      </Container>
     </>
   );
 }
