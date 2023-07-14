@@ -48,14 +48,14 @@ async function getDashboardByRole(req, res, next) {
     if (roleUser === 'siswa')
       dataUser = await find_details_single_data_siswa(id);
     const profilSekolah = await find_profil_sekolah(npsn);
-    if (!profilSekolah)
-      throw new CustomError(404, 'data profile sekolah tidak ditemukan!');
+    // if (!profilSekolah)
+    //   throw new CustomError(404, 'data profile sekolah tidak ditemukan!');
     const identitasSekolah = await find_identitas_sekolah(npsn);
-    if (!identitasSekolah)
-      throw new CustomError(404, 'data identitas sekolah tidak ditemukan!');
+    // if (!identitasSekolah)
+    //   throw new CustomError(404, 'data identitas sekolah tidak ditemukan!');
     const kontakSekolah = await find_kontak_sekolah(npsn);
-    if (!kontakSekolah)
-      throw new CustomError(404, 'data kontak sekolah tidak ditemukan!');
+    // if (!kontakSekolah)
+    //   throw new CustomError(404, 'data kontak sekolah tidak ditemukan!');
     const countGuruAktif = await count_all_guru_aktif(),
       countSiswaAktif = await count_all_siswa_aktif(),
       countKelas = await count_all_kelas(),
@@ -69,14 +69,14 @@ async function getDashboardByRole(req, res, next) {
         count_matapelajaran: countMatapelajaran || 0,
       },
       informasi_sekolah: {
-        profil_sekolah: profilSekolah,
-        identitas_sekolah: identitasSekolah,
-        kontak_sekolah: kontakSekolah,
+        profil_sekolah: profilSekolah || null,
+        identitas_sekolah: identitasSekolah || null,
+        kontak_sekolah: kontakSekolah || null,
       },
     };
     resSuccessController(res, 200, 'data dashboard berhasil ditemukan', data);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 }
 
@@ -93,7 +93,7 @@ async function getProfilSekolah(req, res, next) {
       data
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -116,7 +116,7 @@ async function createProfilSekolah(req, res, next) {
       createData
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -135,7 +135,7 @@ async function updateProfilSekolah(req, res, next) {
       updateData
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -152,7 +152,7 @@ async function getIdentitasSekolah(req, res, next) {
       data
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -177,7 +177,7 @@ async function createIdentitasSekolah(req, res, next) {
       createData
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -199,7 +199,7 @@ async function updateIdentitasSekolah(req, res, next) {
       updateData
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -216,7 +216,7 @@ async function getKontakSekolah(req, res, next) {
       data
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -239,7 +239,7 @@ async function createKontakSekolah(req, res, next) {
       createData
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
@@ -258,7 +258,7 @@ async function updateKontakSekolah(req, res, next) {
       updateData
     );
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 

@@ -21,21 +21,21 @@ dashboardRoutes.route('/').get(getDashboardByRole);
 
 //? PROFIL SEKOLAH
 dashboardRoutes.route('/profil').post(createProfilSekolah);
-!dashboardRoutes
+dashboardRoutes
   .route('/profil/:id')
   .get(getProfilSekolah)
   .put(updateProfilSekolah);
 
 //? IDENTITAS SEKOLAH
 dashboardRoutes.route('/identitas').post(createIdentitasSekolah);
-!dashboardRoutes
+dashboardRoutes
   .route('/identitas/:id')
   .get(getIdentitasSekolah)
   .put(updateIdentitasSekolah);
 
 //? KONTAK SEKOLAH
 dashboardRoutes.route('/kontak').post(createKontakSekolah);
-!dashboardRoutes
+dashboardRoutes
   .route('/kontak/:id')
   .get(getKontakSekolah)
   .put(updateKontakSekolah);

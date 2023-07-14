@@ -27,6 +27,7 @@ function Button({
       'text-sm font-medium text-gray-900 dark:text-white hover:underline',
     LINK_DANGER:
       'text-sm font-medium text-red-600 dark:text-red-500 hover:underline',
+    LINK_WHITE: 'text-sm font-medium text-white hover:underline',
     LINK_NO_STYLE: '',
   };
 

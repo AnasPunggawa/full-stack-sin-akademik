@@ -38,6 +38,9 @@ import NewNilai from './pages/Penilaian/NewNilai/NewNilai';
 import DetailNilai from './pages/Penilaian/DetailNilai/DetailNilai';
 import EditNilaiSiswa from './pages/Penilaian/DetailNilai/EditNilaiSiswa/EditNilaiSiswa';
 import Print from './pages/CetakNilai/Print/Print';
+import AddProfileSekolah from './pages/Dashboard/AddProfileSekolah/AddProfileSekolah';
+import AddIdentitasSekolah from './pages/Dashboard/AddIdentitasSekolah/AddIdentitasSekolah';
+import AddKontakSekolah from './pages/Dashboard/AddKontakSekolah/AddKontakSekolah';
 
 function Router() {
   return (
@@ -52,6 +55,23 @@ function Router() {
         >
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
+            <Route element={<PermissionRoutes Roles={[ROLES.ADMIN]} />}>
+              <Route path="dashboard">
+                <Route index element={<Dashboard />} />
+                <Route
+                  path="add-profil-sekolah"
+                  element={<AddProfileSekolah />}
+                />
+                <Route
+                  path="add-identitas-sekolah"
+                  element={<AddIdentitasSekolah />}
+                />
+                <Route
+                  path="add-kontak-sekolah"
+                  element={<AddKontakSekolah />}
+                />
+              </Route>
+            </Route>
             <Route path="profile">
               <Route index element={<Profile />} />
               <Route path="add-biodata" element={<AddBiodata />} />
