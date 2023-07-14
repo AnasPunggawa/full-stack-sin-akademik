@@ -86,7 +86,7 @@ function InfoProfileSekolah() {
           <>
             <img
               src={LogoSekolah}
-              className="h-24 mx-auto"
+              className="h-20 w-20 mx-auto"
               alt="Logo UPT SMP Negeri 1 Binamu"
             />
             <h4 className="text-center font-semibold">

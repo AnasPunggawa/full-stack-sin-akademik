@@ -7,7 +7,7 @@ function DashboardCardInfo({ CardContent }) {
     >
       <div className="flex flex-col justify-between">
         <h3 className="text-base font-medium">{CardContent.title}</h3>
-        <h5 className="text-xl font-bold">{CardContent.value}</h5>
+        <h4 className="text-xl font-bold">{CardContent.value}</h4>
       </div>
       {CardContent.Icon}
     </div>

@@ -39,9 +39,9 @@ function Navbar() {
           <div className="flex items-center">
             <button
               onClick={toggle}
-              data-drawer-target="logo-sidebar"
-              data-drawer-toggle="logo-sidebar"
-              aria-controls="logo-sidebar"
+              // data-drawer-target="logo-sidebar"
+              // data-drawer-toggle="logo-sidebar"
+              // aria-controls="logo-sidebar"
               type="button"
               className="mr-1 inline-flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               // className="mr-1 inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -56,7 +56,7 @@ function Navbar() {
             >
               <img
                 src={LogoSekolah}
-                className="h-8 mr-3"
+                className="h-8 w-8 mr-3"
                 alt="Logo UPT SMP Negeri 1 Binamu"
               />
               <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">

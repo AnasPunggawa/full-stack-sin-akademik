@@ -97,7 +97,7 @@ function Login() {
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="flex flex-col items-center mb-6 text-gray-900 dark:text-white">
             <img
-              className="w-28 h-28 mb-2 sm:w-40 sm:h-40"
+              className="w-28 h-28 mb-2 sm:w-32 sm:h-32"
               src={LogoSekolah}
               alt="logo"
             />
