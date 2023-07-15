@@ -26,9 +26,10 @@ function SelectMataPelajaran({ SetKodeMataPelajaran, SetGuruInfo }) {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
       SetGuruInfo(data?.guru[0]);
-      const dataResMataPelajaran = data?.guru[0]?.matapelajaran;
-      if (dataResMataPelajaran.length === 0)
+      // if (dataResMataPelajaran.length === 0 || !data?.guru[0])
+      if (!data?.guru[0] || data?.guru[0]?.matapelajaran === 0)
         throw new CustomError(404, 'Anda belum memiliki mata pelajaran');
+      const dataResMataPelajaran = data?.guru[0]?.matapelajaran;
       const listMataPelajaran = listArray(dataResMataPelajaran);
       setDataMataPelajaran(listMataPelajaran);
     } catch (error) {
