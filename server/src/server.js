@@ -20,8 +20,14 @@ app.use(
       process.env.CLIENT_ORIGIN_PROD,
       process.env.CLIENT_ORIGIN_VERCEL,
     ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'Access-Control-Allow-Origin',
+      'Access-Control-Allow-Methods',
+      'Access-Control-Allow-Headers',
+    ],
     credentials: true,
   })
 );

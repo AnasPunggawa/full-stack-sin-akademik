@@ -5,8 +5,11 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    // Accept: 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   },
   withCredentials: true,
 });
