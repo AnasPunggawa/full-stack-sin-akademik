@@ -1,4 +1,5 @@
-const prisma = require('../../prisma/seed');
+// const prisma = require('../../prisma/seed');
+const { prisma } = require('../../prisma/seed');
 const CustomError = require('../utils/CustomError');
 const { generateGuruID, generateStatusGuru } = require('../utils/GenerateGuru');
 const { containsOnlyNumbers, validateEmail } = require('../utils/RegExp');

@@ -1,4 +1,5 @@
-const prisma = require('../../prisma/seed');
+// const prisma = require('../../prisma/seed');
+const { prisma } = require('../../prisma/seed');
 const CustomError = require('../utils/CustomError');
 const { generateMatapelajaranID } = require('../utils/GenerateMatapelajaran');
 const { containsOnlyString } = require('../utils/RegExp');

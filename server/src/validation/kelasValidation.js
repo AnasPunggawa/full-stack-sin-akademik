@@ -1,4 +1,5 @@
-const prisma = require('../../prisma/seed');
+// const prisma = require('../../prisma/seed');
+const { prisma } = require('../../prisma/seed');
 const CustomError = require('../utils/CustomError');
 const {
   generateKelasID,

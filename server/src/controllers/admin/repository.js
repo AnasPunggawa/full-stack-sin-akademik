@@ -1,4 +1,5 @@
-const prisma = require('../../../prisma/seed');
+// const prisma = require('../../../prisma/seed');
+const { prisma } = require('../../../prisma/seed');
 
 async function find_all_datas() {
   return await prisma.admin.findMany();

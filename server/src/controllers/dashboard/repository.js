@@ -1,4 +1,5 @@
-const prisma = require('../../../prisma/seed');
+// const prisma = require('../../../prisma/seed');
+const { prisma } = require('../../../prisma/seed');
 
 async function check_user_id(id) {
   return await prisma.users.findUnique({

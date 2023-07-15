@@ -1,4 +1,5 @@
-const prisma = require('../../prisma/seed');
+// const prisma = require('../../prisma/seed');
+const { prisma } = require('../../prisma/seed');
 const CustomError = require('../utils/CustomError');
 const { generateNilaiID } = require('../utils/GenerateNilai');
 const { getCurrentDate } = require('../utils/GenerateTime');

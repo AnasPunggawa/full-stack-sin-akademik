@@ -1,4 +1,6 @@
-const prisma = require('../../../prisma/seed');
+// const prisma = require('../../../prisma/seed');
+
+const { prisma } = require('../../../prisma/seed');
 
 async function find_all_datas(tingkat, searchSemester, limit, skip) {
   return await prisma.semester.findMany({

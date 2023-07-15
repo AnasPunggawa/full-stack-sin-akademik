@@ -1,4 +1,3 @@
-const prisma = require('../../../prisma/seed');
 const CustomError = require('../../utils/CustomError');
 const resSuccessController = require('../../utils/resSuccessController');
 const {
