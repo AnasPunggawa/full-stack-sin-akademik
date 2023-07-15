@@ -11,7 +11,7 @@ function SiswaPrint() {
 
   useEffect(() => {
     if (state && state?.success) {
-      const documentTitle = `${state?.data?.semester_id}-${state?.data?.kelas_id}-${state?.data?.matapelajaran_id}`;
+      const documentTitle = `${state?.data?.siswaInfo?.siswa_id}-${state?.data?.semester_id}-${state?.data?.kelas_id}`;
       setDataDocument({
         documentTitle: documentTitle,
         prevLocation: state?.data?.prevLocation,
