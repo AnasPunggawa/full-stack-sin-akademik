@@ -8,7 +8,7 @@ function PageHeader() {
           <td>
             <img
               src={LogoSekolah}
-              className="h-24 mr-3"
+              className="h-24 w-24 mr-3"
               alt="Logo UPT SMP Negeri 1 Binamu"
             />
           </td>

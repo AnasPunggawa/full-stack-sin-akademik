@@ -11,7 +11,6 @@ const errorMessage = {
   rtNotValid: 'RT tidak valid',
   rwNotValid: 'RW tidak valid',
   kodePosNotValid: 'kode pos tidak valid',
-  nomorTeleponNotValid: 'nomor telepon tidak valid',
   emailNotValid: 'email tidak valid',
 };
 
@@ -40,8 +39,6 @@ function createSekolahKontakValidation(request) {
     throw new CustomError(400, errorMessage.rwNotValid);
   if (!containsOnlyNumbers(kode_pos))
     throw new CustomError(400, errorMessage.kodePosNotValid);
-  if (!containsOnlyNumbers(nomor_telepon))
-    throw new CustomError(400, errorMessage.nomorTeleponNotValid);
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
 
@@ -99,8 +96,6 @@ async function updateSekolahKontakValidation(request) {
     throw new CustomError(400, errorMessage.rwNotValid);
   if (!containsOnlyNumbers(kode_pos))
     throw new CustomError(400, errorMessage.kodePosNotValid);
-  if (!containsOnlyNumbers(nomor_telepon))
-    throw new CustomError(400, errorMessage.nomorTeleponNotValid);
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
 
