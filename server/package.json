@@ -4,7 +4,8 @@
   "description": "Server Sistem Informasi Nilai Akademik",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node ./src/server.js"
   },
   "keywords": [],
   "author": "Anas Punggawa",
