@@ -25,8 +25,8 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
     setIsLoading(true);
     setIsError(false);
     try {
-      const responseProfil = await getProfilSekolah('');
-      const responseKontak = await getKontakSekolah('');
+      const responseProfil = await getProfilSekolah();
+      const responseKontak = await getKontakSekolah();
       const dataProfil = responseProfil?.data?.data;
       const dataKontak = responseKontak?.data?.data;
       const data = {
