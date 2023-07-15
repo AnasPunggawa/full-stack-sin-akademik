@@ -40,9 +40,19 @@ function EditNilaiSiswa() {
           state: { success: false, message: 'Anda tidak memiliki akses' },
           replace: true,
         });
+      if (!data?.guru?.status)
+        return navigate(`/penilaian/${id}`, {
+          state: { success: false, message: 'Guru sudah tidak aktif' },
+          replace: true,
+        });
       if (!data?.semester?.status)
         return navigate(`/penilaian/${id}`, {
           state: { success: false, message: 'Semester sudah tidak aktif' },
+          replace: true,
+        });
+      if (!data?.siswa?.status)
+        return navigate(`/penilaian/${id}`, {
+          state: { success: false, message: 'Siswa sudah tidak aktif' },
           replace: true,
         });
       setNamaSiswa(data?.siswa?.nama);

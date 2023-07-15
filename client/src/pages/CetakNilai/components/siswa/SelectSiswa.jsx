@@ -21,9 +21,10 @@ function SelectSiswa({ SetSiswaId, SetSiswaInfo }) {
     setIsError(false);
     try {
       const response = await getUser(decodeAccessToken?.id);
-      const data = response.data.data;
-      if (data?.siswa[0].length === 0)
+      const data = response?.data?.data;
+      if (data?.siswa[0]?.length === 0 || !data?.siswa[0]) {
         throw new CustomError(404, 'Siswa belum terdaftar');
+      }
       setDataSiswa(data?.siswa[0]);
       SetSiswaId(data?.siswa[0]?.id);
       SetSiswaInfo(data?.siswa[0]);

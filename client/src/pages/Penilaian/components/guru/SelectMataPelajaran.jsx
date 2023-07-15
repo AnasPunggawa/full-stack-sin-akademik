@@ -26,7 +26,7 @@ function SelectMataPelajaran({ SetKodeMataPelajaran }) {
       const response = await getUser(decodeAccessToken?.id);
       const data = response.data.data;
       const dataResMataPelajaran = data?.guru[0]?.matapelajaran;
-      if (dataResMataPelajaran.length === 0)
+      if (dataResMataPelajaran?.length === 0 || !dataResMataPelajaran)
         throw new CustomError(404, 'Anda belum memiliki mata pelajaran');
       const listMataPelajaran = listArray(dataResMataPelajaran);
       setDataMataPelajaran(listMataPelajaran);
