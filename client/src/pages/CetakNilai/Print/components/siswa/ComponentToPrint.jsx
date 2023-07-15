@@ -25,16 +25,20 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
     setIsLoading(true);
     setIsError(false);
     try {
-      const responseProfil = await getProfilSekolah();
-      const responseKontak = await getKontakSekolah();
+      const responseProfil = await getProfilSekolah('');
+      const responseKontak = await getKontakSekolah('');
       const dataProfil = responseProfil?.data?.data;
       const dataKontak = responseKontak?.data?.data;
       const data = {
-        dataProfil,
-        dataKontak,
+        dataProfil: dataProfil || null,
+        dataKontak: dataKontak || null,
       };
+      console.log(data);
       setDataSekolah(data);
     } catch (error) {
+      if (error?.response?.status === 404 && !error?.response?.data?.success) {
+        return setDataSekolah({});
+      }
       setIsError(true);
       if (error.statusCode === 404) return setErrorMessage(error.message);
       if (error.response.status === 500)
@@ -65,6 +69,7 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
       >
         {isLoading && <p>Loading...</p>}
         {isError && <BoxError>{errorMessage}</BoxError>}
+        {/* {!isLoading && !isError && dataSekolah && ( */}
         {!isLoading && !isError && dataSekolah && (
           <>
             <PageHeader PageTitle="LAPORAN NILAI" DataSekolah={dataSekolah} />

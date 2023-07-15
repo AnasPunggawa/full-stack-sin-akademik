@@ -35,8 +35,10 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
       };
       setDataSekolah(data);
     } catch (error) {
+      if (error?.response?.status === 404 && !error?.response?.data?.success) {
+        return setDataSekolah({});
+      }
       setIsError(true);
-      if (error.statusCode === 404) return setErrorMessage(error.message);
       if (error.response.status === 500)
         return setErrorMessage('Something went wrong');
       if (error.response) return setErrorMessage(error.response.data.message);
