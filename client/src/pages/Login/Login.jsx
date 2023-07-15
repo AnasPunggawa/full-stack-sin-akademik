@@ -16,8 +16,10 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isInputValid, setIsInputValid] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,26 +39,29 @@ function Login() {
 
   useEffect(() => {
     setErrorMessage('');
-    setError(false);
+    setIsError(false);
   }, [username, password]);
 
   async function handleLogin(e) {
     e.preventDefault();
     if (username === '') {
-      setError(true);
+      setIsError(true);
       setErrorMessage('Username harus diisi');
       return;
     }
     if (password === '') {
-      setError(true);
+      setIsError(true);
       setErrorMessage('Password harus diisi');
       return;
     }
 
+    setIsLoading(true);
+    setIsError(false);
     try {
       console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGIN);
       const formData = { username, password };
       const response = await authLogin(formData);
+      console.log(response);
       const data = response.data.data;
       const decodeJwt = jwtDecode(data.accessToken);
       localStorage.setItem('accessToken', data.accessToken);
@@ -68,24 +73,29 @@ function Login() {
       setUsername('');
       setPassword('');
       setErrorMessage('');
-      setError(false);
       return navigate(fromLocation, { replace: true });
     } catch (error) {
-      if (error.response.data.status === 500) {
+      setIsError(true);
+      if (error?.response?.data?.status === 500) {
         setErrorMessage('Something went wrong');
-        setError(true);
         return;
       }
-      if (error.response) {
-        setErrorMessage(error.response.data.message);
-        setError(true);
+      if (error?.response) {
+        setErrorMessage(error?.response?.data?.message);
         return;
       }
       setErrorMessage('Something went wrong');
-      setError(true);
       return;
+    } finally {
+      setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (username === '' || password === '' || isLoading || isError)
+      return setIsInputValid(false);
+    return setIsInputValid(true);
+  }, [username, password, isLoading, isError]);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -105,7 +115,7 @@ function Login() {
           </div>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-5 space-y-4 md:space-y-6 sm:p-7">
-              {error && <BoxError>{errorMessage}</BoxError>}
+              {isError && <BoxError>{errorMessage}</BoxError>}
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Login ke akun anda
               </h1>
@@ -145,7 +155,7 @@ function Login() {
                 <Button
                   ClassName="w-full"
                   Type="submit"
-                  Disabled={username === '' || password === '' ? true : false}
+                  Disabled={!isInputValid ? true : false}
                 >
                   Login
                 </Button>

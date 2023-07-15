@@ -8,6 +8,7 @@ import { authLogout } from '../../api/auth';
 import { ACTION_AUTH_REDUCER_CONTEXT } from '../../reducer/authReducerContext';
 import Button from './Button';
 import jwtDecode from 'jwt-decode';
+import { useState } from 'react';
 
 function Navbar() {
   const getAccessToken = localStorage.getItem('accessToken');
@@ -17,14 +18,28 @@ function Navbar() {
   const { dispatch } = useAuthContext();
   const { isOpen, toggle } = useSidebarContext();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const navigate = useNavigate();
 
   async function handleLogout() {
-    console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGOUT);
-    await authLogout();
-    localStorage.clear();
-    dispatch({ type: ACTION_AUTH_REDUCER_CONTEXT.LOGOUT });
-    navigate('/login', { replace: true });
+    setIsLoading(true);
+    setIsError(false);
+    try {
+      console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGOUT);
+      await authLogout();
+      localStorage.clear();
+      dispatch({ type: ACTION_AUTH_REDUCER_CONTEXT.LOGOUT });
+      navigate('/login', { replace: true });
+    } catch (error) {
+      console.log(error);
+      localStorage.clear();
+      dispatch({ type: ACTION_AUTH_REDUCER_CONTEXT.LOGOUT });
+      navigate('/login', { replace: true });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function home() {
@@ -71,7 +86,11 @@ function Navbar() {
               {decodeAccessToken?.role.charAt(0).toUpperCase() +
                 decodeAccessToken?.role.slice(1)}
             </h1>
-            <Button Type="button" OnClick={handleLogout}>
+            <Button
+              Type="button"
+              OnClick={handleLogout}
+              Disabled={isError || isLoading ? true : false}
+            >
               Logout
             </Button>
           </div>
