@@ -79,7 +79,7 @@ function TableSiswa({ DataTable, SetPage }) {
                   <td className="px-6 py-2.5">
                     {item?.status ? 'Aktif' : 'Tidak Aktif'}
                   </td>
-                  <td className="px-6 py-2.5 inline-flex gap-2 flex-wrap">
+                  <td className="px-6 py-2.5">
                     <Button
                       OnClick={() => handleDetail(item?.id)}
                       ButtonStyle="LINK_PRIMARY"
