@@ -83,8 +83,8 @@ async function getProfilSekolah(req, res, next) {
   try {
     const { id: npsn } = req.params;
     const data = await find_profil_sekolah(npsn);
-    // if (!data)
-    //   throw new CustomError(404, 'data profile sekolah tidak ditemukan!');
+    if (!data)
+      throw new CustomError(404, 'data profil sekolah tidak ditemukan!');
     resSuccessController(
       res,
       200,
@@ -142,8 +142,8 @@ async function getIdentitasSekolah(req, res, next) {
   try {
     const { id: npsn } = req.params;
     const data = await find_identitas_sekolah(npsn);
-    // if (!data)
-    //   throw new CustomError(404, 'data identitas sekolah tidak ditemukan!');
+    if (!data)
+      throw new CustomError(404, 'data identitas sekolah tidak ditemukan!');
     resSuccessController(
       res,
       200,
@@ -206,8 +206,8 @@ async function getKontakSekolah(req, res, next) {
   try {
     const { id: npsn } = req.params;
     const data = await find_kontak_sekolah(npsn);
-    // if (!data)
-    //   throw new CustomError(404, 'data kontak sekolah tidak ditemukan!');
+    if (!data)
+      throw new CustomError(404, 'data kontak sekolah tidak ditemukan!');
     resSuccessController(
       res,
       200,

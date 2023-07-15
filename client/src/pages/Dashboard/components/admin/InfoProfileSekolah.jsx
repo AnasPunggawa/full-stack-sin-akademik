@@ -22,6 +22,7 @@ function InfoProfileSekolah() {
     try {
       const response = await getProfilSekolah();
       const data = response?.data?.data;
+      console.log(data);
       setDataProfilSekolah(data);
     } catch (error) {
       setIsError(true);
@@ -69,6 +70,7 @@ function InfoProfileSekolah() {
       <div className="w-full flex justify-between items-center p-3 bg-red-500 dark:bg-red-600 rounded-t-md">
         <h3 className="font-semibold text-base text-white">Profil Sekolah</h3>
         {/* {isError && Object.keys(dataProfilkSekolah).length === 0 ? ( */}
+        {/* {(isError && !dataProfilkSekolah) || !dataProfilkSekolah ? ( */}
         {isError && !dataProfilkSekolah ? (
           <Button OnClick={handleTambah} ButtonStyle="LINK_WHITE">
             Tambah
@@ -82,6 +84,7 @@ function InfoProfileSekolah() {
       <div className="p-3 space-y-2">
         {isLoading && <p>Loading...</p>}
         {isError && <BoxError>{errorMessage}</BoxError>}
+        {/* {!isLoading && !isError && dataProfilkSekolah && ( */}
         {!isLoading && !isError && dataProfilkSekolah && (
           <>
             <img
