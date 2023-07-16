@@ -36,7 +36,7 @@ function PageHeader({ PageTitle = 'LAPORAN NILAI', DataSekolah }) {
         <tr>
           <td>
             <h3 className="text-sm font-semibold uppercase">
-              KABUPATEN {kabupaten ? kabupaten : ''}
+              KABUPATEN {dataKontak?.kabupaten ? dataKontak?.kabupaten : ''}
             </h3>
           </td>
         </tr>
