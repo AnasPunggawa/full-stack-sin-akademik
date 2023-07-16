@@ -92,7 +92,6 @@ async function updateGuru(req, res, next) {
     // const guruData = req.guru;
     // VALIDATE
     const guruData = await updateGuruValidation(req);
-    // console.log(guruData);
     const guruIDExist = await check_guru_id(id);
     if (!guruIDExist) throw new CustomError(404, 'data guru tidak ditemukan');
     if (guruIDExist.user_id !== guruData.user_id)
@@ -103,7 +102,6 @@ async function updateGuru(req, res, next) {
     const emailExist = await check_email(guruData.email);
     if (emailExist && emailExist.email !== guruIDExist.email)
       throw new CustomError(409, `email ${guruData.email} telah tersedia`);
-    console.log('coba');
     const updateData = await update_data(id, guruData);
     resSuccessController(res, 202, 'data guru berhasil diperbarui', updateData);
   } catch (err) {
