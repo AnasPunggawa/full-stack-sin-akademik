@@ -25,6 +25,8 @@ CREATE TABLE `refresh_token` (
     `id` VARCHAR(191) NOT NULL,
     `user_id` VARCHAR(191) NOT NULL,
     `refreshToken` LONGTEXT NOT NULL,
+    `expiresAt` DATETIME(3) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `refresh_token_user_id_key`(`user_id`),
     PRIMARY KEY (`id`)

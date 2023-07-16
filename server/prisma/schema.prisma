@@ -28,9 +28,11 @@ model users {
 }
 
 model refresh_token {
-  id           String @id @default(uuid())
-  user_id      String @unique
-  refreshToken String @db.LongText
+  id           String   @id @default(uuid())
+  user_id      String   @unique
+  refreshToken String   @db.LongText
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
 
   user users @relation(fields: [user_id], references: [id])
 }

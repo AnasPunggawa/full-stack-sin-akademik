@@ -13,6 +13,7 @@ const jwt = require('jsonwebtoken'),
     find_refresh_token_user_id,
   } = require('./repository');
 const jwt_decode = require('jwt-decode');
+const { getDateTomorrow } = require('../../utils/GetDateTomorrow');
 require('dotenv').config();
 
 async function authLogin(req, res, next) {
@@ -26,15 +27,22 @@ async function authLogin(req, res, next) {
       username: user.username,
       role: user.role,
     };
-    const accessToken = generateAccessToken(payload),
-      refreshToken = generateRefreshToken(payload);
     const userHasLogin = await find_refresh_token_user_id(payload.id);
     if (userHasLogin)
       throw new CustomError(403, 'akun terhubung dengan perangkat lain');
-    await insert_refresh_token({
+    const accessToken = generateAccessToken(payload),
+      refreshToken = generateRefreshToken(payload);
+    const dateTomorrow = getDateTomorrow();
+    const data = {
       user_id: payload.id,
       refreshToken,
-    });
+      expiresAt: dateTomorrow,
+    };
+    await insert_refresh_token(data);
+    // await insert_refresh_token({
+    //   user_id: payload.id,
+    //   refreshToken,
+    // });
     res.cookie('refreshToken', refreshToken, {
       sameSite: 'none',
       secure: true,

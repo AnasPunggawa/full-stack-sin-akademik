@@ -9,6 +9,9 @@ const routes = require('./routes');
 const CustomError = require('./utils/CustomError');
 const errorHandler = require('./middlewares/errorHandler.middlewares');
 const { connectDB, prisma } = require('../prisma/seed');
+const {
+  jobDeleteExpiredRefreshTokens,
+} = require('./utils/DeleteExpiredRefreshTokens');
 require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -39,6 +42,9 @@ async function main() {
   app.use(cookieParser());
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
+
+  // DELETE EXPIRES REFRESH TOKEN
+  jobDeleteExpiredRefreshTokens.start();
 
   // ROUTES
   app.use('/api/v1', routes);

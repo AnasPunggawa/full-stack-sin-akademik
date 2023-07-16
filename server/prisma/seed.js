@@ -33,7 +33,7 @@ async function connectDB() {
         data: {
           id: 'admin',
           username: 'admin',
-          password: 'admin1234',
+          password: 'admin',
           role: 'admin',
         },
       });
