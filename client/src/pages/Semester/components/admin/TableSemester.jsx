@@ -96,11 +96,11 @@ function TableSemester({ DataTable, SetPage, SetRefreshCount }) {
       {semester && (
         <div className="w-full px-3 py-2.5 flex flex-wrap justify-between items-center gap-2">
           <div>
-            <h3 className="text-sm text-gray-900 dark:text-white">
+            <p className="text-sm text-gray-900 dark:text-white">
               Ditampilkan{' '}
               <span className="font-semibold">{semester.length}</span> dari{' '}
               <span className="font-semibold">{total_data}</span> semester
-            </h3>
+            </p>
           </div>
           <div>
             <nav key={total_page}>

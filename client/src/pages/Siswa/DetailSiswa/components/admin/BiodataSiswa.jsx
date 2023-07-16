@@ -32,9 +32,9 @@ function BiodataSiswa({ Biodata }) {
   return (
     <div className="border-b-2 border-gray-300 dark:border-gray-500">
       <div className="flex items-center justify-between mb-2.5">
-        <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
           Biodata Siswa
-        </h3>
+        </h2>
         <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
           Edit
         </Button>

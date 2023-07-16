@@ -16,9 +16,9 @@ function AkunSiswa({ DataAkunSiswa }) {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-2.5">
-        <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
           Data Akun Siswa
-        </h3>
+        </h2>
         <Button OnClick={() => handleEdit()} ButtonStyle="LINK_PRIMARY">
           Edit
         </Button>

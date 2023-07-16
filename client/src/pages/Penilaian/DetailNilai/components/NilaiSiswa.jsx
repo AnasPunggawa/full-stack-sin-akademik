@@ -19,9 +19,9 @@ function NilaiSiswa({ Nilai }) {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-2.5">
-        <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
           Data Nilai
-        </h3>
+        </h2>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         {/* NAMA SISWA */}

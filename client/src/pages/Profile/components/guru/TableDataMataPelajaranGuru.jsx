@@ -14,9 +14,9 @@ const TABLE_HEAD_DETAIL_GURU = [
 function TableDataMataPelajaranGuru({ DataMataPelajaranGuru }) {
   return (
     <div>
-      <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-2.5">
+      <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-2.5">
         Data Mata Pelajaran Guru
-      </h3>
+      </h2>
       <div className="relative overflow-x-auto rounded-md">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-900 uppercase bg-gray-200 dark:bg-gray-800 dark:text-gray-200">
