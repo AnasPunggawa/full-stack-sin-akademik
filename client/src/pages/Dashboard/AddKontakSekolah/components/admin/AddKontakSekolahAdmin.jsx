@@ -166,6 +166,7 @@ function AddKontakSekolahAdmin({ TextHeader }) {
       kodePos === '' ||
       nomorTelepon === '' ||
       email === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -183,6 +184,7 @@ function AddKontakSekolahAdmin({ TextHeader }) {
     kodePos,
     nomorTelepon,
     email,
+    isLoading,
     isError,
   ]);
 

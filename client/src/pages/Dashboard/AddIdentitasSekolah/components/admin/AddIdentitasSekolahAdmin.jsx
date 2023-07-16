@@ -135,6 +135,7 @@ function AddIdentitasSekolahAdmin({ TextHeader }) {
       tanggalSkPendirianSekolah === '' ||
       skIzinOperasional === '' ||
       tanggalSkIzinOperasional === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -148,6 +149,7 @@ function AddIdentitasSekolahAdmin({ TextHeader }) {
     tanggalSkPendirianSekolah,
     skIzinOperasional,
     tanggalSkIzinOperasional,
+    isLoading,
     isError,
   ]);
 

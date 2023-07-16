@@ -173,6 +173,7 @@ function EditData({ BiodataGuru }) {
       email === '' ||
       nomorHP === '' ||
       status === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -187,6 +188,7 @@ function EditData({ BiodataGuru }) {
     email,
     nomorHP,
     status,
+    isLoading,
     isError,
   ]);
 

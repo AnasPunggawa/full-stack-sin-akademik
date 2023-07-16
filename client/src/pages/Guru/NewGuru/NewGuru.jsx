@@ -153,6 +153,7 @@ function NewGuru() {
       tanggalLahir === null ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -167,6 +168,7 @@ function NewGuru() {
     tanggalLahir,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

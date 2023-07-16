@@ -130,6 +130,7 @@ function AddBiodataAdmin({ User }) {
       tanggalLahir === null ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -144,6 +145,7 @@ function AddBiodataAdmin({ User }) {
     tanggalLahir,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

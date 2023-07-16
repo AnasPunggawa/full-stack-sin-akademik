@@ -115,6 +115,7 @@ function EditData({ DataSemester }) {
       tahunAjaranSemester === '' ||
       tingkatSemester === '' ||
       statusSemester === '' ||
+      isLoading ||
       isError
     ) {
       return setIsInputValid(false);
@@ -125,6 +126,7 @@ function EditData({ DataSemester }) {
     tahunAjaranSemester,
     tingkatSemester,
     statusSemester,
+    isLoading,
     isError,
   ]);
 

@@ -85,6 +85,7 @@ function DeleteMataPelajaran({ MataPelajaran }) {
                   <Button
                     OnClick={() => handleDelete(MataPelajaran.id)}
                     ButtonStyle="DANGER"
+                    Disabled={isLoading || isError}
                   >
                     Iya
                   </Button>

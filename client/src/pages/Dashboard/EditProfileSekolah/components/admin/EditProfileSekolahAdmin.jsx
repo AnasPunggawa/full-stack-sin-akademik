@@ -116,11 +116,20 @@ function EditProfileSekolahAdmin({ TextHeader, DataProfilSekolah }) {
       namaKepalaSekolah === '' ||
       namaOperator === '' ||
       akreditasi === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
     return setIsInputValid(true);
-  }, [npsn, namaSekolah, namaKepalaSekolah, namaOperator, akreditasi, isError]);
+  }, [
+    npsn,
+    namaSekolah,
+    namaKepalaSekolah,
+    namaOperator,
+    akreditasi,
+    isLoading,
+    isError,
+  ]);
 
   function cancelEditProfilSekolah() {
     navigate('/');

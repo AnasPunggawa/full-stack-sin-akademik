@@ -137,6 +137,7 @@ function NewNilai() {
       nilai === '' ||
       predikat === '' ||
       catatan === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -150,6 +151,7 @@ function NewNilai() {
     nilai,
     predikat,
     catatan,
+    isLoading,
     isError,
   ]);
 

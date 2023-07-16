@@ -169,7 +169,9 @@ function NewUser() {
       konfPassword === '' ||
       role === '' ||
       !isPasswordMatch ||
-      !isShortPassword
+      !isShortPassword ||
+      isLoading ||
+      isError
     )
       return setIsInputValid(false);
     return setIsInputValid(true);
@@ -180,6 +182,8 @@ function NewUser() {
     role,
     isPasswordMatch,
     isShortPassword,
+    isLoading,
+    isError,
   ]);
 
   return (

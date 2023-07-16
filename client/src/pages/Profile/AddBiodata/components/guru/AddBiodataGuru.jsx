@@ -144,6 +144,7 @@ function AddBiodataGuru({ User }) {
       tanggalLahir === null ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -159,6 +160,7 @@ function AddBiodataGuru({ User }) {
     tanggalLahir,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

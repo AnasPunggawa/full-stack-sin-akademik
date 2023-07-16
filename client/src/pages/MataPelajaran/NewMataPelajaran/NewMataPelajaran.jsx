@@ -72,9 +72,15 @@ function NewMataPelajaran() {
   useEffect(() => {
     setIsError(false);
     setErrorMessage('');
-    if (namaMataPelajaran === '') return setIsInputValid(false);
-    return setIsInputValid(true);
+    // if (namaMataPelajaran === '') return setIsInputValid(false);
+    // return setIsInputValid(true);
   }, [namaMataPelajaran]);
+
+  useEffect(() => {
+    if (namaMataPelajaran === '' || isLoading || isError)
+      return setIsInputValid(false);
+    return setIsInputValid(true);
+  }, [namaMataPelajaran, isLoading, isError]);
 
   return (
     <>

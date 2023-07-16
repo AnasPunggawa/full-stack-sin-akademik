@@ -110,6 +110,7 @@ function EditData({ AkunSiswa }) {
       konfPasswordBaru === '' ||
       !isPasswordMatch ||
       isShortPasswordBaru ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -120,6 +121,7 @@ function EditData({ AkunSiswa }) {
     konfPasswordBaru,
     isPasswordMatch,
     isShortPasswordBaru,
+    isLoading,
     isError,
   ]);
 

@@ -87,6 +87,7 @@ function DeleteSiswa({ Siswa, SetRefreshCount }) {
                   <Button
                     OnClick={() => handleDelete(Siswa.id)}
                     ButtonStyle="DANGER"
+                    Disabled={isLoading || isError}
                   >
                     Iya
                   </Button>

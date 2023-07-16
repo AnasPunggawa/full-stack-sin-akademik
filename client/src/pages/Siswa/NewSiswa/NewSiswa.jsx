@@ -189,6 +189,7 @@ function NewSiswa() {
       email === '' ||
       nomorHP === '' ||
       tahunAngkatan === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -207,6 +208,7 @@ function NewSiswa() {
     email,
     nomorHP,
     tahunAngkatan,
+    isLoading,
     isError,
   ]);
 

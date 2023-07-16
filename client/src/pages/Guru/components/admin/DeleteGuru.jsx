@@ -87,6 +87,7 @@ function DeleteGuru({ Guru, SetRefreshCount }) {
                   <Button
                     OnClick={() => handleDelete(Guru.id)}
                     ButtonStyle="DANGER"
+                    Disabled={isLoading || isError}
                   >
                     Iya
                   </Button>

@@ -90,10 +90,16 @@ function EditData({ NilaiSiswa }) {
   }, [nilai, predikat, catatan]);
 
   useEffect(() => {
-    if (nilai === '' || predikat === '' || catatan === '' || isError)
+    if (
+      nilai === '' ||
+      predikat === '' ||
+      catatan === '' ||
+      isLoading ||
+      isError
+    )
       return setIsInputValid(false);
     return setIsInputValid(true);
-  }, [nilai, predikat, catatan, isError]);
+  }, [nilai, predikat, catatan, isLoading, isError]);
 
   function cancelEditNilaiSiswa() {
     navigate(`/penilaian/${id}`);

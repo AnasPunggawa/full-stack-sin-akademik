@@ -88,7 +88,7 @@ function NewKelas() {
       kelas: tingkatKelas,
       kode: kode,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewKelas(formData);
   }
 
@@ -104,11 +104,17 @@ function NewKelas() {
   }, [kodeKelas, tingkatKelas, kode]);
 
   useEffect(() => {
-    if (kodeKelas === '' || tingkatKelas === '' || kode === '' || isError) {
+    if (
+      kodeKelas === '' ||
+      tingkatKelas === '' ||
+      kode === '' ||
+      isLoading ||
+      isError
+    ) {
       return setIsInputValid(false);
     }
     return setIsInputValid(true);
-  }, [kodeKelas, tingkatKelas, kode, isError]);
+  }, [kodeKelas, tingkatKelas, kode, isLoading, isError]);
 
   function cancelNewKelas() {
     navigate('/kelas');

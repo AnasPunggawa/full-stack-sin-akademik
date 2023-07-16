@@ -86,6 +86,7 @@ function DeleteNilai({ Nilai, SetRefreshCount }) {
                   <Button
                     OnClick={() => handleDelete(Nilai.id)}
                     ButtonStyle="DANGER"
+                    Disabled={isLoading || isError}
                   >
                     Iya
                   </Button>

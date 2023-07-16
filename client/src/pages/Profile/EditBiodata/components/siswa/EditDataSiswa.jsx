@@ -190,6 +190,7 @@ function EditDataSiswa({ BiodataSiswa }) {
       namaIbu === '' ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -206,6 +207,7 @@ function EditDataSiswa({ BiodataSiswa }) {
     namaIbu,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

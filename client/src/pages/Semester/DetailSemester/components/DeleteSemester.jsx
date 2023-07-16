@@ -85,6 +85,7 @@ function DeleteSemester({ Semester }) {
                   <Button
                     OnClick={() => handleDelete(Semester.id)}
                     ButtonStyle="DANGER"
+                    Disabled={isLoading || isError}
                   >
                     Iya
                   </Button>

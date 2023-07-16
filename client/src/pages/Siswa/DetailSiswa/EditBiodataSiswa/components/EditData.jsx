@@ -208,6 +208,7 @@ function EditData({ BiodataSiswa }) {
       nomorHP === '' ||
       tahunAngkatan === '' ||
       status === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -226,6 +227,7 @@ function EditData({ BiodataSiswa }) {
     nomorHP,
     tahunAngkatan,
     status,
+    isLoading,
     isError,
   ]);
 

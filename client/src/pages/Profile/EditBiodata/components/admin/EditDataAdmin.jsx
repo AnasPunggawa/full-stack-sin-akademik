@@ -146,6 +146,7 @@ function EditDataAdmin({ BiodataAdmin }) {
       tanggalLahir === null ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -158,6 +159,7 @@ function EditDataAdmin({ BiodataAdmin }) {
     tanggalLahir,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

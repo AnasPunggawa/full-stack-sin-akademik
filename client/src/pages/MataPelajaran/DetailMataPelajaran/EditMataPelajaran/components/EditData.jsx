@@ -71,9 +71,15 @@ function EditData({ DataMataPelajaran }) {
   useEffect(() => {
     setIsError(false);
     setErrorMessage('');
-    if (namaMataPelajaran === '') return setIsInputValid(false);
-    return setIsInputValid(true);
+    // if (namaMataPelajaran === '') return setIsInputValid(false);
+    // return setIsInputValid(true);
   }, [namaMataPelajaran]);
+
+  useEffect(() => {
+    if (namaMataPelajaran === '' || isLoading || isError)
+      return setIsInputValid(false);
+    return setIsInputValid(true);
+  }, [namaMataPelajaran, isLoading, isError]);
 
   function cancelEditMataPelajaran() {
     navigate(`/mata-pelajaran/${id}`);

@@ -86,6 +86,7 @@ function DeleteSemester({ Semester, SetRefreshCount }) {
                 <Button
                   OnClick={() => handleDelete(Semester?.id)}
                   ButtonStyle="DANGER"
+                  Disabled={isLoading || isError}
                 >
                   Iya
                 </Button>

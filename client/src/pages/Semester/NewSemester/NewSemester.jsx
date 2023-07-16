@@ -107,12 +107,13 @@ function NewSemester() {
       kodeSemester === '' ||
       tahunAjaran === '' ||
       semester === '' ||
+      isLoading ||
       isError
     ) {
       return setIsInputValid(false);
     }
     return setIsInputValid(true);
-  }, [kodeSemester, tahunAjaran, semester, isError]);
+  }, [kodeSemester, tahunAjaran, semester, isLoading, isError]);
 
   function cancelNewSemester() {
     navigate('/semester');

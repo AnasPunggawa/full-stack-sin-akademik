@@ -183,6 +183,7 @@ function EditKontakSekolahAdmin({ TextHeader, DataKontakSekolah }) {
       kodePos === '' ||
       nomorTelepon === '' ||
       email === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -200,6 +201,7 @@ function EditKontakSekolahAdmin({ TextHeader, DataKontakSekolah }) {
     kodePos,
     nomorTelepon,
     email,
+    isLoading,
     isError,
   ]);
 

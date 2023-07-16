@@ -86,6 +86,7 @@ function DeleteKelas({ Kelas, SetRefreshCount }) {
                 <Button
                   OnClick={() => handleDelete(Kelas?.id)}
                   ButtonStyle="DANGER"
+                  Disabled={isLoading || isError}
                 >
                   Iya
                 </Button>

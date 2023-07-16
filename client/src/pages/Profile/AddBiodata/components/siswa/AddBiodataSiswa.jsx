@@ -173,6 +173,7 @@ function AddBiodataSiswa({ User }) {
       namaIbu === '' ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -191,6 +192,7 @@ function AddBiodataSiswa({ User }) {
     namaIbu,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

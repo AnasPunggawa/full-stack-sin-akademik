@@ -163,6 +163,7 @@ function EditDataGuru({ BiodataGuru }) {
       tanggalLahir === null ||
       email === '' ||
       nomorHP === '' ||
+      isLoading ||
       isError
     )
       return setIsInputValid(false);
@@ -176,6 +177,7 @@ function EditDataGuru({ BiodataGuru }) {
     tanggalLahir,
     email,
     nomorHP,
+    isLoading,
     isError,
   ]);
 

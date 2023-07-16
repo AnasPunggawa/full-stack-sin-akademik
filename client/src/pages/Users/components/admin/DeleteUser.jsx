@@ -90,6 +90,7 @@ function DeleteUser({ User, SetRefreshCount }) {
                 <Button
                   OnClick={() => handleDelete(User.id)}
                   ButtonStyle="DANGER"
+                  Disabled={isLoading || isError ? true : false}
                 >
                   Iya
                 </Button>
