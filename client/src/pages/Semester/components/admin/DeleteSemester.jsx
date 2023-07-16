@@ -27,8 +27,9 @@ function DeleteSemester({ Semester, SetRefreshCount }) {
   async function handleDelete(id) {
     setIsLoading(true);
     try {
-      const data = await deleteSemester(id);
-      console.log(data);
+      await deleteSemester(id);
+      // const data = await deleteSemester(id);
+      // console.log(data);
       setIsOpen(false);
       SetRefreshCount((prev) => prev + 1);
       navigate('/semester', {

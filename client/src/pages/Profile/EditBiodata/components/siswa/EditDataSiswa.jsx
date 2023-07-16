@@ -68,10 +68,11 @@ function EditDataSiswa({ BiodataSiswa }) {
     setIsError(false);
     setErrorMessage('');
     try {
-      const response = await updateSiswa(id, formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('updated biodata siswa');
+      await updateSiswa(id, formData);
+      // const response = await updateSiswa(id, formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('updated biodata siswa');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil mengubah biodata' },
         replace: true,
@@ -105,7 +106,7 @@ function EditDataSiswa({ BiodataSiswa }) {
       email,
       nomorHP,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateSiswa(formData);
     return;
   }

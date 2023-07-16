@@ -9,10 +9,6 @@ function ComponentPrint({ ComponentToPrint, DataDocument }) {
   const componentRef = useRef(null);
   const navigate = useNavigate();
 
-  // const handleBeforePrint = useCallback(() => {
-  //   console.log('first');
-  // }, []);
-
   const reactToPrintContent = useCallback(() => {
     return componentRef.current;
   }, [componentRef]);

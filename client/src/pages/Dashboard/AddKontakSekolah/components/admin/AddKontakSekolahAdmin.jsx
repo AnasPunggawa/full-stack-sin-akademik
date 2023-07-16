@@ -34,9 +34,10 @@ function AddKontakSekolahAdmin({ TextHeader }) {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await createKontakSekolah(formData);
-      const data = response?.data?.data;
-      console.log(data);
+      await createKontakSekolah(formData);
+      // const response = await createKontakSekolah(formData);
+      // const data = response?.data?.data;
+      // console.log(data);
       navigate('/', {
         state: {
           success: true,
@@ -73,7 +74,7 @@ function AddKontakSekolahAdmin({ TextHeader }) {
       nomor_telepon: nomorTelepon,
       email: email,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewKontakSekolah(formData);
     return;
   }

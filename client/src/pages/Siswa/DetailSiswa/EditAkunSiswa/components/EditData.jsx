@@ -28,9 +28,10 @@ function EditData({ AkunSiswa }) {
     setIsLoading(true);
     setErrorMessage('');
     try {
-      const response = await updateUser(user_id, formData);
-      console.log(response);
-      console.log('updated akun siswa');
+      await updateUser(user_id, formData);
+      // const response = await updateUser(user_id, formData);
+      // console.log(response);
+      // console.log('updated akun siswa');
       navigate(`/siswa/${id}`, {
         state: { success: true, message: 'Berhasil mengubah password siswa' },
         replace: true,
@@ -53,7 +54,7 @@ function EditData({ AkunSiswa }) {
       ...users,
       password: passwordBaru,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateAkunSiswa(formData);
   }
 

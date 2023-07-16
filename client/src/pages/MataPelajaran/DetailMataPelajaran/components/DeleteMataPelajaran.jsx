@@ -27,8 +27,9 @@ function DeleteMataPelajaran({ MataPelajaran }) {
   async function handleDelete(id) {
     setIsLoading(true);
     try {
-      const data = await deleteMataPelajaran(id);
-      console.log(data);
+      await deleteMataPelajaran(id);
+      // const data = await deleteMataPelajaran(id);
+      // console.log(data);
       navigate('/mata-pelajaran', {
         state: { success: true, message: 'Berhasil menghapus mata pelajaran' },
         replace: true,

@@ -46,10 +46,11 @@ function NewUser() {
     setIsError(false);
     setIsLoading(true);
     try {
-      console.log('CREATE USER');
-      const response = await createUser(formData);
-      const data = response.data.data;
-      console.log(data);
+      // console.log('CREATE USER');
+      await createUser(formData);
+      // const response = await createUser(formData);
+      // const data = response.data.data;
+      // console.log(data);
       navigate('/users', {
         state: { success: true, message: 'Berhasil menambahkan user' },
         replace: true,

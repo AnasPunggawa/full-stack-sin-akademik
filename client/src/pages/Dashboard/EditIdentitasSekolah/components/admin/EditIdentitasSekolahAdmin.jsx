@@ -54,9 +54,10 @@ function EditIdentitasSekolahAdmin({ TextHeader, DataIdentitasSekolah }) {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await updateIdentitasSekolah(id, formData);
-      const data = response?.data?.data;
-      console.log(data);
+      await updateIdentitasSekolah(id, formData);
+      // const response = await updateIdentitasSekolah(id, formData);
+      // const data = response?.data?.data;
+      // console.log(data);
       navigate('/', {
         state: {
           success: true,
@@ -90,7 +91,7 @@ function EditIdentitasSekolahAdmin({ TextHeader, DataIdentitasSekolah }) {
       sk_izin_operasional: skIzinOperasional.toUpperCase(),
       tanggal_sk_izin_operasional: tanggalSkIzinOperasional,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateIdentitasSekolah(formData);
     return;
   }

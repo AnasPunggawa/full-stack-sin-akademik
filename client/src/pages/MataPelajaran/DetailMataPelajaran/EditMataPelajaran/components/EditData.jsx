@@ -28,7 +28,7 @@ function EditData({ DataMataPelajaran }) {
     try {
       const response = await updateMataPelajaran(id, formData);
       const data = response.data.data;
-      console.log(data);
+      // console.log(data);
       navigate(`/mata-pelajaran/${data.id}`, {
         state: {
           success: true,
@@ -63,7 +63,7 @@ function EditData({ DataMataPelajaran }) {
         return { id: nmGuru.id };
       }),
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateMataPelajaran(formData);
     return;
   }

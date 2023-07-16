@@ -45,8 +45,9 @@ function NewKelas() {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await createKelas(formData);
-      console.log(response);
+      await createKelas(formData);
+      // const response = await createKelas(formData);
+      // console.log(response);
       navigate('/kelas', {
         state: { success: true, message: 'Berhasil menambahkan kelas' },
         replace: true,

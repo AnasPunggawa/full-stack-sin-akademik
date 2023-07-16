@@ -41,13 +41,10 @@ function TableNilai({ DataTable, SetPage, SetRefreshCount }) {
   const decodeAccessToken = jwtDecode(getAccessToken);
 
   const { nilai, total_data, total_page, current_page } = DataTable;
-  console.log(nilai);
-  // console.log(decodeAccessToken.id === nilai?.guru?.user_id);
 
   const navigate = useNavigate();
 
   function handleDetail(id) {
-    // console.log('go to detail', id);
     navigate(id);
   }
 

@@ -25,12 +25,12 @@ function DeleteNilai({ Nilai, SetRefreshCount }) {
   }, [isOpen]);
 
   async function handleDelete(id) {
-    console.log('deleted', id);
     setIsLoading(true);
     setIsError(false);
     try {
-      const data = await deleteNilai(id);
-      console.log(data);
+      await deleteNilai(id);
+      // const data = await deleteNilai(id);
+      // console.log(data);
       setIsOpen(false);
       SetRefreshCount((prev) => prev + 1);
       navigate('/penilaian', {

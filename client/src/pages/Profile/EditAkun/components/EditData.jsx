@@ -27,9 +27,10 @@ function EditData({ AkunUser }) {
     setIsLoading(true);
     setErrorMessage('');
     try {
-      const response = await updateUser(id, formData);
-      console.log(response);
-      console.log('updated akun user');
+      await updateUser(id, formData);
+      // const response = await updateUser(id, formData);
+      // console.log(response);
+      // console.log('updated akun user');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil mengubah password' },
         replace: true,
@@ -52,7 +53,7 @@ function EditData({ AkunUser }) {
       ...AkunUser,
       password: passwordBaru,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateAkunUser(formData);
   }
 

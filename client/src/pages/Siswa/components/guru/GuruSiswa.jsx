@@ -38,7 +38,6 @@ function GuruSiswa() {
       setPage(data.current_page);
       setLimit(data.limit_data);
     } catch (error) {
-      console.log(error);
       if (error.response?.status === 500) {
         dispatch({
           type: ACTION_SISWA_REDUCER.FETCH_DATA_ERROR,

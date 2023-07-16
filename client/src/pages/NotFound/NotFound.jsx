@@ -7,7 +7,7 @@ function NotFound() {
   const navigate = useNavigate();
 
   function backHome() {
-    console.log('back to home');
+    // console.log('back to home');
     return navigate('/', { replace: true });
   }
 

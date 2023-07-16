@@ -27,8 +27,9 @@ function DeleteUser({ User, SetRefreshCount }) {
   async function handleDelete(id) {
     setIsLoading(true);
     try {
-      const data = await deleteUser(id);
-      console.log(data);
+      await deleteUser(id);
+      // const data = await deleteUser(id);
+      // console.log(data);
       setIsOpen(false);
       SetRefreshCount((prev) => prev + 1);
       navigate('/users', {

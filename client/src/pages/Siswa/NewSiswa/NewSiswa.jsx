@@ -53,10 +53,11 @@ function NewSiswa() {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createSiswa(formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('created new siswa');
+      await createSiswa(formData);
+      // const response = await createSiswa(formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('created new siswa');
       navigate('/siswa', {
         state: { success: true, message: 'Berhasil menambahkan siswa' },
         replace: true,
@@ -90,7 +91,7 @@ function NewSiswa() {
       nomorHP: nomorHP,
       tahunAngkatan: tahunAngkatan,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewSiswa(formData);
     return;
   }

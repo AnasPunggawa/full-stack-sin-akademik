@@ -60,8 +60,8 @@ function SearchDataGuru({ ListGuru, SetListGuru }) {
   }, [ListGuru]);
 
   function addGuru(id, nip, nama) {
-    console.log(ListGuru);
-    console.log(selectedGuru);
+    // console.log(ListGuru);
+    // console.log(selectedGuru);
     // setIsError(false);
     const selectedGuruExist = guruExist(id);
     if (selectedGuruExist) {

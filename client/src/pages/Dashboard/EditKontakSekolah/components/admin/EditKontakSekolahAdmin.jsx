@@ -50,9 +50,10 @@ function EditKontakSekolahAdmin({ TextHeader, DataKontakSekolah }) {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await updateKontakSekolah(id, formData);
-      const data = response?.data?.data;
-      console.log(data);
+      await updateKontakSekolah(id, formData);
+      // const response = await updateKontakSekolah(id, formData);
+      // const data = response?.data?.data;
+      // console.log(data);
       navigate('/', {
         state: {
           success: true,
@@ -90,7 +91,7 @@ function EditKontakSekolahAdmin({ TextHeader, DataKontakSekolah }) {
       nomor_telepon: nomorTelepon,
       email: email,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateKontakSekolah(formData);
     return;
   }

@@ -28,9 +28,10 @@ function EditData({ AkunGuru }) {
     setIsLoading(true);
     setErrorMessage('');
     try {
-      const response = await updateUser(user_id, formData);
-      console.log(response);
-      console.log('updated akun guru');
+      await updateUser(user_id, formData);
+      // const response = await updateUser(user_id, formData);
+      // console.log(response);
+      // console.log('updated akun guru');
       navigate(`/guru/${id}`, {
         state: { success: true, message: 'Berhasil mengubah password guru' },
         replace: true,
@@ -53,7 +54,7 @@ function EditData({ AkunGuru }) {
       ...users,
       password: passwordBaru,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateAkunGuru(formData);
   }
 

@@ -5,7 +5,6 @@ import AddIdentitasSekolahAdmin from './components/admin/AddIdentitasSekolahAdmi
 function AddIdentitasSekolah() {
   useTitle('Identitas Sekolah');
   const { state } = useLocation();
-  console.log(state);
 
   if (!state || state?.role !== 'admin') {
     return <Navigate to="/" replace={true} />;

@@ -43,8 +43,9 @@ function NewSemester() {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await createSemester(formData);
-      console.log(response);
+      await createSemester(formData);
+      // const response = await createSemester(formData);
+      // console.log(response);
       navigate('/semester', {
         state: { success: true, message: 'Berhasil menambahkan semester' },
         replace: true,
@@ -85,7 +86,7 @@ function NewSemester() {
       semester: semester,
       status: true,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewSemester(formData);
   }
 

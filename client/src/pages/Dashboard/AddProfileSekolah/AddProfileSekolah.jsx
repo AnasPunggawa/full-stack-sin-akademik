@@ -5,7 +5,6 @@ import AddProfileSekolahAdmin from './components/admin/AddProfileSekolahAdmin';
 function AddProfileSekolah() {
   useTitle('Profil Sekolah');
   const { state } = useLocation();
-  console.log(state);
 
   if (!state || state?.role !== 'admin') {
     return <Navigate to="/" replace={true} />;

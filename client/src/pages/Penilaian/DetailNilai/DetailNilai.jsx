@@ -89,7 +89,6 @@ function DetailNilai() {
   }
 
   function handleEdit() {
-    // console.log('go to edit page');
     navigate('edit');
   }
 

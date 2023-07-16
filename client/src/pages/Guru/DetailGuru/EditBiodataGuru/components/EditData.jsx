@@ -65,10 +65,11 @@ function EditData({ BiodataGuru }) {
     setIsError(false);
     setErrorMessage('');
     try {
+      await updateGuru(id, formData);
       const response = await updateGuru(id, formData);
       const data = response.data.data;
-      console.log(data);
-      console.log('updated biodata guru');
+      // console.log(data);
+      // console.log('updated biodata guru');
       navigate(`/guru/${data.id}`, {
         state: { success: true, message: 'Berhasil mengubah biodata guru' },
         replace: true,
@@ -100,7 +101,7 @@ function EditData({ BiodataGuru }) {
       nomorHP,
       status,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateGuru(formData);
     return;
   }

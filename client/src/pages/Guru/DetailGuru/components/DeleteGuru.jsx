@@ -25,11 +25,11 @@ function DeleteGuru({ Guru }) {
   }, [isOpen]);
 
   async function handleDelete(id) {
-    console.log('deleted', id);
     setIsLoading(true);
     try {
-      const data = await deleteGuru(id);
-      console.log(data);
+      await deleteGuru(id);
+      // const data = await deleteGuru(id);
+      // console.log(data);
       setIsOpen(false);
       navigate('/guru', {
         state: { success: true, message: 'Berhasil menghapus guru' },

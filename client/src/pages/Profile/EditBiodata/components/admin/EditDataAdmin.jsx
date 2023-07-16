@@ -60,10 +60,11 @@ function EditDataAdmin({ BiodataAdmin }) {
     setIsError(false);
     setErrorMessage('');
     try {
-      const response = await updateAdmin(id, formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('updated biodata siswa');
+      await updateAdmin(id, formData);
+      // const response = await updateAdmin(id, formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('updated biodata siswa');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil mengubah biodata' },
         replace: true,
@@ -93,7 +94,7 @@ function EditDataAdmin({ BiodataAdmin }) {
       email,
       nomorHP,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateAdmin(formData);
     return;
   }

@@ -18,7 +18,7 @@ function SearchUsernameGuru({ SetUserID }) {
     try {
       const response = await getUsers('guru', username, 1, 10);
       const data = response.data.data;
-      console.log(data.users);
+      // console.log(data.users);
       setResultSearchUsernameGuru(data.users);
     } catch (error) {
       setIsError(true);

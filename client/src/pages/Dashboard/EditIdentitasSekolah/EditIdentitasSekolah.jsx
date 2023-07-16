@@ -5,7 +5,6 @@ import EditIdentitasSekolahAdmin from './components/admin/EditIdentitasSekolahAd
 function EditIdentitasSekolah() {
   useTitle('Identitas Sekolah');
   const { state } = useLocation();
-  console.log(state);
 
   if (!state || state?.role !== 'admin' || !state?.data) {
     return <Navigate to="/" replace={true} />;

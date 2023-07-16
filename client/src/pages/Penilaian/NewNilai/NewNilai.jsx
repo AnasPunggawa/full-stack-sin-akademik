@@ -39,10 +39,11 @@ function NewNilai() {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createNilai(formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('created new nilai');
+      await createNilai(formData);
+      // const response = await createNilai(formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('created new nilai');
       navigate('/penilaian', {
         state: { success: true, message: 'Berhasil menambahkan nilai siswa' },
         replace: true,
@@ -71,7 +72,7 @@ function NewNilai() {
       predikat: predikat,
       catatan: catatan,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewNilai(formData);
     return;
   }

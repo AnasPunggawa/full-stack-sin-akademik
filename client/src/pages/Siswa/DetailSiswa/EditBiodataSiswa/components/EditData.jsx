@@ -75,8 +75,8 @@ function EditData({ BiodataSiswa }) {
     try {
       const response = await updateSiswa(id, formData);
       const data = response.data.data;
-      console.log(data);
-      console.log('updated biodata siswa');
+      // console.log(data);
+      // console.log('updated biodata siswa');
       navigate(`/siswa/${data.id}`, {
         state: { success: true, message: 'Berhasil mengubah biodata siswa' },
         replace: true,
@@ -112,7 +112,7 @@ function EditData({ BiodataSiswa }) {
       tahunAngkatan,
       status,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateSiswa(formData);
     return;
   }

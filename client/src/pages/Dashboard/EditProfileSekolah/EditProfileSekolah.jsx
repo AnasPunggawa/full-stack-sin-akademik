@@ -5,7 +5,6 @@ import EditProfileSekolahAdmin from './components/admin/EditProfileSekolahAdmin'
 function EditProfileSekolah() {
   useTitle('Profil Sekolah');
   const { state } = useLocation();
-  console.log(state);
 
   if (!state || state?.role !== 'admin' || !state?.data) {
     return <Navigate to="/" replace={true} />;

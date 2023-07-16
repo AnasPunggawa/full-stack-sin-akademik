@@ -62,10 +62,11 @@ function EditDataGuru({ BiodataGuru }) {
     setIsError(false);
     setErrorMessage('');
     try {
-      const response = await updateGuru(id, formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('updated biodata guru');
+      await updateGuru(id, formData);
+      // const response = await updateGuru(id, formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('updated biodata guru');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil mengubah biodata' },
         replace: true,
@@ -96,7 +97,7 @@ function EditDataGuru({ BiodataGuru }) {
       email,
       nomorHP,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateGuru(formData);
     return;
   }

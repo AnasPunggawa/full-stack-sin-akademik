@@ -27,8 +27,9 @@ function DeleteSemester({ Semester }) {
   async function handleDelete(id) {
     setIsLoading(true);
     try {
-      const data = await deleteSemester(id);
-      console.log(data);
+      await deleteSemester(id);
+      // const data = await deleteSemester(id);
+      // console.log(data);
       navigate('/semester', {
         state: { success: true, message: 'Berhasil menghapus semester' },
         replace: true,

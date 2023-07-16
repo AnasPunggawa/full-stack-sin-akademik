@@ -27,8 +27,9 @@ function DeleteKelas({ Kelas, SetRefreshCount }) {
   async function handleDelete(id) {
     setIsLoading(true);
     try {
-      const data = await deleteKelas(id);
-      console.log(data);
+      await deleteKelas(id);
+      // const data = await deleteKelas(id);
+      // console.log(data);
       setIsOpen(false);
       SetRefreshCount((prev) => prev + 1);
       navigate('/kelas', {

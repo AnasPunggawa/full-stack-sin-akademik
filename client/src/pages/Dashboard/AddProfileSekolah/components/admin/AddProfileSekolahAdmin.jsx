@@ -27,9 +27,10 @@ function AddProfileSekolahAdmin({ TextHeader }) {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await createProfilSekolah(formData);
-      const data = response?.data?.data;
-      console.log(data);
+      await createProfilSekolah(formData);
+      // const response = await createProfilSekolah(formData);
+      // const data = response?.data?.data;
+      // console.log(data);
       navigate('/', {
         state: {
           success: true,
@@ -59,7 +60,7 @@ function AddProfileSekolahAdmin({ TextHeader }) {
       nama_operator: namaOperator,
       akreditasi: akreditasi.toUpperCase(),
     };
-    console.log(formData);
+    // console.log(formData);
     createNewProfilSekolah(formData);
     return;
   }

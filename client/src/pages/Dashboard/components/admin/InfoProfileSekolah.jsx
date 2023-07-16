@@ -22,7 +22,6 @@ function InfoProfileSekolah() {
     try {
       const response = await getProfilSekolah();
       const data = response?.data?.data;
-      console.log(data);
       setDataProfilSekolah(data);
     } catch (error) {
       setIsError(true);

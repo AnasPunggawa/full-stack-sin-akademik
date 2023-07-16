@@ -33,7 +33,6 @@ const ComponentToPrint = forwardRef(function ComponentToPrint({ Data }, ref) {
         dataProfil: dataProfil || null,
         dataKontak: dataKontak || null,
       };
-      console.log(data);
       setDataSekolah(data);
     } catch (error) {
       if (error?.response?.status === 404 && !error?.response?.data?.success) {

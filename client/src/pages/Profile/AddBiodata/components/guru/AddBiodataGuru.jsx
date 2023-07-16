@@ -34,10 +34,11 @@ function AddBiodataGuru({ User }) {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createGuru(formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('add biodata guru');
+      await createGuru(formData);
+      // const response = await createGuru(formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('add biodata guru');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil menambahkan biodata' },
         replace: true,
@@ -67,7 +68,7 @@ function AddBiodataGuru({ User }) {
       email: email,
       nomorHP: nomorHP,
     };
-    console.log(formData);
+    // console.log(formData);
     createBiodataGuru(formData);
     return;
   }

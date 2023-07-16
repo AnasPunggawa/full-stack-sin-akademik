@@ -5,7 +5,6 @@ import EditKontakSekolahAdmin from './components/admin/EditKontakSekolahAdmin';
 function EditKontakSekolah() {
   useTitle('Kontak Sekolah');
   const { state } = useLocation();
-  console.log(state);
 
   if (!state || state?.role !== 'admin' || !state?.data) {
     return <Navigate to="/" replace={true} />;

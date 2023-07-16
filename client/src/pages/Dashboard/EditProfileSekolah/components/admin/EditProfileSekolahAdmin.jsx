@@ -38,9 +38,10 @@ function EditProfileSekolahAdmin({ TextHeader, DataProfilSekolah }) {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await updateProfilSekolah(id, formData);
-      const data = response?.data?.data;
-      console.log(data);
+      await updateProfilSekolah(id, formData);
+      // const response = await updateProfilSekolah(id, formData);
+      // const data = response?.data?.data;
+      // console.log(data);
       navigate('/', {
         state: {
           success: true,
@@ -71,7 +72,7 @@ function EditProfileSekolahAdmin({ TextHeader, DataProfilSekolah }) {
       nama_operator: namaOperator,
       akreditasi: akreditasi.toUpperCase(),
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateProfilSekolah(formData);
     return;
   }

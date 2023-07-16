@@ -58,10 +58,10 @@ function Login() {
     setIsLoading(true);
     setIsError(false);
     try {
-      console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGIN);
+      // console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGIN);
       const formData = { username, password };
       const response = await authLogin(formData);
-      console.log(response);
+      // console.log(response);
       const data = response.data.data;
       const decodeJwt = jwtDecode(data.accessToken);
       localStorage.setItem('accessToken', data.accessToken);

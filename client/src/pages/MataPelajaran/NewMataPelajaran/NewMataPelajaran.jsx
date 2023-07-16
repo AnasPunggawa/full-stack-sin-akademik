@@ -26,9 +26,10 @@ function NewMataPelajaran() {
     setIsError(false);
     setErrorMessage('');
     try {
-      const response = await createMataPelajaran(formData);
-      const data = response.data.data;
-      console.log(data);
+      await createMataPelajaran(formData);
+      // const response = await createMataPelajaran(formData);
+      // const data = response.data.data;
+      // console.log(data);
       navigate('/mata-pelajaran', {
         state: {
           success: true,
@@ -60,7 +61,7 @@ function NewMataPelajaran() {
       nama: namaMataPelajaran,
     };
     handleCreateMataPelajaran(formData);
-    console.log(formData);
+    // console.log(formData);
     return;
   }
 

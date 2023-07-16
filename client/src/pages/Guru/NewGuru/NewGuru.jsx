@@ -47,10 +47,11 @@ function NewGuru() {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createGuru(formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('created new guru');
+      await createGuru(formData);
+      // const response = await createGuru(formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('created new guru');
       navigate('/guru', {
         state: { success: true, message: 'Berhasil menambahkan user' },
         replace: true,
@@ -80,7 +81,7 @@ function NewGuru() {
       email: email,
       nomorHP: nomorHP,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewGuru(formData);
     return;
   }

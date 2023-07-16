@@ -25,11 +25,11 @@ function DeleteGuru({ Guru, SetRefreshCount }) {
   }, [isOpen]);
 
   async function handleDelete(id) {
-    console.log('deleted', id);
     setIsLoading(true);
     try {
-      const data = await deleteGuru(id);
-      console.log(data);
+      await deleteGuru(id);
+      // const data = await deleteGuru(id);
+      // console.log(data);
       setIsOpen(false);
       SetRefreshCount((prev) => prev + 1);
       navigate('/guru', {

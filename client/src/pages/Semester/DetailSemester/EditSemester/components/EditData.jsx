@@ -40,7 +40,7 @@ function EditData({ DataSemester }) {
     try {
       const response = await updateSemester(id, formData);
       const data = response.data.data;
-      console.log(data);
+      // console.log(data);
       navigate(`/semester/${data.id}`, {
         state: {
           success: true,
@@ -92,7 +92,7 @@ function EditData({ DataSemester }) {
       semester: tingkatSemester,
       status: statusSemester === 'true',
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateMataPelajaran(formData);
     return;
   }

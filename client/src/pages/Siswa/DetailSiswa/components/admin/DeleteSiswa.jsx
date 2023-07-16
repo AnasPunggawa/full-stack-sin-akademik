@@ -25,11 +25,11 @@ function DeleteSiswa({ Siswa }) {
   }, [isOpen]);
 
   async function handleDelete(id) {
-    console.log('deleted', id);
     setIsLoading(true);
     try {
-      const data = await deleteSiswa(id);
-      console.log(data);
+      await deleteSiswa(id);
+      // const data = await deleteSiswa(id);
+      // console.log(data);
       setIsOpen(false);
       navigate('/siswa', {
         state: { success: true, message: 'Berhasil menghapus siswa' },

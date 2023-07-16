@@ -41,7 +41,6 @@ function TableGuru({ DataTable, SetPage, SetRefreshCount }) {
   const navigate = useNavigate();
 
   function handleDetail(id) {
-    // console.log('go to detail', id);
     navigate(id);
   }
 

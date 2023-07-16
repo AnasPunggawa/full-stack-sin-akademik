@@ -33,10 +33,11 @@ function AddBiodataAdmin({ User }) {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createAdmin(formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('add biodata admin');
+      await createAdmin(formData);
+      // const response = await createAdmin(formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('add biodata admin');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil menambahkan biodata' },
         replace: true,
@@ -65,7 +66,7 @@ function AddBiodataAdmin({ User }) {
       email: email,
       nomorHP: nomorHP,
     };
-    console.log(formData);
+    // console.log(formData);
     createBiodataAdmin(formData);
     return;
   }

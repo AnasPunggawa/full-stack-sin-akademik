@@ -5,7 +5,6 @@ import AddKontakSekolahAdmin from './components/admin/AddKontakSekolahAdmin';
 function AddKontakSekolah() {
   useTitle('Kontak Sekolah');
   const { state } = useLocation();
-  console.log(state);
 
   if (!state || state?.role !== 'admin') {
     return <Navigate to="/" replace={true} />;

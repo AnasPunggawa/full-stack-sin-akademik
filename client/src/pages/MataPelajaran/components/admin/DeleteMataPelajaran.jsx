@@ -27,8 +27,9 @@ function DeleteMataPelajaran({ MataPelajaran, SetRefreshCount }) {
   async function handleDelete(id) {
     setIsLoading(true);
     try {
-      const data = await deleteMataPelajaran(id);
-      console.log(data);
+      await deleteMataPelajaran(id);
+      // const data = await deleteMataPelajaran(id);
+      // console.log(data);
       setIsOpen(false);
       SetRefreshCount((prev) => prev + 1);
       navigate('/mata-pelajaran', {

@@ -31,9 +31,10 @@ function AddIdentitasSekolahAdmin({ TextHeader }) {
     setIsError(false);
     setIsloading(true);
     try {
-      const response = await createIdentitasSekolah(formData);
-      const data = response?.data?.data;
-      console.log(data);
+      await createIdentitasSekolah(formData);
+      // const response = await createIdentitasSekolah(formData);
+      // const data = response?.data?.data;
+      // console.log(data);
       navigate('/', {
         state: {
           success: true,
@@ -66,7 +67,7 @@ function AddIdentitasSekolahAdmin({ TextHeader }) {
       sk_izin_operasional: skIzinOperasional.toUpperCase(),
       tanggal_sk_izin_operasional: tanggalSkIzinOperasional,
     };
-    console.log(formData);
+    // console.log(formData);
     createNewIdentitasSekolah(formData);
     return;
   }

@@ -36,8 +36,8 @@ function EditData({ NilaiSiswa }) {
     try {
       const response = await updateNilai(id, formData);
       const data = response.data.data;
-      console.log(data);
-      console.log('updated nilai siswa');
+      // console.log(data);
+      // console.log('updated nilai siswa');
       navigate(`/penilaian/${data.id}`, {
         state: { success: true, message: 'Berhasil mengubah nilai siswa' },
         replace: true,
@@ -62,7 +62,7 @@ function EditData({ NilaiSiswa }) {
       predikat,
       catatan,
     };
-    console.log(formData);
+    // console.log(formData);
     handleUpdateNilai(formData);
     return;
   }

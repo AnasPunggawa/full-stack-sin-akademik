@@ -27,13 +27,13 @@ function Navbar() {
     setIsLoading(true);
     setIsError(false);
     try {
-      console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGOUT);
+      // console.log(ACTION_AUTH_REDUCER_CONTEXT.LOGOUT);
       await authLogout();
       localStorage.clear();
       dispatch({ type: ACTION_AUTH_REDUCER_CONTEXT.LOGOUT });
       navigate('/login', { replace: true });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       localStorage.clear();
       dispatch({ type: ACTION_AUTH_REDUCER_CONTEXT.LOGOUT });
       navigate('/login', { replace: true });

@@ -39,10 +39,11 @@ function AddBiodataSiswa({ User }) {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await createSiswa(formData);
-      const data = response.data.data;
-      console.log(data);
-      console.log('add biodata siswa');
+      await createSiswa(formData);
+      // const response = await createSiswa(formData);
+      // const data = response.data.data;
+      // console.log(data);
+      // console.log('add biodata siswa');
       navigate('/profile', {
         state: { success: true, message: 'Berhasil menambahkan biodata' },
         replace: true,
@@ -76,7 +77,7 @@ function AddBiodataSiswa({ User }) {
       nomorHP: nomorHP,
       tahunAngkatan: tahunAngkatan,
     };
-    console.log(formData);
+    // console.log(formData);
     createBiodataSiswa(formData);
     return;
   }

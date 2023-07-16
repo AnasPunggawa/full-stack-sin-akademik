@@ -6,8 +6,6 @@ export const ACTION_AUTH_REDUCER_CONTEXT = {
 export function authReducerContext(state, action) {
   const { type, payload } = action;
 
-  console.log(type);
-
   switch (type) {
     case ACTION_AUTH_REDUCER_CONTEXT.LOGIN:
       return {

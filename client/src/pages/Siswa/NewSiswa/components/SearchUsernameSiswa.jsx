@@ -20,7 +20,7 @@ function SearchUsernameSiswa({ SetUserID }) {
     try {
       const response = await getUsers('siswa', username, 1, 10);
       const data = response.data.data;
-      console.log(data.users);
+      // console.log(data.users);
       setResultSearchUsernameSiswa(data.users);
     } catch (error) {
       setIsError(true);
