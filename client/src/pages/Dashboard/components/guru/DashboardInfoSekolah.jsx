@@ -12,7 +12,8 @@ function DashboardInfoSekolah({ InformasiSekolah }) {
           <IconInfo /> Informasi Sekolah
         </h3>
       </div>
-      <div className="w-full grid md:grid-cols-3 gap-3">
+      {/* <div className="w-full grid md:grid-cols-3 gap-3"> */}
+      <div className="w-full space-y-3 md:space-y-0 md:grid md:grid-cols-3 gap-3">
         <div className="md:col-span-1">
           <InfoProfileSekolah
             ProfilSekolah={InformasiSekolah?.profil_sekolah}
