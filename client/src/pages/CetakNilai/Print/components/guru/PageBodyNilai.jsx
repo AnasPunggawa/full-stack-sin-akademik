@@ -10,17 +10,17 @@ const TABLE_HEAD_LAPORAN = [
   {
     name: 'NIS',
     style: 'text-sm px-1.5 font-normal border border-black',
-    width: '15%',
+    width: '10%',
   },
   {
     name: 'NISN',
     style: 'text-sm px-1.5 font-normal border border-black',
-    width: '20%',
+    width: '15%',
   },
   {
     name: 'Nama',
     style: 'text-sm px-1.5 font-normal border border-black',
-    width: '34%',
+    width: '32%',
   },
   {
     name: 'Nilai',
@@ -86,7 +86,7 @@ function PageBodyNilai({ Nilai }) {
                 <td className="text-sm px-1.5 text-center border border-black">
                   {item.predikat ? item.predikat : '-'}
                 </td>
-                <td className="text-sm px-1.5 text-center border border-black">
+                <td className="text-sm px-1.5 border border-black">
                   {item.catatan ? item.catatan : '-'}
                 </td>
               </tr>

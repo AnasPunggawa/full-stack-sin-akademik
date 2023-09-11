@@ -70,7 +70,7 @@ function PageBodyNilai({ Nilai }) {
                 <td className="text-sm px-1.5 text-center border border-black">
                   {item.predikat ? item.predikat : '-'}
                 </td>
-                <td className="text-sm px-1.5 text-center border border-black">
+                <td className="text-sm px-1.5 border border-black">
                   {item.catatan ? item.catatan : '-'}
                 </td>
               </tr>
