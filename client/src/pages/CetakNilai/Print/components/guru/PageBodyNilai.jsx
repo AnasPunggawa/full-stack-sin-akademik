@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { averagePredicate } from '../../../../../utils/averagePredicate';
 
 const TABLE_HEAD_LAPORAN = [
   {
@@ -19,17 +20,22 @@ const TABLE_HEAD_LAPORAN = [
   {
     name: 'Nama',
     style: 'text-sm px-1.5 font-normal border border-black',
-    width: '36%',
+    width: '34%',
   },
   {
     name: 'Nilai',
     style: 'text-sm px-1.5 font-normal border border-black',
-    width: '12%',
+    width: '10%',
   },
   {
     name: 'Predikat',
     style: 'text-sm px-1.5 font-normal border border-black',
-    width: '12%',
+    width: '10%',
+  },
+  {
+    name: 'Keterangan',
+    style: 'text-sm px-1.5 font-normal border border-black',
+    width: '16%',
   },
 ];
 
@@ -42,6 +48,7 @@ function PageBodyNilai({ Nilai }) {
   }, 0);
 
   const rataRataNilai = (totalNilai / Nilai.length).toFixed(2);
+  const rataRataPredikat = averagePredicate(rataRataNilai);
 
   return (
     <table className="w-full border border-black mb-4 uppercase">
@@ -79,6 +86,9 @@ function PageBodyNilai({ Nilai }) {
                 <td className="text-sm px-1.5 text-center border border-black">
                   {item.predikat ? item.predikat : '-'}
                 </td>
+                <td className="text-sm px-1.5 text-center border border-black">
+                  {item.catatan ? item.catatan : '-'}
+                </td>
               </tr>
             );
           })}
@@ -93,6 +103,7 @@ function PageBodyNilai({ Nilai }) {
             {totalNilai}
           </td>
           <td className="text-sm px-1.5 text-center border border-black"></td>
+          <td className="text-sm px-1.5 text-center border border-black"></td>
         </tr>
         <tr>
           <td
@@ -103,6 +114,9 @@ function PageBodyNilai({ Nilai }) {
           </td>
           <td className="text-sm px-1.5 text-center border border-black">
             {rataRataNilai}
+          </td>
+          <td className="text-sm px-1.5 text-center border border-black">
+            {rataRataPredikat}
           </td>
           <td className="text-sm px-1.5 text-center border border-black"></td>
         </tr>
