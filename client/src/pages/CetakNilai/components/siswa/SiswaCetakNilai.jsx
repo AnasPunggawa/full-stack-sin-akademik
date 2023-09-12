@@ -167,11 +167,13 @@ function SiswaCetakNilai() {
       <Container>
         <div className="w-full grid gap-2 sm:grid-cols-2 p-4">
           <SelectSiswa SetSiswaId={setSiswaId} SetSiswaInfo={setSiswaInfo} />
-          <SelectSemester
-            SiswaId={siswaId}
-            SetKodeSemester={setKodeSemester}
-            SetKodeKelas={setKodeKelas}
-          />
+          {siswaId && (
+            <SelectSemester
+              SiswaId={siswaId}
+              SetKodeSemester={setKodeSemester}
+              SetKodeKelas={setKodeKelas}
+            />
+          )}
           {siswaId && kodeSemester && kodeKelas && (
             <>
               <SelectMataPelajaran

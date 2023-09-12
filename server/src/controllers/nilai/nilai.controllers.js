@@ -54,12 +54,12 @@ async function getAllNilai(req, res, next) {
 
     if (
       searchNama === '' &&
-      siswaID === '' &&
       kodeSemester === '' &&
       kodeKelas === '' &&
-      kodeMataPelajaran === ''
+      kodeMataPelajaran === '' &&
+      dataRaw
     )
-      resSuccessController(res, 200, 'data nilai berhasil ditemukan', {
+      return resSuccessController(res, 200, 'data nilai berhasil ditemukan', {
         current_page: Number(page),
         total_page: totalPage,
         limit_data: Number(limit),

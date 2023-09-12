@@ -41,20 +41,26 @@ function SelectSemester({ SiswaId, SetKodeSemester, SetKodeKelas }) {
   }
 
   function listArray(arr) {
-    return arr.map((item) => {
-      const arrSemester = item?.semester?.kodeSemester.split('-');
-      const semester = arrSemester[0];
-      const kode =
-        arrSemester[1].charAt(0).toUpperCase() + arrSemester[1].slice(1);
-      const kodeSemester = `${semester} - ${kode}`;
-      return {
-        id: item?.semester?.id,
-        // name: item?.semester?.kodeSemester,
-        name: kodeSemester,
-        kelas_id: item?.kelas?.id,
-        kelas: item?.kelas?.kodeKelas,
-      };
-    });
+    // console.log(arr);
+    return arr
+      .map((item) => {
+        const arrSemester = item?.semester?.kodeSemester.split('-');
+        const semester = arrSemester[0];
+        const kode =
+          arrSemester[1].charAt(0).toUpperCase() + arrSemester[1].slice(1);
+        const kodeSemester = `${semester} - ${kode}`;
+        return {
+          id: item?.semester?.id,
+          siswa_id: item?.siswa_id,
+          // name: item?.semester?.kodeSemester,
+          name: kodeSemester,
+          kelas_id: item?.kelas?.id,
+          kelas: item?.kelas?.kodeKelas,
+        };
+      })
+      .filter((item) => {
+        return item?.siswa_id === SiswaId;
+      });
   }
 
   function filterByValue(arr, prop) {
