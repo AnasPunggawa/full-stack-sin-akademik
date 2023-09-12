@@ -3,7 +3,7 @@ function generateKelasID(kelas, kode) {
 }
 
 function generateKodeKelas(kelas, kode) {
-  return kelas + kode.toUpperCase();
+  return `${kelas}-${kode.toUpperCase()}`;
 }
 
 module.exports = {

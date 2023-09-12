@@ -131,7 +131,8 @@ function NewKelas() {
             <InputField
               HtmlFor="kode-kelas"
               Type="text"
-              Value={kodeKelas}
+              // Value={kodeKelas}
+              Value={kodeKelas ? `${tingkatKelas}-${kode} ` : ''}
               Placeholder="Pilihlah kelas dan kode"
               Required={true}
               Disabled={true}

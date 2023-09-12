@@ -22,7 +22,7 @@ function createKelasValidation(request) {
   if (kelas.length !== 1 || !containsOnlyNumbers(kelas))
     throw new CustomError(400, errorMessage.kelasNotValid);
   if (!kode) throw new CustomError(400, errorMessage.emptyKode);
-  if (kode.length !== 1 || containsOnlyNumbers(kode))
+  if (kode.length > 4 || containsOnlyNumbers(kode))
     throw new CustomError(400, errorMessage.KodeNotValid);
 
   request.body = {
@@ -51,7 +51,7 @@ async function updateKelasValidation(request) {
   if (kelas.length !== 1 || !containsOnlyNumbers(kelas))
     throw new CustomError(400, errorMessage.kelasNotValid);
   if (!kode) throw new CustomError(400, errorMessage.emptyKode);
-  if (kode.length !== 1 || containsOnlyNumbers(kode))
+  if (kode.length > 4 || containsOnlyNumbers(kode))
     throw new CustomError(400, errorMessage.KodeNotValid);
 
   kelasData = {

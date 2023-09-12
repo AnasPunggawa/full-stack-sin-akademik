@@ -5,12 +5,14 @@ export const SELECT_KELAS = [
 ];
 
 export const SELECT_KODE = [
-  { id: 'A', name: 'A' },
-  { id: 'B', name: 'B' },
-  { id: 'C', name: 'C' },
-  { id: 'D', name: 'D' },
-  { id: 'E', name: 'E' },
-  { id: 'F', name: 'F' },
-  { id: 'G', name: 'G' },
-  { id: 'H', name: 'H' },
+  { id: 'I', name: 'I' },
+  { id: 'II', name: 'II' },
+  { id: 'III', name: 'III' },
+  { id: 'IV', name: 'IV' },
+  { id: 'V', name: 'V' },
+  { id: 'VI', name: 'VI' },
+  { id: 'VII', name: 'VII' },
+  { id: 'VIII', name: 'VIII' },
+  { id: 'IX', name: 'IX' },
+  { id: 'X', name: 'X' },
 ];

@@ -10,7 +10,8 @@ function PageBodyInfo({ Info }) {
     nip,
     semester_id,
   } = Info;
-  const kelas = kelas_id.split('-').join('').toUpperCase();
+  // const kelas = kelas_id.split('-').join('').toUpperCase();
+  const kelas = kelas_id.toUpperCase();
   const arrSemester = semester_id.split('-');
   const tahunAjaran = `${arrSemester[0]}/${arrSemester[1]}`;
   const semester = arrSemester[2].toUpperCase();
