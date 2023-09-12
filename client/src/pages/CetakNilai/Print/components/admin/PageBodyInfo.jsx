@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 function PageBodyInfo({ Info }) {
   const { kelas_id, semester_id, siswa_nama, siswa_nis, siswa_nisn } = Info;
-  // const kelas = kelas_id.split('-').join('').toUpperCase();
+  //! const kelas = kelas_id.split('-').join('').toUpperCase();
   const kelas = kelas_id.toUpperCase();
   const arrSemester = semester_id.split('-');
   const tahunAjaran = `${arrSemester[0]}/${arrSemester[1]}`;
