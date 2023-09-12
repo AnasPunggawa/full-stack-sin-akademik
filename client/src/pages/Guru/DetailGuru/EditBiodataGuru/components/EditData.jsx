@@ -65,16 +65,20 @@ function EditData({ BiodataGuru }) {
     setIsError(false);
     setErrorMessage('');
     try {
-      await updateGuru(id, formData);
+      // console.log(formData);
+      // await updateGuru(id, formData);
       const response = await updateGuru(id, formData);
+      // console.log(response);
       const data = response.data.data;
       // console.log(data);
       // console.log('updated biodata guru');
+      // console.log(data.id);
       navigate(`/guru/${data.id}`, {
         state: { success: true, message: 'Berhasil mengubah biodata guru' },
         replace: true,
       });
     } catch (error) {
+      console.log(error);
       setIsError(true);
       if (error.response.data.status === 500)
         return setErrorMessage('Something went wrong');
