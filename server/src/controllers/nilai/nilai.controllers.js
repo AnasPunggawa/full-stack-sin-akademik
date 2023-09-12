@@ -31,7 +31,7 @@ async function getAllNilai(req, res, next) {
       limit = 10,
     } = req.query;
     const skip = (Number(page) - 1) * Number(limit);
-    const data = await find_all_datas(
+    const dataRaw = await find_all_datas(
       searchNama,
       siswaID,
       kodeSemester,
@@ -40,6 +40,8 @@ async function getAllNilai(req, res, next) {
       limit,
       skip
     );
+
+    const data = dataRaw.filter((data) => data.kelas_id === kodeKelas);
 
     const countData = await count_all_datas(
       searchNama,
