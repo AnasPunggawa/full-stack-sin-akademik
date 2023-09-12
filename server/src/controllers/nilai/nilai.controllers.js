@@ -41,8 +41,6 @@ async function getAllNilai(req, res, next) {
       skip
     );
 
-    const data = dataRaw.filter((data) => data.kelas_id === kodeKelas);
-
     const countData = await count_all_datas(
       searchNama,
       kodeSemester,
@@ -51,13 +49,34 @@ async function getAllNilai(req, res, next) {
     );
     const totalPage = Math.ceil(countData / Number(limit));
 
+    if (!dataRaw || dataRaw.length === 0)
+      throw new CustomError(404, 'data nilai tidak ditemukan');
+
+    if (
+      searchNama === '' &&
+      siswaID === '' &&
+      kodeSemester === '' &&
+      kodeKelas === '' &&
+      kodeMataPelajaran === ''
+    )
+      resSuccessController(res, 200, 'data nilai berhasil ditemukan', {
+        current_page: Number(page),
+        total_page: totalPage,
+        limit_data: Number(limit),
+        total_data: countData,
+        nilai: dataRaw,
+      });
+
+    const data = dataRaw.filter((data) => data.kelas_id === kodeKelas);
+
     if (!data || data.length === 0)
       throw new CustomError(404, 'data nilai tidak ditemukan');
+
     resSuccessController(res, 200, 'data nilai berhasil ditemukan', {
       current_page: Number(page),
       total_page: totalPage,
       limit_data: Number(limit),
-      total_data: countData,
+      total_data: data.length,
       nilai: data,
     });
   } catch (err) {
