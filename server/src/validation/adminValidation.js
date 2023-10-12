@@ -41,7 +41,11 @@ function createAdminValidation(request) {
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
-  if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
+  if (
+    nomorHP.length < 10 ||
+    nomorHP.length > 13 ||
+    !containsOnlyNumbers(nomorHP)
+  )
     throw new CustomError(400, errorMessage.nomorHPNotValid);
 
   return request.body;
@@ -76,7 +80,11 @@ async function updateAdminValidation(request) {
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
-  if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
+  if (
+    nomorHP.length < 10 ||
+    nomorHP.length > 13 ||
+    !containsOnlyNumbers(nomorHP)
+  )
     throw new CustomError(400, errorMessage.nomorHPNotValid);
 
   adminData = {

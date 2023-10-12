@@ -11,6 +11,7 @@ const errorMessage = {
   shortNama: 'nama minimal terdiri dari 3 karakter',
   emptyNip: 'nip harus diisi',
   nipNotNumber: 'nip harus berupa angka',
+  nipNotValid: 'nip tidak valid',
   emptyJenisKelamin: 'jenis kelamin harus diisi',
   emptyTempatLahir: 'tempat lahir harus diisi',
   emptyTanggalLahir: 'tanggal lahir harus diisi',
@@ -41,6 +42,7 @@ function createGuruValidation(request) {
   if (!nip) throw new CustomError(400, errorMessage.emptyNip);
   if (!containsOnlyNumbers(nip))
     throw new CustomError(400, errorMessage.nipNotNumber);
+  if (nip.length !== 18) throw new CustomError(400, errorMessage.nipNotValid);
   if (!jenisKelamin) throw new CustomError(400, errorMessage.emptyJenisKelamin);
   if (!tempatLahir) throw new CustomError(400, errorMessage.emptyTempatLahir);
   if (!tanggalLahir) throw new CustomError(400, errorMessage.emptyTanggalLahir);
@@ -49,7 +51,11 @@ function createGuruValidation(request) {
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
-  if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
+  if (
+    nomorHP.length < 10 ||
+    nomorHP.length > 13 ||
+    !containsOnlyNumbers(nomorHP)
+  )
     throw new CustomError(400, errorMessage.nomorHPNotValid);
 
   request.body = {
@@ -89,6 +95,7 @@ async function updateGuruValidation(request) {
   if (!nip) throw new CustomError(400, errorMessage.emptyNip);
   if (!containsOnlyNumbers(nip))
     throw new CustomError(400, errorMessage.nipNotNumber);
+  if (nip.length !== 18) throw new CustomError(400, errorMessage.nipNotValid);
   if (!jenisKelamin) throw new CustomError(400, errorMessage.emptyJenisKelamin);
   if (!tempatLahir) throw new CustomError(400, errorMessage.emptyTempatLahir);
   if (!tanggalLahir) throw new CustomError(400, errorMessage.emptyTanggalLahir);
@@ -97,7 +104,11 @@ async function updateGuruValidation(request) {
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
-  if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
+  if (
+    nomorHP.length < 10 ||
+    nomorHP.length > 13 ||
+    !containsOnlyNumbers(nomorHP)
+  )
     throw new CustomError(400, errorMessage.nomorHPNotValid);
 
   guruData = {

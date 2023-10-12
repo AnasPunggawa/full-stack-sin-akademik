@@ -67,7 +67,11 @@ function createSiswaValidation(request) {
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
-  if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
+  if (
+    nomorHP.length < 10 ||
+    nomorHP.length > 13 ||
+    !containsOnlyNumbers(nomorHP)
+  )
     throw new CustomError(400, errorMessage.nomorHPNotValid);
   if (!tahunAngkatan)
     throw new CustomError(400, errorMessage.emptyTahunAngkatan);
@@ -128,7 +132,11 @@ async function updateSiswaValidation(request) {
   if (!validateEmail(email))
     throw new CustomError(400, errorMessage.emailNotValid);
   if (!nomorHP) throw new CustomError(400, errorMessage.emptyNomorHP);
-  if (nomorHP.length < 10 || !containsOnlyNumbers(nomorHP))
+  if (
+    nomorHP.length < 10 ||
+    nomorHP.length > 13 ||
+    !containsOnlyNumbers(nomorHP)
+  )
     throw new CustomError(400, errorMessage.nomorHPNotValid);
   if (!tahunAngkatan)
     throw new CustomError(400, errorMessage.emptyTahunAngkatan);
