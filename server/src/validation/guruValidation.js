@@ -11,7 +11,7 @@ const errorMessage = {
   shortNama: 'nama minimal terdiri dari 3 karakter',
   emptyNip: 'nip harus diisi',
   nipNotNumber: 'nip harus berupa angka',
-  nipNotValid: 'nip tidak valid',
+  nipNotValid: 'nip harus 18 digit angka',
   emptyJenisKelamin: 'jenis kelamin harus diisi',
   emptyTempatLahir: 'tempat lahir harus diisi',
   emptyTanggalLahir: 'tanggal lahir harus diisi',
